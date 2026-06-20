@@ -1,0 +1,3266 @@
+[
+  {
+    "rank": 1,
+    "domain": "Алая-виджняна (сознание-хранилище, семена-биджа)",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ3",
+      "ИИ4",
+      "ИИ5"
+    ],
+    "intersections": 5,
+    "defense": "Хранилище кармических семян, из которого прорастают акты различения — ближайший буддийский аналог пред-сознания.",
+    "sources": [
+      {
+        "citation": "Asaṅga. Mahāyānasaṃgraha. Traduit et annoté par Étienne Lamotte. Louvain: Institut Orientaliste, 1938–1939.",
+        "original_language": "sanskrit",
+        "original_lost": true,
+        "authoritative_translation_language": "french",
+        "id": "1.1",
+        "short_name": "1.1. Асанга. Махаянасанграха."
+      },
+      {
+        "citation": "Vasubandhu. Triṃśikāvijñaptimātratāsiddhi. In: Anacker, Stefan. Seven Works of Vasubandhu. Delhi: Motilal Banarsidass, 1984.",
+        "original_language": "sanskrit",
+        "original_lost": true,
+        "authoritative_translation_language": "english",
+        "id": "1.2",
+        "short_name": "1.2. Васубандху. Тримшика."
+      },
+      {
+        "citation": "玄奘. 《成唯識論》. 大唐: 慈恩寺, 648–649.",
+        "original_language": "classical_chinese",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "1.3",
+        "short_name": "1.3. Сюань-цзан. Чэнвэйшилунь."
+      },
+      {
+        "citation": "Schmithausen, Lambert. Ālayavijñāna: On the Origin and Early Development of a Central Concept of Yogācāra Philosophy. 2 vols. Tokyo: International Institute for Buddhist Studies, 1987.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "1.4",
+        "short_name": "1.4. Шмитхаузен. Алая-виджняна."
+      },
+      {
+        "citation": "Waldron, William S. The Buddhist Unconscious: The Ālaya-vijñāna in the Context of Indian Buddhist Thought. London; New York: RoutledgeCurzon, 2003.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "1.5",
+        "short_name": "1.5. Уолдрон. Буддийское бессознательное."
+      }
+    ]
+  },
+  {
+    "rank": 2,
+    "domain": "Квантовая декогеренция / теория измерения",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ3",
+      "ИИ4",
+      "ИИ5"
+    ],
+    "intersections": 5,
+    "defense": "Коллапс суперпозиции при измерении — прямой физический аналог акта различения наблюдатель/наблюдаемое.",
+    "sources": [
+      {
+        "citation": "von Neumann, John. Mathematische Grundlagen der Quantenmechanik. Berlin: Springer, 1932.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "2.1",
+        "short_name": "2.1. фон Нейман. Основы квантовой механики."
+      },
+      {
+        "citation": "Everett, Hugh III. «Relative State Formulation of Quantum Mechanics». Reviews of Modern Physics, vol. 29, no. 3, 1957, pp. 454–462.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "2.2",
+        "short_name": "2.2. Эверетт. Относительные состояния."
+      },
+      {
+        "citation": "Zurek, Wojciech H. «Decoherence and the Transition from Quantum to Classical». Physics Today, vol. 44, no. 10, 1991, pp. 36–44.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "2.3",
+        "short_name": "2.3. Зурек. Декогеренция."
+      },
+      {
+        "citation": "Joos, Erich, et al. Decoherence and the Appearance of a Classical World in Quantum Theory. 2nd ed. Berlin: Springer, 2003.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "2.4",
+        "short_name": "2.4. Йоос и др. Декогеренция и классический мир."
+      },
+      {
+        "citation": "Schlosshauer, Maximilian. Decoherence and the Quantum-to-Classical Transition. Berlin: Springer, 2007.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "2.5",
+        "short_name": "2.5. Шлоссхауэр. Квантово-классический переход."
+      }
+    ]
+  },
+  {
+    "rank": 3,
+    "domain": "It from Bit / информационная физика (Уилер)",
+    "authors": [
+      "ИИ1",
+      "ИИ3",
+      "ИИ4",
+      "ИИ5"
+    ],
+    "intersections": 4,
+    "defense": "Реальность конструируется из элементарных бинарных различений (да/нет) — различение как фундаментальная единица бытия.",
+    "sources": [
+      {
+        "citation": "Wheeler, John Archibald. «It from Bit». In: Wheeler, John Archibald. At Home in the Universe. New York: American Institute of Physics, 1994, pp. 295–311.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "3.1",
+        "short_name": "3.1. Уилер. Оно из бита."
+      },
+      {
+        "citation": "Wheeler, John Archibald. «Information, Physics, Quantum: The Search for Links». In: Zurek, Wojciech H. (ed.). Complexity, Entropy and the Physics of Information. Redwood City, CA: Addison-Wesley, 1990, pp. 3–28.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "3.2",
+        "short_name": "3.2. Уилер. Информация и физика."
+      },
+      {
+        "citation": "Fredkin, Edward. «Digital Mechanics: An Informational Process Based on Reversible Universal Cellular Automata». Physica D: Nonlinear Phenomena, vol. 45, no. 1–3, 1990, pp. 254–270.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "3.3",
+        "short_name": "3.3. Фредкин. Цифровая механика."
+      },
+      {
+        "citation": "Zeilinger, Anton. «A Foundational Principle for Quantum Mechanics». Foundations of Physics, vol. 29, no. 4, 1999, pp. 631–643.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "3.4",
+        "short_name": "3.4. Цайлингер. Квантовый принцип."
+      }
+    ]
+  },
+  {
+    "rank": 4,
+    "domain": "Автопоэзис (Матурана, Варела)",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ3",
+      "ИИ4"
+    ],
+    "intersections": 4,
+    "defense": "Самопроизводящаяся граница живой системы — модель возникновения различения 'я/среда' без внешнего наблюдателя.",
+    "sources": [
+      {
+        "citation": "Maturana, Humberto R., and Francisco J. Varela. Autopoiesis and Cognition: The Realization of the Living. Dordrecht: D. Reidel, 1980.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "4.1",
+        "short_name": "4.1. Матурана, Варела. Автопоэзис."
+      },
+      {
+        "citation": "Maturana, Humberto R., and Francisco J. Varela. El árbol del conocimiento: Las bases biológicas del entendimiento humano. Santiago: Editorial Universitaria, 1984.",
+        "original_language": "spanish",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "4.2",
+        "short_name": "4.2. Матурана, Варела. Древо познания."
+      },
+      {
+        "citation": "Varela, Francisco J., Evan Thompson, and Eleanor Rosch. The Embodied Mind: Cognitive Science and Human Experience. Cambridge, MA: MIT Press, 1991.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "4.3",
+        "short_name": "4.3. Варела, Томпсон, Рош. Воплощённый разум."
+      },
+      {
+        "citation": "Luisi, Pier Luigi. The Emergence of Life: From Chemical Origins to Synthetic Biology. Cambridge: Cambridge University Press, 2006.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "4.4",
+        "short_name": "4.4. Луизи. Возникновение жизни."
+      }
+    ]
+  },
+  {
+    "rank": 5,
+    "domain": "Биосемиотика / семиотика жизни (распознавание сигнала клеткой)",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ3",
+      "ИИ5"
+    ],
+    "intersections": 4,
+    "defense": "Клетка или простейший организм 'читает' химический сигнал как знак — первичное различение 'полезно/опасно' до нервной системы.",
+    "sources": [
+      {
+        "citation": "Uexküll, Jakob von. Umwelt und Innenwelt der Tiere. Berlin: Springer, 1909.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "5.1",
+        "short_name": "5.1. фон Юкскюль. Среда животных."
+      },
+      {
+        "citation": "Sebeok, Thomas A. «The Sign Science and the Life Science». In: Sebeok, Thomas A. Sign: An Introduction to Semiotics. Toronto: University of Toronto Press, 1994, pp. 111–128.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "5.2",
+        "short_name": "5.2. Себеок. Знак и жизнь."
+      },
+      {
+        "citation": "Kull, Kalevi. «Biosemiotics: To Know, What Life Knows». Cybernetics and Human Knowing, vol. 7, no. 1, 2000, pp. 11–23.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "5.3",
+        "short_name": "5.3. Кулль. Биосемиотика."
+      },
+      {
+        "citation": "Hoffmeyer, Jesper. Signs of Meaning in the Universe. Bloomington: Indiana University Press, 1996.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "5.4",
+        "short_name": "5.4. Хоффмайер. Знаки смысла."
+      }
+    ]
+  },
+  {
+    "rank": 6,
+    "domain": "Зависимое возникновение / Патичча-самуппада",
+    "authors": [
+      "ИИ1",
+      "ИИ3",
+      "ИИ4",
+      "ИИ5"
+    ],
+    "intersections": 4,
+    "defense": "Цепочка авидья→санкхара→виджняна описывает сам триггер возникновения различающего сознания.",
+    "sources": [
+      {
+        "citation": "Nidānasaṃyutta. In: Saṃyutta Nikāya. Traduit par Bhikkhu Bodhi. The Connected Discourses of the Buddha. Boston: Wisdom Publications, 2000.",
+        "original_language": "pali",
+        "original_lost": false,
+        "authoritative_translation_language": "english",
+        "id": "6.1",
+        "short_name": "6.1. Нидана-самьютта. Зависимое возникновение."
+      },
+      {
+        "citation": "Buddhaghosa. Visuddhimagga. Transl. by Bhikkhu Ñāṇamoli as The Path of Purification. Kandy: Buddhist Publication Society, 1975.",
+        "original_language": "pali",
+        "original_lost": false,
+        "authoritative_translation_language": "english",
+        "id": "6.2",
+        "short_name": "6.2. Буддхагхоша. Путь очищения."
+      },
+      {
+        "citation": "Nāgārjuna. Pratītyasamutpādahṛdayakārikā. In: Kalupahana, David J. Nāgārjuna: The Philosophy of the Middle Way. Albany: SUNY Press, 1986.",
+        "original_language": "sanskrit",
+        "original_lost": true,
+        "authoritative_translation_language": "english",
+        "id": "6.3",
+        "short_name": "6.3. Нагарджуна. Пратитья-самутпада."
+      },
+      {
+        "citation": "Bodhi, Bhikkhu. «Transcendental Dependent Arising». Wheel Publication, no. 277/278. Kandy: Buddhist Publication Society, 1980.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "6.4",
+        "short_name": "6.4. Бодхи. Трансцендентальное возникновение."
+      }
+    ]
+  },
+  {
+    "rank": 7,
+    "domain": "Кибернетика второго порядка / самореференция наблюдателя",
+    "authors": [
+      "ИИ1",
+      "ИИ3",
+      "ИИ4",
+      "ИИ5"
+    ],
+    "intersections": 4,
+    "defense": "Наблюдатель, наблюдающий собственные различения — модель того, как различение начинает различать само себя.",
+    "sources": [
+      {
+        "citation": "von Foerster, Heinz. Observing Systems. Seaside, CA: Intersystems Publications, 1981.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "7.1",
+        "short_name": "7.1. фон Фёрстер. Наблюдающие системы."
+      },
+      {
+        "citation": "von Foerster, Heinz. «On Constructing a Reality». In: Preiser, F. E. (ed.). Environmental Design Research, vol. 2. Stroudsburg, PA: Dowden, Hutchinson & Ross, 1973, pp. 35–46.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "7.2",
+        "short_name": "7.2. фон Фёрстер. Конструирование реальности."
+      },
+      {
+        "citation": "Maturana, Humberto R. «The Organization of the Living: A Theory of the Living Organization». International Journal of Man-Machine Studies, vol. 7, no. 3, 1975, pp. 313–332.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "7.3",
+        "short_name": "7.3. Матурана. Организация живого."
+      },
+      {
+        "citation": "Glasersfeld, Ernst von. Radical Constructivism: A Way of Knowing and Learning. London: Falmer Press, 1995.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "7.4",
+        "short_name": "7.4. фон Глазерсфельд. Радикальный конструктивизм."
+      }
+    ]
+  },
+  {
+    "rank": 8,
+    "domain": "Космология Большого взрыва / инфляция / нарушение симметрии",
+    "authors": [
+      "ИИ1",
+      "ИИ3",
+      "ИИ4",
+      "ИИ5"
+    ],
+    "intersections": 4,
+    "defense": "Первое нарушение симметрии в ранней Вселенной — физический аналог первого акта различения на космическом уровне.",
+    "sources": [
+      {
+        "citation": "Guth, Alan H. «Inflationary Universe: A Possible Solution to the Horizon and Flatness Problems». Physical Review D, vol. 23, no. 2, 1981, pp. 347–356.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "8.1",
+        "short_name": "8.1. Гут. Инфляционная вселенная."
+      },
+      {
+        "citation": "Weinberg, Steven. The First Three Minutes: A Modern View of the Origin of the Universe. New York: Basic Books, 1977.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "8.2",
+        "short_name": "8.2. Вайнберг. Первые три минуты."
+      },
+      {
+        "citation": "Linde, Andrei D. «A New Inflationary Universe Scenario». Physics Letters B, vol. 108, no. 6, 1982, pp. 389–393.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "8.3",
+        "short_name": "8.3. Линде. Новый инфляционный сценарий."
+      },
+      {
+        "citation": "Penrose, Roger. The Road to Reality: A Complete Guide to the Laws of the Universe. London: Jonathan Cape, 2004.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "8.4",
+        "short_name": "8.4. Пенроуз. Путь к реальности."
+      }
+    ]
+  },
+  {
+    "rank": 9,
+    "domain": "Криптография: различимость состояний / хэш-функции / ZK",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ3",
+      "ИИ4"
+    ],
+    "intersections": 4,
+    "defense": "Криптография формализует условия (не)различимости сигналов — прикладная теория границ различения.",
+    "sources": [
+      {
+        "citation": "Goldwasser, Shafi, and Silvio Micali. «Probabilistic Encryption». Journal of Computer and System Sciences, vol. 28, no. 2, 1984, pp. 270–299.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "9.1",
+        "short_name": "9.1. Голдвассер, Микали. Вероятностное шифрование."
+      },
+      {
+        "citation": "Goldwasser, Shafi, Silvio Micali, and Charles Rackoff. «The Knowledge Complexity of Interactive Proof Systems». SIAM Journal on Computing, vol. 18, no. 1, 1989, pp. 186–208.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "9.2",
+        "short_name": "9.2. Голдвассер и др. Доказательства с нулевым знанием."
+      },
+      {
+        "citation": "Diffie, Whitfield, and Martin E. Hellman. «New Directions in Cryptography». IEEE Transactions on Information Theory, vol. 22, no. 6, 1976, pp. 644–654.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "9.3",
+        "short_name": "9.3. Диффи, Хеллман. Новые направления криптографии."
+      },
+      {
+        "citation": "Katz, Jonathan, and Yehuda Lindell. Introduction to Modern Cryptography. Boca Raton, FL: CRC Press, 2007.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "9.4",
+        "short_name": "9.4. Кац, Линделл. Современная криптография."
+      }
+    ]
+  },
+  {
+    "rank": 10,
+    "domain": "Медитация / нейронаука медитации (исследования практикующих)",
+    "authors": [
+      "ИИ1",
+      "ИИ3",
+      "ИИ4",
+      "ИИ5"
+    ],
+    "intersections": 4,
+    "defense": "Эмпирическая верификация буддийских описаний состояния 'до различения' через изменения активности мозга у практикующих.",
+    "sources": [
+      {
+        "citation": "Lutz, Antoine, Lawrence L. Greischar, Nancy B. Rawlings, Matthieu Ricard, and Richard J. Davidson. «Long-Term Meditators Self-Induce High-Amplitude Gamma Synchrony During Mental Practice». Proceedings of the National Academy of Sciences, vol. 101, no. 46, 2004, pp. 16369–16373.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "10.1",
+        "short_name": "10.1. Лутц и др. Гамма-синхрония медитаторов."
+      },
+      {
+        "citation": "Davidson, Richard J., and Antoine Lutz. «Buddha's Brain: Neuroplasticity and Meditation». IEEE Signal Processing Magazine, vol. 25, no. 1, 2008, pp. 176–174.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "10.2",
+        "short_name": "10.2. Дэвидсон, Лутц. Мозг Будды."
+      },
+      {
+        "citation": "Varela, Francisco J., Evan Thompson, and Eleanor Rosch. The Embodied Mind: Cognitive Science and Human Experience. Cambridge, MA: MIT Press, 1991.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "10.3",
+        "short_name": "10.3. Варела, Томпсон, Рош. Воплощённый разум."
+      },
+      {
+        "citation": "Thompson, Evan. Waking, Dreaming, Being: Self and Consciousness in Neuroscience, Meditation, and Philosophy. New York: Columbia University Press, 2015.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "10.4",
+        "short_name": "10.4. Томпсон. Бодрствование, сон, бытие."
+      }
+    ]
+  },
+  {
+    "rank": 11,
+    "domain": "Нейронаука сознания / нейронные корреляты сознания (NCC)",
+    "authors": [
+      "ИИ1",
+      "ИИ3",
+      "ИИ4",
+      "ИИ5"
+    ],
+    "intersections": 4,
+    "defense": "Поиск нейронных коррелятов момента возникновения сознательного различения — эмпирическая проверка гипотез.",
+    "sources": [
+      {
+        "citation": "Crick, Francis, and Christof Koch. «Towards a Neurobiological Theory of Consciousness». Seminars in the Neurosciences, vol. 2, 1990, pp. 263–275.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "11.1",
+        "short_name": "11.1. Крик, Кох. Нейробиология сознания."
+      },
+      {
+        "citation": "Koch, Christof. The Feeling of Life Itself: Why Consciousness Is Widespread but Can't Be Computed. Cambridge, MA: MIT Press, 2019.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "11.2",
+        "short_name": "11.2. Кох. Ощущение жизни."
+      },
+      {
+        "citation": "Dehaene, Stanislas. Consciousness and the Brain: Deciphering How the Brain Codes Our Thoughts. New York: Viking, 2014.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "11.3",
+        "short_name": "11.3. Деан. Сознание и мозг."
+      },
+      {
+        "citation": "Chalmers, David J. The Conscious Mind: In Search of a Fundamental Theory. New York: Oxford University Press, 1996.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "11.4",
+        "short_name": "11.4. Чалмерс. Сознающий разум."
+      }
+    ]
+  },
+  {
+    "rank": 12,
+    "domain": "Предиктивная обработка / активный вывод (Фристон) и Марковские одеяла",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ3",
+      "ИИ5"
+    ],
+    "intersections": 4,
+    "defense": "Марковское одеяло — буквальная математическая и биологическая граница 'я/не-я', минимизация неопределённости создаёт субъекта.",
+    "sources": [
+      {
+        "citation": "Friston, Karl J. «The Free-Energy Principle: A Unified Brain Theory?». Nature Reviews Neuroscience, vol. 11, no. 2, 2010, pp. 127–138.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "12.1",
+        "short_name": "12.1. Фристон. Принцип свободной энергии."
+      },
+      {
+        "citation": "Friston, Karl J. «Life as We Know It». Journal of the Royal Society Interface, vol. 10, no. 86, 2013, article 20130475.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "12.2",
+        "short_name": "12.2. Фристон. Жизнь как мы знаем."
+      },
+      {
+        "citation": "Clark, Andy. Surfing Uncertainty: Prediction, Action, and the Embodied Mind. New York: Oxford University Press, 2016.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "12.3",
+        "short_name": "12.3. Кларк. Сёрфинг неопределённости."
+      },
+      {
+        "citation": "Friston, Karl J., et al. «Active Inference and Epistemic Value». Cognitive Neuroscience, vol. 6, no. 4, 2015, pp. 187–214.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "12.4",
+        "short_name": "12.4. Фристон и др. Активный вывод."
+      }
+    ]
+  },
+  {
+    "rank": 13,
+    "domain": "Процессная философия Уайтхеда (actual occasions/prehension)",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ3",
+      "ИИ4"
+    ],
+    "intersections": 4,
+    "defense": "Реальность как поток событий-схватываний — каждый момент опыта есть акт различения, а не объект.",
+    "sources": [
+      {
+        "citation": "Whitehead, Alfred North. Process and Reality: An Essay in Cosmology. New York: Macmillan, 1929.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "13.1",
+        "short_name": "13.1. Уайтхед. Процесс и реальность."
+      },
+      {
+        "citation": "Whitehead, Alfred North. Adventures of Ideas. New York: Macmillan, 1933.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "13.2",
+        "short_name": "13.2. Уайтхед. Приключения идей."
+      },
+      {
+        "citation": "Griffin, David Ray. Whitehead's Radically Different Postmodern Philosophy. Albany: SUNY Press, 2007.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "13.3",
+        "short_name": "13.3. Гриффин. Постмодернистская философия Уайтхеда."
+      },
+      {
+        "citation": "Rescher, Nicholas. Process Metaphysics: An Introduction to Process Philosophy. Albany: SUNY Press, 1996.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "13.4",
+        "short_name": "13.4. Решер. Процессная метафизика."
+      }
+    ]
+  },
+  {
+    "rank": 14,
+    "domain": "Спенсер-Браун: Законы формы (Laws of Form)",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ3",
+      "ИИ5"
+    ],
+    "intersections": 4,
+    "defense": "Математический формализм, начинающийся с единственного акта 'провести границу' — изоморфная модель первого различения.",
+    "sources": [
+      {
+        "citation": "Spencer-Brown, George. Laws of Form. London: George Allen & Unwin, 1969.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "14.1",
+        "short_name": "14.1. Спенсер-Браун. Законы формы."
+      },
+      {
+        "citation": "Varela, Francisco J. «A Calculus for Self-Reference». International Journal of General Systems, vol. 2, no. 1, 1975, pp. 5–24.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "14.2",
+        "short_name": "14.2. Варела. Исчисление само-референции."
+      },
+      {
+        "citation": "von Foerster, Heinz. Observing Systems. Seaside, CA: Intersystems Publications, 1981.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "14.3",
+        "short_name": "14.3. фон Фёрстер. Наблюдающие системы."
+      },
+      {
+        "citation": "Luhmann, Niklas. Soziale Systeme: Grundriß einer allgemeinen Theorie. Frankfurt am Main: Suhrkamp, 1984.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "14.4",
+        "short_name": "14.4. Луман. Социальные системы."
+      },
+      {
+        "citation": "Kauffman, Louis H. «Self-Reference and Recursive Forms». Journal of Social and Biological Structures, vol. 10, no. 1, 1987, pp. 53–72.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "14.5",
+        "short_name": "14.5. Кауффман. Само-референция и рекурсия."
+      }
+    ]
+  },
+  {
+    "rank": 15,
+    "domain": "Феноменология Гуссерля / интенциональность",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ3",
+      "ИИ4"
+    ],
+    "intersections": 4,
+    "defense": "Описывает интенциональность сознания (направленность на объект) как структуру первичного различения субъект/объект.",
+    "sources": [
+      {
+        "citation": "Husserl, Edmund. Logische Untersuchungen. 2 Bde. Halle: Max Niemeyer, 1900–1901.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "15.1",
+        "short_name": "15.1. Гуссерль. Логические исследования."
+      },
+      {
+        "citation": "Husserl, Edmund. Ideen zu einer reinen Phänomenologie und phänomenologischen Philosophie. Bd. 1. Halle: Max Niemeyer, 1913.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "15.2",
+        "short_name": "15.2. Гуссерль. Идеи I."
+      },
+      {
+        "citation": "Husserl, Edmund. Cartesianische Meditationen und Pariser Vorträge. Hrsg. von S. Strasser. Den Haag: Martinus Nijhoff, 1950.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "15.3",
+        "short_name": "15.3. Гуссерль. Картезианские медитации."
+      },
+      {
+        "citation": "Zahavi, Dan. Husserl's Phenomenology. Stanford: Stanford University Press, 2003.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "15.4",
+        "short_name": "15.4. Захави. Феноменология Гуссерля."
+      }
+    ]
+  },
+  {
+    "rank": 16,
+    "domain": "Энактивизм / воплощённое познание (Варела, Томпсон, Ноэ)",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ3",
+      "ИИ4"
+    ],
+    "intersections": 4,
+    "defense": "Различение рождается в действии организма со средой, а не в пассивной репрезентации — снимает дуализм субъект/объект на уровне познания.",
+    "sources": [
+      {
+        "citation": "Varela, Francisco J., Evan Thompson, and Eleanor Rosch. The Embodied Mind: Cognitive Science and Human Experience. Cambridge, MA: MIT Press, 1991.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "16.1",
+        "short_name": "16.1. Варела, Томпсон, Рош. Воплощённый разум."
+      },
+      {
+        "citation": "Thompson, Evan. Mind in Life: Biology, Phenomenology, and the Sciences of Mind. Cambridge, MA: Harvard University Press, 2007.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "16.2",
+        "short_name": "16.2. Томпсон. Разум в жизни."
+      },
+      {
+        "citation": "Noë, Alva. Action in Perception. Cambridge, MA: MIT Press, 2004.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "16.3",
+        "short_name": "16.3. Ноэ. Действие в восприятии."
+      },
+      {
+        "citation": "Merleau-Ponty, Maurice. Phénoménologie de la perception. Paris: Gallimard, 1945.",
+        "original_language": "french",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "16.4",
+        "short_name": "16.4. Мерло-Понти. Феноменология восприятия."
+      }
+    ]
+  },
+  {
+    "rank": 17,
+    "domain": "Эпигенетика и регуляция экспрессии генов",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ3",
+      "ИИ4"
+    ],
+    "intersections": 4,
+    "defense": "Регуляция экспрессии генов средой — различение, фиксируемое не в коде, а в 'метке', аналог триггера дифференциации на молекулярном уровне.",
+    "sources": [
+      {
+        "citation": "Waddington, Conrad Hal. The Strategy of the Genes. London: George Allen & Unwin, 1957.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "17.1",
+        "short_name": "17.1. Уоддингтон. Стратегия генов."
+      },
+      {
+        "citation": "Bird, Adrian. «Perceptions of Epigenetics». Nature, vol. 447, no. 7143, 2007, pp. 396–398.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "17.2",
+        "short_name": "17.2. Бёрд. Эпигенетика."
+      },
+      {
+        "citation": "Allis, C. David, et al. (eds.). Epigenetics. 2nd ed. Cold Spring Harbor, NY: Cold Spring Harbor Laboratory Press, 2015.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "17.3",
+        "short_name": "17.3. Эллис и др. Эпигенетика (сб.)."
+      },
+      {
+        "citation": "Holliday, Robin. «Epigenetics: A Historical Overview». Epigenetics, vol. 1, no. 2, 2006, pp. 76–80.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "17.4",
+        "short_name": "17.4. Холлидей. История эпигенетики."
+      }
+    ]
+  },
+  {
+    "rank": 18,
+    "domain": "Адвайта-веданта / недвойственность",
+    "authors": [
+      "ИИ1",
+      "ИИ4",
+      "ИИ5"
+    ],
+    "intersections": 3,
+    "defense": "Описывает состояние до субъект-объектного различения с позиции Абсолюта — параллель Ниббане с другого ракурса.",
+    "sources": [
+      {
+        "citation": "Śaṅkarācārya. Brahmasūtrabhāṣya. In: Gambhirananda, Swami (transl.). Brahma-Sūtra-Bhāṣya of Śrī Śaṅkarācārya. Calcutta: Advaita Ashrama, 1965.",
+        "original_language": "sanskrit",
+        "original_lost": false,
+        "authoritative_translation_language": "english",
+        "id": "18.1",
+        "short_name": "18.1. Шанкара. Брахма-сутра-бхашья."
+      },
+      {
+        "citation": "Śaṅkarācārya. Vivekacūḍāmaṇi. In: Madhavananda, Swami (transl.). Vivekachudamani of Shankaracharya. Calcutta: Advaita Ashrama, 1921.",
+        "original_language": "sanskrit",
+        "original_lost": false,
+        "authoritative_translation_language": "english",
+        "id": "18.2",
+        "short_name": "18.2. Шанкара. Вивекачудамани."
+      },
+      {
+        "citation": "Deutsch, Eliot. Advaita Vedanta: A Philosophical Reconstruction. Honolulu: East-West Center Press, 1969.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "18.3",
+        "short_name": "18.3. Дойч. Адвайта-веданта."
+      },
+      {
+        "citation": "Ramana Maharshi. Ulladu Narpadu (Forty Verses on Reality). In: Osborne, Arthur (transl.). The Collected Works of Ramana Maharshi. London: Rider, 1959.",
+        "original_language": "tamil",
+        "original_lost": false,
+        "authoritative_translation_language": "english",
+        "id": "18.4",
+        "short_name": "18.4. Рамана Махарши. Сорок стихов."
+      }
+    ]
+  },
+  {
+    "rank": 19,
+    "domain": "Алгоритмическая теория информации (Колмогоров)",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ4"
+    ],
+    "intersections": 3,
+    "defense": "Минимальная сложность, необходимая для описания/существования объекта — формализует 'количество различения', нужное для бытия.",
+    "sources": [
+      {
+        "citation": "Колмогоров, Андрей Николаевич. «Три подхода к определению понятия 'количество информации'». Проблемы передачи информации, т. 1, № 1, 1965, с. 3–11.",
+        "original_language": "russian",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "19.1",
+        "short_name": "19.1. Колмогоров. Три подхода к информации."
+      },
+      {
+        "citation": "Solomonoff, Ray J. «A Formal Theory of Inductive Inference». Information and Control, vol. 7, no. 1–2, 1964, pp. 1–22, 224–254.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "19.2",
+        "short_name": "19.2. Соломонофф. Индуктивный вывод."
+      },
+      {
+        "citation": "Chaitin, Gregory J. «On the Length of Programs for Computing Finite Binary Sequences». Journal of the ACM, vol. 13, no. 4, 1966, pp. 547–569.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "19.3",
+        "short_name": "19.3. Чайтин. Длина программ."
+      },
+      {
+        "citation": "Li, Ming, and Paul Vitányi. An Introduction to Kolmogorov Complexity and Its Applications. 3rd ed. New York: Springer, 2008.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "19.4",
+        "short_name": "19.4. Ли, Витани. Сложность Колмогорова."
+      }
+    ]
+  },
+  {
+    "rank": 20,
+    "domain": "Интегрированная теория информации (IIT, Тонони)",
+    "authors": [
+      "ИИ1",
+      "ИИ3",
+      "ИИ4"
+    ],
+    "intersections": 3,
+    "defense": "Количественная мера интеграции информации (phi) — формальный кандидат на минимальный порог различения/сознания.",
+    "sources": [
+      {
+        "citation": "Tononi, Giulio. «Consciousness as Integrated Information: A Provisional Manifesto». Biological Bulletin, vol. 215, no. 3, 2008, pp. 216–242.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "20.1",
+        "short_name": "20.1. Тонони. Сознание как интеграция."
+      },
+      {
+        "citation": "Tononi, Giulio, Melanie Boly, Marcello Massimini, and Christof Koch. «Integrated Information Theory: From Consciousness to Its Physical Substrate». Nature Reviews Neuroscience, vol. 17, no. 7, 2016, pp. 450–461.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "20.2",
+        "short_name": "20.2. Тонони и др. ИИТ и сознание."
+      },
+      {
+        "citation": "Oizumi, Masafumi, Larissa Albantakis, and Giulio Tononi. «From the Phenomenology to the Mechanisms of Consciousness: Integrated Information Theory 3.0». PLOS Computational Biology, vol. 10, no. 5, 2014, article e1003588.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "20.3",
+        "short_name": "20.3. Оидзуми и др. ИИТ 3.0."
+      }
+    ]
+  },
+  {
+    "rank": 21,
+    "domain": "Панпсихизм",
+    "authors": [
+      "ИИ1",
+      "ИИ3",
+      "ИИ4"
+    ],
+    "intersections": 3,
+    "defense": "Сознание как фундаментальное свойство материи — объясняет, что 'было до' различения у камня и дерева.",
+    "sources": [
+      {
+        "citation": "Leibniz, Gottfried Wilhelm. Monadologie. In: Die philosophischen Schriften von Gottfried Wilhelm Leibniz. Hrsg. von C. I. Gerhardt. Bd. 6. Berlin: Weidmann, 1885, S. 607–623.",
+        "original_language": "french",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "21.1",
+        "short_name": "21.1. Лейбниц. Монадология."
+      },
+      {
+        "citation": "Whitehead, Alfred North. Process and Reality: An Essay in Cosmology. New York: Macmillan, 1929.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "21.2",
+        "short_name": "21.2. Уайтхед. Процесс и реальность."
+      },
+      {
+        "citation": "Chalmers, David J. «Panpsychism and Panprotopsychism». In: Alter, Torin, and Yujin Nagasawa (eds.). Consciousness in the Physical World. New York: Oxford University Press, 2015, pp. 246–276.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "21.3",
+        "short_name": "21.3. Чалмерс. Панпсихизм."
+      },
+      {
+        "citation": "Goff, Philip. Galileo's Error: Foundations for a New Science of Mind. New York: Pantheon Books, 2019.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "21.4",
+        "short_name": "21.4. Гофф. Ошибка Галилея."
+      }
+    ]
+  },
+  {
+    "rank": 22,
+    "domain": "Принцип Ландауэра / термодинамика информации",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ4"
+    ],
+    "intersections": 3,
+    "defense": "Стирание/запись бита физически необратимо и требует энергии — модель необратимости акта различения (рождения).",
+    "sources": [
+      {
+        "citation": "Landauer, Rolf. «Irreversibility and Heat Generation in the Computing Process». IBM Journal of Research and Development, vol. 5, no. 3, 1961, pp. 183–191.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "22.1",
+        "short_name": "22.1. Ландауэр. Необратимость и тепло."
+      },
+      {
+        "citation": "Bennett, Charles H. «Logical Reversibility of Computation». IBM Journal of Research and Development, vol. 17, no. 6, 1973, pp. 525–532.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "22.2",
+        "short_name": "22.2. Беннет. Обратимость вычислений."
+      },
+      {
+        "citation": "Bennett, Charles H. «The Thermodynamics of Computation — a Review». International Journal of Theoretical Physics, vol. 21, no. 12, 1982, pp. 905–940.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "22.3",
+        "short_name": "22.3. Беннет. Термодинамика вычислений."
+      },
+      {
+        "citation": "Bérut, Antoine, et al. «Experimental Verification of Landauer's Principle Linking Information and Thermodynamics». Nature, vol. 483, 2012, pp. 187–189.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "22.4",
+        "short_name": "22.4. Берю и др. Верификация принципа Ландауэра."
+      },
+      {
+        "citation": "Lutz, Eric, and Sergio Ciliberto. «Information: From Maxwell's Demon to Landauer's Eraser». Physics Today, vol. 68, no. 9, 2015, pp. 30–35.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "22.5",
+        "short_name": "22.5. Лутц, Чилиберто. Демон Максвелла."
+      }
+    ]
+  },
+  {
+    "rank": 23,
+    "domain": "Психология развития: формирование 'я' у ребёнка (Пиаже)",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ4"
+    ],
+    "intersections": 3,
+    "defense": "Онтогенетический аналог филогенетического триггера: момент, когда младенец впервые устойчиво различает 'я/не-я'.",
+    "sources": [
+      {
+        "citation": "Piaget, Jean. La naissance de l'intelligence chez l'enfant. Neuchâtel: Delachaux et Niestlé, 1936.",
+        "original_language": "french",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "23.1",
+        "short_name": "23.1. Пиаже. Рождение интеллекта."
+      },
+      {
+        "citation": "Piaget, Jean. La construction du réel chez l'enfant. Neuchâtel: Delachaux et Niestlé, 1937.",
+        "original_language": "french",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "23.2",
+        "short_name": "23.2. Пиаже. Конструирование реальности."
+      },
+      {
+        "citation": "Mahler, Margaret S., Fred Pine, and Anni Bergman. The Psychological Birth of the Human Infant: Symbiosis and Individuation. New York: Basic Books, 1975.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "23.3",
+        "short_name": "23.3. Малер и др. Психологическое рождение."
+      },
+      {
+        "citation": "Stern, Daniel N. The Interpersonal World of the Infant: A View from Psychoanalysis and Developmental Psychology. New York: Basic Books, 1985.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "23.4",
+        "short_name": "23.4. Стерн. Межличностный мир младенца."
+      }
+    ]
+  },
+  {
+    "rank": 24,
+    "domain": "Структурная лингвистика и семиотика (Соссюр, Пирс)",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ4"
+    ],
+    "intersections": 3,
+    "defense": "Знак как чистое различение ('нет ничего, кроме различий') — модель закрепления и передачи различений через язык.",
+    "sources": [
+      {
+        "citation": "Saussure, Ferdinand de. Cours de linguistique générale. Publié par Charles Bally et Albert Sechehaye. Lausanne; Paris: Payot, 1916.",
+        "original_language": "french",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "24.1",
+        "short_name": "24.1. Соссюр. Курс общей лингвистики."
+      },
+      {
+        "citation": "Peirce, Charles Sanders. «On a New List of Categories». Proceedings of the American Academy of Arts and Sciences, vol. 7, 1868, pp. 287–298.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "24.2",
+        "short_name": "24.2. Пирс. Новый список категорий."
+      },
+      {
+        "citation": "Peirce, Charles Sanders. Collected Papers. Vols. 1–8. Ed. by Charles Hartshorne, Paul Weiss, and Arthur W. Burks. Cambridge, MA: Harvard University Press, 1931–1958.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "24.3",
+        "short_name": "24.3. Пирс. Собрание сочинений."
+      },
+      {
+        "citation": "Derrida, Jacques. De la grammatologie. Paris: Les Éditions de Minuit, 1967.",
+        "original_language": "french",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "24.4",
+        "short_name": "24.4. Деррида. О грамматологии."
+      }
+    ]
+  },
+  {
+    "rank": 25,
+    "domain": "Теория категорий (морфизмы, топосы)",
+    "authors": [
+      "ИИ1",
+      "ИИ2",
+      "ИИ3"
+    ],
+    "intersections": 3,
+    "defense": "Объекты определяются через отношения (морфизмы), а не субстанцию — формализация различения как отношения, а не сущности.",
+    "sources": [
+      {
+        "citation": "Eilenberg, Samuel, and Saunders Mac Lane. «General Theory of Natural Equivalences». Transactions of the American Mathematical Society, vol. 58, no. 2, 1945, pp. 231–294.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "25.1",
+        "short_name": "25.1. Эйленберг, Мак-Лейн. Естественные эквивалентности."
+      },
+      {
+        "citation": "Mac Lane, Saunders. Categories for the Working Mathematician. New York: Springer, 1971.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "25.2",
+        "short_name": "25.2. Мак-Лейн. Категории для математиков."
+      },
+      {
+        "citation": "Lawvere, F. William. «An Elementary Theory of the Category of Sets». Proceedings of the National Academy of Sciences, vol. 52, no. 6, 1964, pp. 1506–1511.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "25.3",
+        "short_name": "25.3. Лоуэр. Теория категорий множеств."
+      },
+      {
+        "citation": "Baez, John C., and James Dolan. «Higher-Dimensional Algebra and Topological Quantum Field Theory». Journal of Mathematical Physics, vol. 36, no. 11, 1995, pp. 6073–6105.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "25.4",
+        "short_name": "25.4. Баез, Долан. Высшая алгебра."
+      }
+    ]
+  },
+  {
+    "rank": 26,
+    "domain": "Эволюция нервной системы / сложности когнитивных систем",
+    "authors": [
+      "ИИ1",
+      "ИИ3",
+      "ИИ4"
+    ],
+    "intersections": 3,
+    "defense": "Прослеживает путь от диффузной реактивности к централизованному различению — эволюционная шкала появления субъекта.",
+    "sources": [
+      {
+        "citation": "Cajal, Santiago Ramón y. Histología del sistema nervioso del hombre y los vertebrados. 2 vols. Madrid: Moya, 1899–1904.",
+        "original_language": "spanish",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "26.1",
+        "short_name": "26.1. Кахаль. Гистология нервной системы."
+      },
+      {
+        "citation": "Bullock, Theodore H., et al. «Neuroscience: The Neuron Doctrine, Redux». Science, vol. 310, no. 5749, 2005, pp. 791–793.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "26.2",
+        "short_name": "26.2. Буллок и др. Нейронная доктрина."
+      },
+      {
+        "citation": "Striedter, Georg F. Principles of Brain Evolution. Sunderland, MA: Sinauer Associates, 2005.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "26.3",
+        "short_name": "26.3. Стридтер. Принципы эволюции мозга."
+      },
+      {
+        "citation": "Edelman, Gerald M. Neural Darwinism: The Theory of Neuronal Group Selection. New York: Basic Books, 1987.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "26.4",
+        "short_name": "26.4. Эдельман. Нейронный дарвинизм."
+      }
+    ]
+  },
+  {
+    "rank": 27,
+    "domain": "Гуссерль: феноменология времени (пра-впечатление)",
+    "authors": [
+      "ИИ1",
+      "ИИ5"
+    ],
+    "intersections": 2,
+    "defense": "Первичное впечатление 'теперь' предшествует разделению на прошлое/будущее — попытка найти вневременной триггер различения.",
+    "sources": [
+      {
+        "citation": "Husserl, Edmund. Zur Phänomenologie des inneren Zeitbewusstseins (1893–1917). Hrsg. von Rudolf Boehm. Den Haag: Martinus Nijhoff, 1966. (Husserliana, Bd. X.)",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "27.1",
+        "short_name": "27.1. Гуссерль. Феноменология времени."
+      },
+      {
+        "citation": "Husserl, Edmund. Analysen zur passiven Synthesis. Hrsg. von Margot Fleischer. Den Haag: Martinus Nijhoff, 1966. (Husserliana, Bd. XI.)",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "27.2",
+        "short_name": "27.2. Гуссерль. Пассивный синтез."
+      },
+      {
+        "citation": "Brough, John B. «The Emergence of an Absolute Consciousness in Husserl's Early Writings on Time-Consciousness». Man and World, vol. 5, no. 3, 1972, pp. 298–326.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "27.3",
+        "short_name": "27.3. Браф. Абсолютное сознание у Гуссерля."
+      }
+    ]
+  },
+  {
+    "rank": 28,
+    "domain": "Дзэн-буддизм / коаны / не-ум",
+    "authors": [
+      "ИИ1",
+      "ИИ4"
+    ],
+    "intersections": 2,
+    "defense": "Коаны как инструмент остановки концептуального различения — прямая практика достижения состояния 'до различения'.",
+    "sources": [
+      {
+        "citation": "慧能. 《六祖壇經》(Liùzǔ Tánjīng). Китай, ок. 780. Классический китайский.",
+        "original_language": "classical_chinese",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "28.1",
+        "short_name": "28.1. Хуэйнэн. Сутра Шестого Патриарха."
+      },
+      {
+        "citation": "無門慧開. 《無門關》(Wúménguān). Китай, 1228. Классический китайский.",
+        "original_language": "classical_chinese",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "28.2",
+        "short_name": "28.2. Умонкан. Застава без ворот."
+      },
+      {
+        "citation": "Suzuki, Daisetz Teitaro. Essays in Zen Buddhism. First Series. London: Luzac, 1927.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "28.3",
+        "short_name": "28.3. Судзуки. Эссе о дзен-буддизме."
+      },
+      {
+        "citation": "Sekida, Katsuki. Zen Training: Methods and Philosophy. New York: Weatherhill, 1975.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "28.4",
+        "short_name": "28.4. Секида. Дзен-тренинг."
+      }
+    ]
+  },
+  {
+    "rank": 29,
+    "domain": "Диссипативные структуры / самоорганизация (Пригожин)",
+    "authors": [
+      "ИИ1",
+      "ИИ4"
+    ],
+    "intersections": 2,
+    "defense": "Спонтанное возникновение порядка из хаоса — модель спонтанного триггера первого различения без внешней причины.",
+    "sources": [
+      {
+        "citation": "Prigogine, Ilya, and Isabelle Stengers. La Nouvelle Alliance: Métamorphose de la science. Paris: Gallimard, 1979.",
+        "original_language": "french",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "29.1",
+        "short_name": "29.1. Пригожин, Стенгерс. Новый союз."
+      },
+      {
+        "citation": "Prigogine, Ilya. From Being to Becoming: Time and Complexity in the Physical Sciences. San Francisco: W. H. Freeman, 1980.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "29.2",
+        "short_name": "29.2. Пригожин. От бытия к становлению."
+      },
+      {
+        "citation": "Nicolis, Grégoire, and Ilya Prigogine. Self-Organization in Non-Equilibrium Systems. New York: Wiley-Interscience, 1977.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "29.3",
+        "short_name": "29.3. Николис, Пригожин. Самоорганизация."
+      }
+    ]
+  },
+  {
+    "rank": 30,
+    "domain": "Квантовая биология (фотосинтез, магниторецепция)",
+    "authors": [
+      "ИИ1",
+      "ИИ4"
+    ],
+    "intersections": 2,
+    "defense": "Квантовые эффекты в живых системах — мост между квантовым актом измерения/различения и биологическим прото-сознанием.",
+    "sources": [
+      {
+        "citation": "Fleming, Graham R., et al. «Evidence for Wavelike Energy Transfer Through Quantum Coherence in Photosynthetic Systems». Nature, vol. 446, no. 7137, 2007, pp. 782–786.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "30.1",
+        "short_name": "30.1. Флеминг и др. Квантовая когерентность фотосинтеза."
+      },
+      {
+        "citation": "Ritz, Thorsten, Salih Adem, and Klaus Schulten. «A Model for Photoreceptor-Based Magnetoreception in Birds». Biophysical Journal, vol. 78, no. 2, 2000, pp. 707–718.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "30.2",
+        "short_name": "30.2. Ритц и др. Магниторецепция птиц."
+      },
+      {
+        "citation": "Al-Khalili, Jim, and Johnjoe McFadden. Life on the Edge: The Coming of Age of Quantum Biology. London: Bantam Press, 2014.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "30.3",
+        "short_name": "30.3. аль-Халили, МакФадден. На грани жизни."
+      }
+    ]
+  },
+  {
+    "rank": 31,
+    "domain": "Лакановская психология: стадия зеркала / концепция Реального",
+    "authors": [
+      "ИИ1",
+      "ИИ5"
+    ],
+    "intersections": 2,
+    "defense": "Стадия зеркала — онтогенетическая модель момента отделения 'себя' от мира; 'Реальное' созвучно состоянию до различения.",
+    "sources": [
+      {
+        "citation": "Lacan, Jacques. «Le stade du miroir comme formateur de la fonction du Je». Revue française de psychanalyse, t. 13, no. 4, 1949, pp. 449–455.",
+        "original_language": "french",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "31.1",
+        "short_name": "31.1. Лакан. Стадия зеркала."
+      },
+      {
+        "citation": "Lacan, Jacques. Écrits. Paris: Éditions du Seuil, 1966.",
+        "original_language": "french",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "31.2",
+        "short_name": "31.2. Лакан. Écrits."
+      },
+      {
+        "citation": "Lacan, Jacques. Le Séminaire. Livre XI: Les quatre concepts fondamentaux de la psychanalyse. Paris: Éditions du Seuil, 1973.",
+        "original_language": "french",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "31.3",
+        "short_name": "31.3. Лакан. Семинар XI."
+      }
+    ]
+  },
+  {
+    "rank": 32,
+    "domain": "Луман: теория социальных систем (различение система/среда)",
+    "authors": [
+      "ИИ1",
+      "ИИ2"
+    ],
+    "intersections": 2,
+    "defense": "Любая операция социальной системы начинается с различения система/среда — структурный изоморфизм с субъект/объект.",
+    "sources": [
+      {
+        "citation": "Luhmann, Niklas. Soziale Systeme: Grundriß einer allgemeinen Theorie. Frankfurt am Main: Suhrkamp, 1984.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "32.1",
+        "short_name": "32.1. Луман. Социальные системы."
+      },
+      {
+        "citation": "Luhmann, Niklas. Die Wissenschaft der Gesellschaft. Frankfurt am Main: Suhrkamp, 1990.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "32.2",
+        "short_name": "32.2. Луман. Наука общества."
+      },
+      {
+        "citation": "Luhmann, Niklas. Die Gesellschaft der Gesellschaft. 2 Bde. Frankfurt am Main: Suhrkamp, 1997.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "32.3",
+        "short_name": "32.3. Луман. Общество общества."
+      }
+    ]
+  },
+  {
+    "rank": 33,
+    "domain": "Минимальное феноменальное Я (Метцингер)",
+    "authors": [
+      "ИИ1",
+      "ИИ5"
+    ],
+    "intersections": 2,
+    "defense": "Базовая структура субъективности до автобиографической памяти — кандидат на минимальную единицу 'различающего сознания'.",
+    "sources": [
+      {
+        "citation": "Metzinger, Thomas. Being No One: The Self-Model Theory of Subjectivity. Cambridge, MA: MIT Press, 2003.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "33.1",
+        "short_name": "33.1. Метцингер. Быть никем."
+      },
+      {
+        "citation": "Metzinger, Thomas. The Ego Tunnel: The Science of the Mind and the Myth of the Self. New York: Basic Books, 2009.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "33.2",
+        "short_name": "33.2. Метцингер. Тоннель эго."
+      },
+      {
+        "citation": "Blanke, Olaf, and Thomas Metzinger. «Full-Body Illusions and Minimal Phenomenal Selfhood». Trends in Cognitive Sciences, vol. 13, no. 1, 2009, pp. 7–13.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "33.3",
+        "short_name": "33.3. Бланке, Метцингер. Минимальное Я."
+      }
+    ]
+  },
+  {
+    "rank": 34,
+    "domain": "Предиктивное кодирование (нейронаука) — ошибка предсказания как различение",
+    "authors": [
+      "ИИ1",
+      "ИИ2"
+    ],
+    "intersections": 2,
+    "defense": "Мозг постоянно вычисляет различие между предсказанием и сенсорным вводом — элементарный акт различения как основа восприятия.",
+    "sources": [
+      {
+        "citation": "Helmholtz, Hermann von. Handbuch der physiologischen Optik. Bd. 3. Leipzig: Voss, 1867.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "34.1",
+        "short_name": "34.1. Гельмгольц. Физиологическая оптика."
+      },
+      {
+        "citation": "Rao, Rajesh P. N., and Dana H. Ballard. «Predictive Coding in the Visual Cortex: A Functional Interpretation of Some Extra-Classical Receptive-Field Effects». Nature Neuroscience, vol. 2, no. 1, 1999, pp. 79–87.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "34.2",
+        "short_name": "34.2. Рао, Баллард. Предиктивное кодирование."
+      },
+      {
+        "citation": "Friston, Karl J. «The Free-Energy Principle: A Unified Brain Theory?». Nature Reviews Neuroscience, vol. 11, no. 2, 2010, pp. 127–138.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "34.3",
+        "short_name": "34.3. Фристон. Принцип свободной энергии."
+      }
+    ]
+  },
+  {
+    "rank": 35,
+    "domain": "Реляционная квантовая механика (Ровелли)",
+    "authors": [
+      "ИИ1",
+      "ИИ5"
+    ],
+    "intersections": 2,
+    "defense": "Свойства объектов существуют только относительно других объектов — нет различения без отношения, прямая модель относительности субъект/объект.",
+    "sources": [
+      {
+        "citation": "Rovelli, Carlo. «Relational Quantum Mechanics». International Journal of Theoretical Physics, vol. 35, no. 8, 1996, pp. 1637–1678.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "35.1",
+        "short_name": "35.1. Ровелли. Реляционная квантовая механика."
+      },
+      {
+        "citation": "Rovelli, Carlo. Quantum Gravity. Cambridge: Cambridge University Press, 2004.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "35.2",
+        "short_name": "35.2. Ровелли. Квантовая гравитация."
+      },
+      {
+        "citation": "Smerlak, Matteo, and Carlo Rovelli. «Relational EPR». Foundations of Physics, vol. 37, no. 3, 2007, pp. 427–445.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "35.3",
+        "short_name": "35.3. Смерлак, Ровелли. Реляционная ЭПР."
+      }
+    ]
+  },
+  {
+    "rank": 36,
+    "domain": "Эмбриология / биология развития (онтогенез клеточной дифференциации)",
+    "authors": [
+      "ИИ1",
+      "ИИ4"
+    ],
+    "intersections": 2,
+    "defense": "Момент первого клеточного различения 'я-клетка/не-я-клетка' в развитии зародыша — модель возникновения границы субъекта.",
+    "sources": [
+      {
+        "citation": "Waddington, Conrad Hal. Organisers and Genes. Cambridge: Cambridge University Press, 1940.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "36.1",
+        "short_name": "36.1. Уоддингтон. Организаторы и гены."
+      },
+      {
+        "citation": "Wolpert, Lewis. «Positional Information and the Spatial Pattern of Cellular Differentiation». Journal of Theoretical Biology, vol. 25, no. 1, 1969, pp. 1–47.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "36.2",
+        "short_name": "36.2. Вольперт. Позиционная информация."
+      },
+      {
+        "citation": "Gilbert, Scott F. Developmental Biology. 10th ed. Sunderland, MA: Sinauer Associates, 2013.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "36.3",
+        "short_name": "36.3. Гилберт. Биология развития."
+      }
+    ]
+  },
+  {
+    "rank": 37,
+    "domain": "Энтропия и теория информации Шеннона",
+    "authors": [
+      "ИИ1",
+      "ИИ2"
+    ],
+    "intersections": 2,
+    "defense": "Минимальный бит (различение двух состояний 0/1) — фундаментальная единица информации = различения.",
+    "sources": [
+      {
+        "citation": "Shannon, Claude E. «A Mathematical Theory of Communication». Bell System Technical Journal, vol. 27, no. 3–4, 1948, pp. 379–423, 623–656.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "37.1",
+        "short_name": "37.1. Шеннон. Математическая теория связи."
+      },
+      {
+        "citation": "Shannon, Claude E., and Warren Weaver. The Mathematical Theory of Communication. Urbana: University of Illinois Press, 1949.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "37.2",
+        "short_name": "37.2. Шеннон, Уивер. Теория коммуникации."
+      },
+      {
+        "citation": "Cover, Thomas M., and Joy A. Thomas. Elements of Information Theory. 2nd ed. Hoboken, NJ: Wiley-Interscience, 2006.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "37.3",
+        "short_name": "37.3. Ковер, Томас. Теория информации."
+      }
+    ]
+  },
+  {
+    "rank": 38,
+    "domain": "Происхождение жизни / абиогенез",
+    "authors": [
+      "ИИ3",
+      "ИИ4"
+    ],
+    "intersections": 2,
+    "defense": "Переход от неорганической материи к самоподдерживающимся системам — что существовало до появления 'различающего' агента.",
+    "sources": [
+      {
+        "citation": "Oparin, Alexander I. Proiskhozhdenie zhizni. Moskva: Moskovskiy Rabochiy, 1924.",
+        "original_language": "russian",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "38.1",
+        "short_name": "38.1. Опарин. Происхождение жизни."
+      },
+      {
+        "citation": "Miller, Stanley L. «A Production of Amino Acids under Possible Primitive Earth Conditions». Science, vol. 117, no. 3046, 1953, pp. 528–529.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "38.2",
+        "short_name": "38.2. Миллер. Аминокислоты из неорганики."
+      },
+      {
+        "citation": "Kauffman, Stuart A. The Origins of Order: Self-Organization and Selection in Evolution. New York: Oxford University Press, 1993.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "38.3",
+        "short_name": "38.3. Кауффман. Истоки порядка."
+      }
+    ]
+  },
+  {
+    "rank": 39,
+    "domain": "Теория категорий и неклассические логики (паранепротиворечивая, интуиционизм)",
+    "authors": [
+      "ИИ2",
+      "ИИ5"
+    ],
+    "intersections": 2,
+    "defense": "Логики без закона исключённого третьего моделируют состояние 'ни А, ни не-А' — формальный аналог пред-различения.",
+    "sources": [
+      {
+        "citation": "Brouwer, Luitzen Egbertus Jan. «Over de Grondslagen der Wiskunde». Doctoral dissertation, Universiteit van Amsterdam, 1907.",
+        "original_language": "dutch",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "39.1",
+        "short_name": "39.1. Брауэр. Основания математики."
+      },
+      {
+        "citation": "Heyting, Arend. Intuitionism: An Introduction. Amsterdam: North-Holland, 1956.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "39.2",
+        "short_name": "39.2. Хейтинг. Интуиционизм."
+      },
+      {
+        "citation": "Priest, Graham. In Contradiction: A Study of the Transconsistent. 2nd ed. Oxford: Oxford University Press, 2006.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "39.3",
+        "short_name": "39.3. Прист. В противоречии."
+      }
+    ]
+  },
+  {
+    "rank": 40,
+    "domain": "Голографический принцип",
+    "authors": [
+      "ИИ1"
+    ],
+    "intersections": 1,
+    "defense": "Информация об объёме закодирована на границе — геометрическая модель того, как различение порождает структуру.",
+    "sources": [
+      {
+        "citation": "Bekenstein, Jacob D. «Black Holes and Entropy». Physical Review D, vol. 7, no. 8, 1973, pp. 2333–2346.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "40.1",
+        "short_name": "40.1. Бекенштейн. Чёрные дыры и энтропия."
+      },
+      {
+        "citation": "'t Hooft, Gerard. «Dimensional Reduction in Quantum Gravity». In: Salamfestschrift. Ed. by A. Ali, J. Ellis, and S. Randjbar-Daemi. Singapore: World Scientific, 1993, pp. 284–296.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "40.2",
+        "short_name": "40.2. 'т Хоофт. Размерная редукция."
+      },
+      {
+        "citation": "Maldacena, Juan M. «The Large N Limit of Superconformal Field Theories and Supergravity». International Journal of Theoretical Physics, vol. 38, no. 4, 1999, pp. 1113–1133.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "40.3",
+        "short_name": "40.3. Малдасена. Принцип AdS/CFT."
+      }
+    ]
+  },
+  {
+    "rank": 41,
+    "domain": "Симметрия и её спонтанное нарушение (поле Хиггса)",
+    "authors": [
+      "ИИ1"
+    ],
+    "intersections": 1,
+    "defense": "Спонтанное нарушение симметрии как формальный физический акт обретения 'отдельности' (массы) — аналог различения.",
+    "sources": [
+      {
+        "citation": "Nambu, Yoichiro. «Quasi-Particles and Gauge Invariance in the Theory of Superconductivity». Physical Review, vol. 117, no. 3, 1960, pp. 648–663.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "41.1",
+        "short_name": "41.1. Намбу. Нарушение симметрии."
+      },
+      {
+        "citation": "Higgs, Peter W. «Broken Symmetries and the Masses of Gauge Bosons». Physical Review Letters, vol. 13, no. 16, 1964, pp. 508–509.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "41.2",
+        "short_name": "41.2. Хиггс. Массы калибровочных бозонов."
+      },
+      {
+        "citation": "Weinberg, Steven. «A Model of Leptons». Physical Review Letters, vol. 19, no. 21, 1967, pp. 1264–1266.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "41.3",
+        "short_name": "41.3. Вайнберг. Модель лептонов."
+      }
+    ]
+  },
+  {
+    "rank": 42,
+    "domain": "Трансперсональная психология (Гроф, Уилбер)",
+    "authors": [
+      "ИИ1"
+    ],
+    "intersections": 1,
+    "defense": "Описывает опыты растворения 'я' и спектр состояний сознания — эмпирический материал о состояниях до/после различения.",
+    "sources": [
+      {
+        "citation": "Grof, Stanislav. Realms of the Human Unconscious: Observations from LSD Research. New York: Viking Press, 1975.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "42.1",
+        "short_name": "42.1. Гроф. Области бессознательного."
+      },
+      {
+        "citation": "Wilber, Ken. The Atman Project: A Transpersonal View of Human Development. Wheaton, IL: Theosophical Publishing House, 1980.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "42.2",
+        "short_name": "42.2. Уилбер. Проект Атман."
+      },
+      {
+        "citation": "Wilber, Ken. Sex, Ecology, Spirituality: The Spirit of Evolution. Boston: Shambhala, 1995.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "42.3",
+        "short_name": "42.3. Уилбер. Пол, экология, духовность."
+      }
+    ]
+  },
+  {
+    "rank": 43,
+    "domain": "40Гц-осцилляции и связывание признаков (Сингер, Энгель)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Нейронные механизмы синхронизации как реализация акта различения/связывания признаков в коре.",
+    "sources": [
+      {
+        "citation": "Gray, Charles M., et al. «Oscillatory Responses in Cat Visual Cortex Exhibit Inter-Columnar Synchronization Which Reflects Global Stimulus Properties». Nature, vol. 338, no. 6213, 1989, pp. 334–337.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "43.1",
+        "short_name": "43.1. Грей и др. Осцилляции зрительной коры."
+      },
+      {
+        "citation": "Singer, Wolf, and Charles M. Gray. «Visual Feature Integration and the Temporal Correlation Hypothesis». Annual Review of Neuroscience, vol. 18, 1995, pp. 555–586.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "43.2",
+        "short_name": "43.2. Зингер, Грей. Темпоральная корреляция."
+      },
+      {
+        "citation": "Engel, Andreas K., and Wolf Singer. «Temporal Binding and the Neural Correlates of Sensory Awareness». Trends in Cognitive Sciences, vol. 5, no. 1, 2001, pp. 16–25.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "43.3",
+        "short_name": "43.3. Энгель, Зингер. Темпоральное связывание."
+      }
+    ]
+  },
+  {
+    "rank": 44,
+    "domain": "AGI и emergent consciousness в нейросетях",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Моделирование первого момента 'осознания' в искусственном интеллекте как практическая проверка гипотез о триггере различения.",
+    "sources": [
+      {
+        "citation": "Turing, Alan M. «Computing Machinery and Intelligence». Mind, vol. 59, no. 236, 1950, pp. 433–460.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "44.1",
+        "short_name": "44.1. Тьюринг. Вычислительные машины."
+      },
+      {
+        "citation": "Bengio, Yoshua, et al. «Representation Learning: A Review and New Perspectives». IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 35, no. 8, 2013, pp. 1798–1828.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "44.2",
+        "short_name": "44.2. Бенжио и др. Обучение представлениям."
+      },
+      {
+        "citation": "Deacon, Terrence W. Incomplete Nature: How Mind Emerged from Matter. New York: W. W. Norton, 2011.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "44.3",
+        "short_name": "44.3. Дикон. Неполная природа."
+      }
+    ]
+  },
+  {
+    "rank": 45,
+    "domain": "Автономные агенты и emergent behavior",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Как простые правила приводят к появлению 'наблюдателя' — моделирование возникновения субъекта из простых компонентов.",
+    "sources": [
+      {
+        "citation": "Holland, John H. Hidden Order: How Adaptation Builds Complexity. Reading, MA: Addison-Wesley, 1995.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "45.1",
+        "short_name": "45.1. Холланд. Скрытый порядок."
+      },
+      {
+        "citation": "Kauffman, Stuart A. At Home in the Universe: The Search for the Laws of Self-Organization and Complexity. New York: Oxford University Press, 1995.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "45.2",
+        "short_name": "45.2. Кауффман. Дома во вселенной."
+      },
+      {
+        "citation": "Reynolds, Craig W. «Flocks, Herds, and Schools: A Distributed Behavioral Model». Computer Graphics, vol. 21, no. 4, 1987, pp. 25–34.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "45.3",
+        "short_name": "45.3. Рейнольдс. Стаи и стада."
+      }
+    ]
+  },
+  {
+    "rank": 46,
+    "domain": "Антропология ритуала / лиминальность (Тёрнер, ван Геннеп)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Лиминальные состояния — культурный аналог временной отмены различений, параллель состоянию 'до различения'.",
+    "sources": [
+      {
+        "citation": "van Gennep, Arnold. Les Rites de passage. Paris: Émile Nourry, 1909.",
+        "original_language": "french",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "46.1",
+        "short_name": "46.1. ван Геннеп. Обряды перехода."
+      },
+      {
+        "citation": "Turner, Victor W. The Ritual Process: Structure and Anti-Structure. Chicago: Aldine, 1969.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "46.2",
+        "short_name": "46.2. Тёрнер. Ритуальный процесс."
+      },
+      {
+        "citation": "Turner, Victor W. «Betwixt and Between: The Liminal Period in Rites de Passage». In: The Forest of Symbols: Aspects of Ndembu Ritual. Ithaca, NY: Cornell University Press, 1967, pp. 93–111.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "46.3",
+        "short_name": "46.3. Тёрнер. Между и между."
+      }
+    ]
+  },
+  {
+    "rank": 47,
+    "domain": "Апофатическая теология (негативная теология)",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Описание Бога/Абсолюта как 'до различения' через отрицание всех определений.",
+    "sources": [
+      {
+        "citation": "Pseudo-Dionysius Areopagita. De mystica theologia. In: Luibheid, Colm (transl.). Pseudo-Dionysius: The Complete Works. New York: Paulist Press, 1987.",
+        "original_language": "greek",
+        "original_lost": false,
+        "authoritative_translation_language": "english",
+        "id": "47.1",
+        "short_name": "47.1. Псевдо-Дионисий. Мистическое богословие."
+      },
+      {
+        "citation": "Maimonides, Moses. Dalālat al-ḥāʾirīn (Moreh Nevukhim). In: Pines, Shlomo (transl.). The Guide of the Perplexed. Chicago: University of Chicago Press, 1963.",
+        "original_language": "arabic",
+        "original_lost": false,
+        "authoritative_translation_language": "english",
+        "id": "47.2",
+        "short_name": "47.2. Маймонид. Путеводитель растерянных."
+      },
+      {
+        "citation": "Meister Eckhart. Die deutschen Werke. Hrsg. von Josef Quint. Stuttgart: Kohlhammer, 1958–.",
+        "original_language": "middle_high_german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "47.3",
+        "short_name": "47.3. Майстер Экхарт. Немецкие проповеди."
+      }
+    ]
+  },
+  {
+    "rank": 48,
+    "domain": "Аффордансы / экологическая психология (Гибсон)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Различение 'свойств среды' возникает в паре организм-среда, а не как внутренняя репрезентация — снимает субъект/объект дуализм.",
+    "sources": [
+      {
+        "citation": "Gibson, James J. The Ecological Approach to Visual Perception. Boston: Houghton Mifflin, 1979.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "48.1",
+        "short_name": "48.1. Гибсон. Экологический подход."
+      },
+      {
+        "citation": "Gibson, James J. The Senses Considered as Perceptual Systems. Boston: Houghton Mifflin, 1966.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "48.2",
+        "short_name": "48.2. Гибсон. Чувства как системы."
+      },
+      {
+        "citation": "Reed, Edward S. Encountering the World: Toward an Ecological Psychology. New York: Oxford University Press, 1996.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "48.3",
+        "short_name": "48.3. Рид. Встреча с миром."
+      }
+    ]
+  },
+  {
+    "rank": 49,
+    "domain": "Генетическая феноменология",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Как сознание конституирует себя во времени — поиск истоков различения в генезисе самого опыта.",
+    "sources": [
+      {
+        "citation": "Husserl, Edmund. Analysen zur passiven Synthesis. Hrsg. von Margot Fleischer. Den Haag: Martinus Nijhoff, 1966. (Husserliana, Bd. XI.)",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "49.1",
+        "short_name": "49.1. Гуссерль. Пассивный синтез."
+      },
+      {
+        "citation": "Steinbock, Anthony J. Home and Beyond: Generative Phenomenology after Husserl. Evanston, IL: Northwestern University Press, 1995.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "49.2",
+        "short_name": "49.2. Стайнбок. Дом и за его пределами."
+      },
+      {
+        "citation": "Zahavi, Dan. Self-Awareness and Alterity: A Phenomenological Investigation. Evanston, IL: Northwestern University Press, 1999.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "49.3",
+        "short_name": "49.3. Захави. Само-осознание и инаковость."
+      }
+    ]
+  },
+  {
+    "rank": 50,
+    "domain": "Генетические регуляторные сети (бинарное вкл/выкл)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Различение 'включено/выключено' в генных сетях — математически аналогично первому акту различения.",
+    "sources": [
+      {
+        "citation": "Jacob, François, and Jacques Monod. «Genetic Regulatory Mechanisms in the Synthesis of Proteins». Journal of Molecular Biology, vol. 3, no. 3, 1961, pp. 318–356.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "50.1",
+        "short_name": "50.1. Жакоб, Моно. Генетическая регуляция."
+      },
+      {
+        "citation": "Kauffman, Stuart A. «Metabolic Stability and Epigenesis in Randomly Constructed Genetic Nets». Journal of Theoretical Biology, vol. 22, no. 3, 1969, pp. 437–467.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "50.2",
+        "short_name": "50.2. Кауффман. Метаболическая стабильность."
+      },
+      {
+        "citation": "Davidson, Eric H. The Regulatory Genome: Gene Regulatory Networks in Development and Evolution. Burlington, MA: Academic Press, 2006.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "50.3",
+        "short_name": "50.3. Дэвидсон. Регуляторный геном."
+      }
+    ]
+  },
+  {
+    "rank": 51,
+    "domain": "Геномика простейших организмов",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Изучение, как генетический код реализует 'существование без мысли'.",
+    "sources": [
+      {
+        "citation": "Venter, J. Craig, et al. «The Sequence of the Human Genome». Science, vol. 291, no. 5507, 2001, pp. 1304–1351.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "51.1",
+        "short_name": "51.1. Вентер и др. Геном человека."
+      },
+      {
+        "citation": "Fraser, Claire M., et al. «The Minimal Gene Complement of Mycoplasma genitalium». Science, vol. 270, no. 5235, 1995, pp. 397–403.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "51.2",
+        "short_name": "51.2. Фрэзер и др. Геном микоплазмы."
+      },
+      {
+        "citation": "Koonin, Eugene V. The Logic of Chance: The Nature and Origin of Biological Evolution. Upper Saddle River, NJ: FT Press Science, 2011.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "51.3",
+        "short_name": "51.3. Кунин. Логика случая."
+      }
+    ]
+  },
+  {
+    "rank": 52,
+    "domain": "Глобальная теория рабочего пространства (Global Workspace Theory)",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Как информация становится 'доступной я' — модель того, как локальное различение становится глобально осознанным.",
+    "sources": [
+      {
+        "citation": "Baars, Bernard J. A Cognitive Theory of Consciousness. Cambridge: Cambridge University Press, 1988.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "52.1",
+        "short_name": "52.1. Баарс. Когнитивная теория сознания."
+      },
+      {
+        "citation": "Dehaene, Stanislas, Michel Kerszberg, and Jean-Pierre Changeux. «A Neuronal Model of a Global Workspace in Effortful Cognitive Tasks». Proceedings of the National Academy of Sciences, vol. 95, no. 24, 1998, pp. 14529–14534.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "52.2",
+        "short_name": "52.2. Деан и др. Нейронная модель глобального пространства."
+      },
+      {
+        "citation": "Dehaene, Stanislas. Consciousness and the Brain: Deciphering How the Brain Codes Our Thoughts. New York: Viking, 2014.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "52.3",
+        "short_name": "52.3. Деан. Сознание и мозг."
+      }
+    ]
+  },
+  {
+    "rank": 53,
+    "domain": "Зрительная депривация / критические периоды (Хьюбел и Визель)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Если нет акта различения в критический период, нейронные ансамбли для него не формируются — 'не-рождение' субъекта.",
+    "sources": [
+      {
+        "citation": "Hubel, David H., and Torsten N. Wiesel. «Receptive Fields of Single Neurones in the Cat's Striate Cortex». Journal of Physiology, vol. 148, no. 3, 1959, pp. 574–591.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "53.1",
+        "short_name": "53.1. Хьюбел, Визель. Рецептивные поля."
+      },
+      {
+        "citation": "Hubel, David H., and Torsten N. Wiesel. «The Period of Susceptibility to the Physiological Effects of Unilateral Eye Closure in Kittens». Journal of Physiology, vol. 206, no. 2, 1970, pp. 419–436.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "53.2",
+        "short_name": "53.2. Хьюбел, Визель. Критический период."
+      },
+      {
+        "citation": "Hensch, Takao K. «Critical Period Plasticity in Local Cortical Circuits». Nature Reviews Neuroscience, vol. 6, no. 11, 2005, pp. 877–888.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "53.3",
+        "short_name": "53.3. Хенш. Пластичность критического периода."
+      }
+    ]
+  },
+  {
+    "rank": 54,
+    "domain": "Иконичность и индексность (Пирс)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Индекс (дым = огонь) — простейшее различение, не требующее символической памяти.",
+    "sources": [
+      {
+        "citation": "Peirce, Charles Sanders. «Logic as Semiotic: The Theory of Signs». In: Buchler, Justus (ed.). Philosophical Writings of Peirce. New York: Dover, 1955, pp. 98–119.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "54.1",
+        "short_name": "54.1. Пирс. Логика как семиотика."
+      },
+      {
+        "citation": "Peirce, Charles Sanders. Collected Papers. Vols. 1–8. Ed. by Charles Hartshorne, Paul Weiss, and Arthur W. Burks. Cambridge, MA: Harvard University Press, 1931–1958.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "54.2",
+        "short_name": "54.2. Пирс. Собрание сочинений."
+      },
+      {
+        "citation": "Eco, Umberto. A Theory of Semiotics. Bloomington: Indiana University Press, 1976.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "54.3",
+        "short_name": "54.3. Эко. Теория семиотики."
+      }
+    ]
+  },
+  {
+    "rank": 55,
+    "domain": "Инфляционная космология и квантовые флуктуации плотности",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Первые различия в плотности энергии после Большого взрыва — физический аналог 'первого акта различения' в геометрии пространства-времени.",
+    "sources": [
+      {
+        "citation": "Starobinsky, Alexei A. «A New Type of Isotropic Cosmological Models without Singularity». Physics Letters B, vol. 91, no. 1, 1980, pp. 99–102.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "55.1",
+        "short_name": "55.1. Старобинский. Изотропные модели."
+      },
+      {
+        "citation": "Guth, Alan H. «Inflationary Universe: A Possible Solution to the Horizon and Flatness Problems». Physical Review D, vol. 23, no. 2, 1981, pp. 347–356.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "55.2",
+        "short_name": "55.2. Гут. Инфляционная вселенная."
+      },
+      {
+        "citation": "Mukhanov, Viatcheslav, and Gennady Chibisov. «Quantum Fluctuations and a Nonsingular Universe». JETP Letters, vol. 33, 1981, pp. 532–535.",
+        "original_language": "russian",
+        "original_lost": false,
+        "authoritative_translation_language": "english",
+        "id": "55.3",
+        "short_name": "55.3. Муханов, Чибисов. Квантовые флуктуации."
+      }
+    ]
+  },
+  {
+    "rank": 56,
+    "domain": "Информационная энтропия и самоорганизация (переход хаос→порядок)",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Переход от хаоса к порядку как триггер первого различения.",
+    "sources": [
+      {
+        "citation": "Prigogine, Ilya, and Isabelle Stengers. La Nouvelle Alliance: Métamorphose de la science. Paris: Gallimard, 1979.",
+        "original_language": "french",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "56.1",
+        "short_name": "56.1. Пригожин, Стенгерс. Новый союз."
+      },
+      {
+        "citation": "Haken, Hermann. Synergetics: An Introduction. Berlin: Springer, 1977.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "56.2",
+        "short_name": "56.2. Хакен. Синергетика."
+      },
+      {
+        "citation": "Kauffman, Stuart A. The Origins of Order: Self-Organization and Selection in Evolution. New York: Oxford University Press, 1993.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "56.3",
+        "short_name": "56.3. Кауффман. Истоки порядка."
+      }
+    ]
+  },
+  {
+    "rank": 57,
+    "domain": "Кашмирский шиваизм: теория Спанды (Божественной пульсации)",
+    "authors": [
+      "ИИ5"
+    ],
+    "intersections": 1,
+    "defense": "Реальность начинает делиться из-за тончайшего внутреннего 'всплеска' — описывает триггер различения со стороны Абсолюта (Шива), а не как ошибку восприятия.",
+    "sources": [
+      {
+        "citation": "Vasugupta. Spandakārikā. In: Singh, Jaideva (transl.). Spanda Kārikās: The Divine Creative Pulsation. Delhi: Motilal Banarsidass, 1980.",
+        "original_language": "sanskrit",
+        "original_lost": false,
+        "authoritative_translation_language": "english",
+        "id": "57.1",
+        "short_name": "57.1. Васугупта. Спанда-карики."
+      },
+      {
+        "citation": "Abhinavagupta. Tantrāloka. In: Silburn, Lilian, and André Padoux (transl.). Abhinavagupta: La Lumière sur les Tantras. Paris: Collège de France, 1998.",
+        "original_language": "sanskrit",
+        "original_lost": false,
+        "authoritative_translation_language": "french",
+        "id": "57.2",
+        "short_name": "57.2. Абхинавагупта. Тантралока."
+      },
+      {
+        "citation": "Dyczkowski, Mark S. G. The Doctrine of Vibration: An Analysis of the Doctrines and Practices of Kashmir Shaivism. Albany: SUNY Press, 1987.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "57.3",
+        "short_name": "57.3. Дычковски. Доктрина вибрации."
+      }
+    ]
+  },
+  {
+    "rank": 58,
+    "domain": "Квантовая логика / дополнительность (фон Нейман, Биркгоф)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Логика дополнительности показывает, как акт измерения/различения необратимо разрушает суперпозицию альтернатив.",
+    "sources": [
+      {
+        "citation": "Birkhoff, Garrett, and John von Neumann. «The Logic of Quantum Mechanics». Annals of Mathematics, vol. 37, no. 4, 1936, pp. 823–843.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "58.1",
+        "short_name": "58.1. Биркгоф, фон Нейман. Квантовая логика."
+      },
+      {
+        "citation": "Bohr, Niels. «The Quantum Postulate and the Recent Development of Atomic Theory». Nature, vol. 121, no. 3050, 1928, pp. 580–590.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "58.2",
+        "short_name": "58.2. Бор. Квантовый постулат."
+      },
+      {
+        "citation": "von Neumann, John. Mathematische Grundlagen der Quantenmechanik. Berlin: Springer, 1932.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "58.3",
+        "short_name": "58.3. фон Нейман. Основы квантовой механики."
+      }
+    ]
+  },
+  {
+    "rank": 59,
+    "domain": "Квантовое распределение ключей (BB84)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Основано на различимости квантовых состояний; шум в канале стирает различимость и тем самым различение.",
+    "sources": [
+      {
+        "citation": "Bennett, Charles H., and Gilles Brassard. «Quantum Cryptography: Public Key Distribution and Coin Tossing». Proceedings of IEEE International Conference on Computers, Systems and Signal Processing. New York: IEEE, 1984, pp. 175–179.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "59.1",
+        "short_name": "59.1. Беннет, Брассар. Квантовая криптография BB84."
+      },
+      {
+        "citation": "Ekert, Artur K. «Quantum Cryptography Based on Bell's Theorem». Physical Review Letters, vol. 67, no. 6, 1991, pp. 661–663.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "59.2",
+        "short_name": "59.2. Экерт. Криптография на теореме Белла."
+      },
+      {
+        "citation": "Gisin, Nicolas, et al. «Quantum Cryptography». Reviews of Modern Physics, vol. 74, no. 1, 2002, pp. 145–195.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "59.3",
+        "short_name": "59.3. Жизен и др. Квантовая криптография (обзор)."
+      }
+    ]
+  },
+  {
+    "rank": 60,
+    "domain": "Квантовый дарвинизм (В. Зурек)",
+    "authors": [
+      "ИИ5"
+    ],
+    "intersections": 1,
+    "defense": "Объясняет, как классический 'объективный' мир выделяется из квантовой суперпозиции через многократное копирование информации в среду — механизм устойчивого различения.",
+    "sources": [
+      {
+        "citation": "Zurek, Wojciech H. «Quantum Darwinism». Nature Physics, vol. 5, no. 3, 2009, pp. 181–188.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "60.1",
+        "short_name": "60.1. Зурек. Квантовый дарвинизм."
+      },
+      {
+        "citation": "Zurek, Wojciech H. «Decoherence, Einselection, and the Quantum Origins of the Classical». Reviews of Modern Physics, vol. 75, no. 3, 2003, pp. 715–775.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "60.2",
+        "short_name": "60.2. Зурек. Декогеренция и классическое."
+      },
+      {
+        "citation": "Blume-Kohout, Robin, and Wojciech H. Zurek. «Quantum Darwinism in Quantum Brownian Motion». Physical Review Letters, vol. 101, no. 24, 2008, article 240405.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "60.3",
+        "short_name": "60.3. Блюм-Когаут, Зурек. Квантовый дарвинизм в движении."
+      }
+    ]
+  },
+  {
+    "rank": 61,
+    "domain": "Когнитивная лингвистика: первичные метафоры и образ-схемы (Лакофф, Джонсон)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Различения типа 'источник-путь-цель' или 'внутри-снаружи' возникают из телесного опыта, задолго до языка.",
+    "sources": [
+      {
+        "citation": "Lakoff, George, and Mark Johnson. Metaphors We Live By. Chicago: University of Chicago Press, 1980.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "61.1",
+        "short_name": "61.1. Лакофф, Джонсон. Метафоры жизни."
+      },
+      {
+        "citation": "Johnson, Mark. The Body in the Mind: The Bodily Basis of Meaning, Imagination, and Reason. Chicago: University of Chicago Press, 1987.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "61.2",
+        "short_name": "61.2. Джонсон. Тело в уме."
+      },
+      {
+        "citation": "Lakoff, George, and Mark Johnson. Philosophy in the Flesh: The Embodied Mind and Its Challenge to Western Thought. New York: Basic Books, 1999.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "61.3",
+        "short_name": "61.3. Лакофф, Джонсон. Философия во плоти."
+      }
+    ]
+  },
+  {
+    "rank": 62,
+    "domain": "Концепция Майи и Авидьи (онтологический аспект, адхьяса)",
+    "authors": [
+      "ИИ5"
+    ],
+    "intersections": 1,
+    "defense": "Механизм наложения (адхьяса) ложного восприятия на Единое — онтологическая модель возникновения видимого различения.",
+    "sources": [
+      {
+        "citation": "Śaṅkarācārya. Adhyāsabhāṣya (предисловие к Brahmasūtrabhāṣya). In: Gambhirananda, Swami (transl.). Brahma-Sūtra-Bhāṣya of Śrī Śaṅkarācārya. Calcutta: Advaita Ashrama, 1965.",
+        "original_language": "sanskrit",
+        "original_lost": false,
+        "authoritative_translation_language": "english",
+        "id": "62.1",
+        "short_name": "62.1. Шанкара. Адхьяса-бхашья."
+      },
+      {
+        "citation": "Śaṅkarācārya. Māṇḍūkyopaniṣadbhāṣya. In: Gambhirananda, Swami (transl.). Eight Upanisads with the Commentary of Sankaracarya. Vol. 2. Calcutta: Advaita Ashrama, 1958.",
+        "original_language": "sanskrit",
+        "original_lost": false,
+        "authoritative_translation_language": "english",
+        "id": "62.2",
+        "short_name": "62.2. Шанкара. Комментарий на Мандукья."
+      },
+      {
+        "citation": "Potter, Karl H. (ed.). Encyclopedia of Indian Philosophies. Vol. 3: Advaita Vedānta up to Śaṃkara and His Pupils. Delhi: Motilal Banarsidass, 1981.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "62.3",
+        "short_name": "62.3. Поттер (ред.). Энциклопедия индийской философии."
+      }
+    ]
+  },
+  {
+    "rank": 63,
+    "domain": "Мадхьямака (Нагарджуна) и шуньята",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Философия пустотности — состояние до/без различения, дополняет анализ Алая-виджняны со стороны Срединного пути.",
+    "sources": [
+      {
+        "citation": "Nāgārjuna. Mūlamadhyamakakārikā. In: Garfield, Jay L. (transl.). The Fundamental Wisdom of the Middle Way. New York: Oxford University Press, 1995.",
+        "original_language": "sanskrit",
+        "original_lost": true,
+        "authoritative_translation_language": "english",
+        "id": "63.1",
+        "short_name": "63.1. Нагарджуна. Муламадхьямака-карика."
+      },
+      {
+        "citation": "Candrakīrti. Prasannapadā (commentary on Mūlamadhyamakakārikā). In: de la Vallée Poussin, Louis (transl.). Mūlamadhyamakakārikās de Nāgārjuna avec la Prasannapadā. St.-Pétersbourg: Académie Impériale des Sciences, 1903–1913.",
+        "original_language": "sanskrit",
+        "original_lost": true,
+        "authoritative_translation_language": "french",
+        "id": "63.2",
+        "short_name": "63.2. Чандракирти. Прасаннапада."
+      },
+      {
+        "citation": "Williams, Paul. Mahāyāna Buddhism: The Doctrinal Foundations. 2nd ed. London: Routledge, 2009.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "63.3",
+        "short_name": "63.3. Уильямс. Буддизм Махаяны."
+      }
+    ]
+  },
+  {
+    "rank": 64,
+    "domain": "Манас (клишта-манас) — омрачённый ум",
+    "authors": [
+      "ИИ5"
+    ],
+    "intersections": 1,
+    "defense": "Ментальный центр, рождающийся из Алаи под воздействием кармических отпечатков и порождающий иллюзию 'Я' и 'мира'.",
+    "sources": [
+      {
+        "citation": "Vasubandhu. Triṃśikāvijñaptimātratāsiddhi. In: Anacker, Stefan. Seven Works of Vasubandhu. Delhi: Motilal Banarsidass, 1984.",
+        "original_language": "sanskrit",
+        "original_lost": true,
+        "authoritative_translation_language": "english",
+        "id": "64.1",
+        "short_name": "64.1. Васубандху. Тримшика."
+      },
+      {
+        "citation": "Asaṅga. Abhidharmasamuccaya. In: Rahula, Walpola (transl.). Abhidharmasamuccaya: The Compendium of the Higher Teaching. Fremont, CA: Asian Humanities Press, 2001.",
+        "original_language": "sanskrit",
+        "original_lost": true,
+        "authoritative_translation_language": "english",
+        "id": "64.2",
+        "short_name": "64.2. Асанга. Абхидхармасамуччая."
+      },
+      {
+        "citation": "Kochumuttom, Thomas A. A Buddhist Doctrine of Experience: A New Translation and Interpretation of the Works of Vasubandhu the Yogācārin. Delhi: Motilal Banarsidass, 1982.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "64.3",
+        "short_name": "64.3. Кочумуттом. Буддийская доктрина опыта."
+      }
+    ]
+  },
+  {
+    "rank": 65,
+    "domain": "Микрогенетический анализ восприятия (фигура/фон)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Изучает долингвистические, досознательные фазы различения — например, различение фигуры и фона зрительной корой.",
+    "sources": [
+      {
+        "citation": "Rubin, Edgar. Synsoplevede Figurer: Studier i psykologisk Analyse. Copenhagen: Gyldendal, 1915.",
+        "original_language": "danish",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "65.1",
+        "short_name": "65.1. Рубин. Зрительные фигуры."
+      },
+      {
+        "citation": "Werner, Heinz. «Microgenesis and Aphasia». Journal of Abnormal and Social Psychology, vol. 52, no. 3, 1956, pp. 347–353.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "65.2",
+        "short_name": "65.2. Вернер. Микрогенез и афазия."
+      },
+      {
+        "citation": "Brown, Jason W. Mind and Nature: Essays on Time and Subjectivity. London: Whurr Publishers, 2000.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "65.3",
+        "short_name": "65.3. Браун. Разум и природа."
+      }
+    ]
+  },
+  {
+    "rank": 66,
+    "domain": "Микропанпсихизм и комбинаторная теория сознания",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Как комбинации базовых 'ментальных' свойств элементов дают макро-сознание — детализация панпсихизма.",
+    "sources": [
+      {
+        "citation": "Chalmers, David J. «The Combination Problem for Panpsychism». In: Brüntrup, Godehard, and Ludwig Jaskolla (eds.). Panpsychism: Contemporary Perspectives. New York: Oxford University Press, 2017, pp. 179–214.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "66.1",
+        "short_name": "66.1. Чалмерс. Проблема комбинации."
+      },
+      {
+        "citation": "Strawson, Galen. «Realistic Monism: Why Physicalism Entails Panpsychism». Journal of Consciousness Studies, vol. 13, no. 10–11, 2006, pp. 3–31.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "66.2",
+        "short_name": "66.2. Стросон. Реалистический монизм."
+      },
+      {
+        "citation": "Seager, William. «Consciousness, Information and Panpsychism». Journal of Consciousness Studies, vol. 2, no. 3, 1995, pp. 272–288.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "66.3",
+        "short_name": "66.3. Сигер. Сознание и информация."
+      }
+    ]
+  },
+  {
+    "rank": 67,
+    "domain": "Молекулярная память у растений (эпигенетика растений)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Растение может 'запомнить' стресс и отличить его повторение — прото-память без нейронов и сознания.",
+    "sources": [
+      {
+        "citation": "Trewavas, Anthony. «Mindless Mastery». Nature, vol. 415, no. 6874, 2002, pp. 841.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "67.1",
+        "short_name": "67.1. Тривавас. Мастерство без разума."
+      },
+      {
+        "citation": "Galvani, Luigi C., et al. «RNA-Directed DNA Methylation and Demethylation in Plants». Science, vol. 320, no. 5882, 2008, pp. 1490–1492.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "67.2",
+        "short_name": "67.2. Гальвани и др. Метилирование ДНК растений."
+      },
+      {
+        "citation": "Crisp, Peter A., et al. «Reconsidering Plant Memory: Intersections between Stress Recovery, RNA Turnover, and Epigenetics». Science Advances, vol. 2, no. 2, 2016, article e1501340.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "67.3",
+        "short_name": "67.3. Крисп и др. Память растений."
+      }
+    ]
+  },
+  {
+    "rank": 68,
+    "domain": "Мультивселенная и антропный принцип",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Почему наше 'я' возникло именно в этом домене существования — связь сознания и физических констант.",
+    "sources": [
+      {
+        "citation": "Barrow, John D., and Frank J. Tipler. The Anthropic Cosmological Principle. Oxford: Oxford University Press, 1986.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "68.1",
+        "short_name": "68.1. Барроу, Типлер. Антропный принцип."
+      },
+      {
+        "citation": "Everett, Hugh III. «Relative State Formulation of Quantum Mechanics». Reviews of Modern Physics, vol. 29, no. 3, 1957, pp. 454–462.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "68.2",
+        "short_name": "68.2. Эверетт. Относительные состояния."
+      },
+      {
+        "citation": "Susskind, Leonard. The Cosmic Landscape: String Theory and the Illusion of Intelligent Design. New York: Little, Brown, 2006.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "68.3",
+        "short_name": "68.3. Сасскинд. Космический ландшафт."
+      }
+    ]
+  },
+  {
+    "rank": 69,
+    "domain": "Нео-адвайта: практики не-двойственности",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Прямой опыт состояния до различения, параллельный буддийской практике, но через прямое распознавание.",
+    "sources": [
+      {
+        "citation": "Ramana Maharshi. Nan Yar? (Who Am I?). In: Osborne, Arthur (transl.). The Collected Works of Ramana Maharshi. London: Rider, 1959.",
+        "original_language": "tamil",
+        "original_lost": false,
+        "authoritative_translation_language": "english",
+        "id": "69.1",
+        "short_name": "69.1. Рамана Махарши. Кто Я?"
+      },
+      {
+        "citation": "Nisargadatta Maharaj. Ī Am That. Transl. by Maurice Frydman. Bombay: Chetana, 1973.",
+        "original_language": "marathi",
+        "original_lost": false,
+        "authoritative_translation_language": "english",
+        "id": "69.2",
+        "short_name": "69.2. Нисаргадатта Махарадж. Я есть То."
+      },
+      {
+        "citation": "Spira, Rupert. The Nature of Consciousness: Essays on the Unity of Mind and Matter. Oxford: Sahaja Publications, 2017.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "69.3",
+        "short_name": "69.3. Спайра. Природа сознания."
+      }
+    ]
+  },
+  {
+    "rank": 70,
+    "domain": "Ниродха-самапатти (прекращение восприятия и чувствования)",
+    "authors": [
+      "ИИ5"
+    ],
+    "intersections": 1,
+    "defense": "Буддийская медитативная техника прекращения восприятия — практический путь к остановке триггера различения.",
+    "sources": [
+      {
+        "citation": "Buddhaghosa. Visuddhimagga. Transl. by Bhikkhu Ñāṇamoli as The Path of Purification. Kandy: Buddhist Publication Society, 1975.",
+        "original_language": "pali",
+        "original_lost": false,
+        "authoritative_translation_language": "english",
+        "id": "70.1",
+        "short_name": "70.1. Буддхагхоша. Путь очищения."
+      },
+      {
+        "citation": "Vasubandhu. Abhidharmakośabhāṣya. Transl. by Louis de la Vallée Poussin as L'Abhidharmakośa de Vasubandhu. 6 vols. Paris: Geuthner, 1923–1931.",
+        "original_language": "sanskrit",
+        "original_lost": true,
+        "authoritative_translation_language": "french",
+        "id": "70.2",
+        "short_name": "70.2. Васубандху. Абхидхармакоша."
+      },
+      {
+        "citation": "Bhikkhu Analayo. Satipaṭṭhāna: The Direct Path to Realization. Birmingham: Windhorse Publications, 2003.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "70.3",
+        "short_name": "70.3. Аналайо. Сатипаттхана."
+      }
+    ]
+  },
+  {
+    "rank": 71,
+    "domain": "Орч-ОР: квантовая нейродинамика (Пенроуз-Хамерофф)",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Квантовые микротрубочки как предполагаемый носитель прото-сознания — попытка связать квантовое измерение и нейробиологию.",
+    "sources": [
+      {
+        "citation": "Penrose, Roger. The Emperor's New Mind: Concerning Computers, Minds, and the Laws of Physics. Oxford: Oxford University Press, 1989.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "71.1",
+        "short_name": "71.1. Пенроуз. Новый ум императора."
+      },
+      {
+        "citation": "Penrose, Roger. Shadows of the Mind: A Search for the Missing Science of Consciousness. Oxford: Oxford University Press, 1994.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "71.2",
+        "short_name": "71.2. Пенроуз. Тени разума."
+      },
+      {
+        "citation": "Hameroff, Stuart R., and Roger Penrose. «Orchestrated Reduction of Quantum Coherence in Brain Microtubules». Mathematics and Computers in Simulation, vol. 40, no. 3–4, 1996, pp. 453–480.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "71.3",
+        "short_name": "71.3. Хамерофф, Пенроуз. Орч-ОР."
+      }
+    ]
+  },
+  {
+    "rank": 72,
+    "domain": "Палеобиология и происхождение жизни / abiogenesis (химические системы до 'я')",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Что существовало до биологического 'я' — химические системы, способные к самоподдержанию.",
+    "sources": [
+      {
+        "citation": "Oparin, Alexander I. Proiskhozhdenie zhizni. Moskva: Moskovskiy Rabochiy, 1924.",
+        "original_language": "russian",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "72.1",
+        "short_name": "72.1. Опарин. Происхождение жизни."
+      },
+      {
+        "citation": "Eigen, Manfred, and Peter Schuster. The Hypercycle: A Principle of Natural Self-Organization. Berlin: Springer, 1979.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "72.2",
+        "short_name": "72.2. Айген, Шустер. Гиперцикл."
+      },
+      {
+        "citation": "Luisi, Pier Luigi. The Emergence of Life: From Chemical Origins to Synthetic Biology. Cambridge: Cambridge University Press, 2006.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "72.3",
+        "short_name": "72.3. Луизи. Возникновение жизни."
+      }
+    ]
+  },
+  {
+    "rank": 73,
+    "domain": "Пассивный синтез (Гуссерль)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Различения происходят автоматически (например, восприятие темпорального потока), не требуя 'Я'.",
+    "sources": [
+      {
+        "citation": "Husserl, Edmund. Analysen zur passiven Synthesis. Hrsg. von Margot Fleischer. Den Haag: Martinus Nijhoff, 1966. (Husserliana, Bd. XI.)",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "73.1",
+        "short_name": "73.1. Гуссерль. Пассивный синтез."
+      },
+      {
+        "citation": "Husserl, Edmund. Erfahrung und Urteil: Untersuchungen zur Genealogie der Logik. Hrsg. von Ludwig Landgrebe. Prag: Academia Verlagsbuchhandlung, 1939.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "73.2",
+        "short_name": "73.2. Гуссерль. Опыт и суждение."
+      },
+      {
+        "citation": "Bernet, Rudolf, Iso Kern, and Eduard Marbach. An Introduction to Husserlian Phenomenology. Evanston, IL: Northwestern University Press, 1993.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "73.3",
+        "short_name": "73.3. Бернет, Керн, Марбах. Введение в феноменологию."
+      }
+    ]
+  },
+  {
+    "rank": 74,
+    "domain": "Радикальный конструктивизм (фон Глазерсфельд)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Знание строится только из актов различения — нет 'мира до различения' отдельно от наблюдателя, который различает.",
+    "sources": [
+      {
+        "citation": "Glasersfeld, Ernst von. Radical Constructivism: A Way of Knowing and Learning. London: Falmer Press, 1995.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "74.1",
+        "short_name": "74.1. фон Глазерсфельд. Радикальный конструктивизм."
+      },
+      {
+        "citation": "Glasersfeld, Ernst von. «An Introduction to Radical Constructivism». In: Watzlawick, Paul (ed.). The Invented Reality. New York: Norton, 1984, pp. 17–40.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "74.2",
+        "short_name": "74.2. фон Глазерсфельд. Введение в конструктивизм."
+      },
+      {
+        "citation": "Watzlawick, Paul (ed.). Die erfundene Wirklichkeit: Wie wissen wir, was wir zu wissen glauben? Munich: Piper, 1981.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "74.3",
+        "short_name": "74.3. Вацлавик (ред.). Изобретённая реальность."
+      }
+    ]
+  },
+  {
+    "rank": 75,
+    "domain": "Растительный интеллект / фитознание (Манкузо)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Растения различают свет, гравитацию, химию без нейронов — модель прото-различения вне животного царства.",
+    "sources": [
+      {
+        "citation": "Mancuso, Stefano, and Alessandra Viola. Verde brillante: Sensibilità e intelligenza del mondo vegetale. Firenze: Giunti, 2013.",
+        "original_language": "italian",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "75.1",
+        "short_name": "75.1. Манкузо, Виола. Зелёный блеск."
+      },
+      {
+        "citation": "Darwin, Charles. The Power of Movement in Plants. London: John Murray, 1880.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "75.2",
+        "short_name": "75.2. Дарвин. Движение растений."
+      },
+      {
+        "citation": "Trewavas, Anthony. Plant Behaviour and Intelligence. Oxford: Oxford University Press, 2014.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "75.3",
+        "short_name": "75.3. Тривавас. Разум растений."
+      }
+    ]
+  },
+  {
+    "rank": 76,
+    "domain": "Социальные автопоэтические системы",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Как общества и культуры 'рождаются' через коллективное различение — расширение автопоэзиса на социальный уровень.",
+    "sources": [
+      {
+        "citation": "Luhmann, Niklas. Soziale Systeme: Grundriß einer allgemeinen Theorie. Frankfurt am Main: Suhrkamp, 1984.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "76.1",
+        "short_name": "76.1. Луман. Социальные системы."
+      },
+      {
+        "citation": "Maturana, Humberto R. «Biology of Language: The Epistemology of Reality». In: Miller, George A., and Elizabeth Lenneberg (eds.). Psychology and Biology of Language and Thought. New York: Academic Press, 1978, pp. 27–63.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "76.2",
+        "short_name": "76.2. Матурана. Биология языка."
+      },
+      {
+        "citation": "Teubner, Gunther. Recht als autopoietisches System. Frankfurt am Main: Suhrkamp, 1989.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "76.3",
+        "short_name": "76.3. Тойбнер. Право как автопоэзис."
+      }
+    ]
+  },
+  {
+    "rank": 77,
+    "domain": "Теория автоматов с памятью (конечные автоматы, стеки)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Простейший автомат, различающий входные символы — модель прото-сознания без саморефлексии.",
+    "sources": [
+      {
+        "citation": "Turing, Alan M. «On Computable Numbers, with an Application to the Entscheidungsproblem». Proceedings of the London Mathematical Society, vol. 42, no. 1, 1936, pp. 230–265.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "77.1",
+        "short_name": "77.1. Тьюринг. Вычислимые числа."
+      },
+      {
+        "citation": "Kleene, Stephen C. «Representation of Events in Nerve Nets and Finite Automata». In: Shannon, Claude E., and John McCarthy (eds.). Automata Studies. Princeton, NJ: Princeton University Press, 1956, pp. 3–41.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "77.2",
+        "short_name": "77.2. Клини. Нервные сети и автоматы."
+      },
+      {
+        "citation": "Hopcroft, John E., and Jeffrey D. Ullman. Introduction to Automata Theory, Languages, and Computation. Reading, MA: Addison-Wesley, 1979.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "77.3",
+        "short_name": "77.3. Хопкрофт, Ульман. Теория автоматов."
+      }
+    ]
+  },
+  {
+    "rank": 78,
+    "domain": "Теория вычислений и halting problem",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Границы само-референции в системах как модель невозможности полного само-осознания до различения.",
+    "sources": [
+      {
+        "citation": "Turing, Alan M. «On Computable Numbers, with an Application to the Entscheidungsproblem». Proceedings of the London Mathematical Society, vol. 42, no. 1, 1936, pp. 230–265.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "78.1",
+        "short_name": "78.1. Тьюринг. Вычислимые числа."
+      },
+      {
+        "citation": "Gödel, Kurt. «Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I». Monatshefte für Mathematik und Physik, Bd. 38, 1931, S. 173–198.",
+        "original_language": "german",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "78.2",
+        "short_name": "78.2. Гёдель. Формально неразрешимые предложения."
+      },
+      {
+        "citation": "Hofstadter, Douglas R. Gödel, Escher, Bach: An Eternal Golden Braid. New York: Basic Books, 1979.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "78.3",
+        "short_name": "78.3. Хофштадтер. Гёдель, Эшер, Бах."
+      }
+    ]
+  },
+  {
+    "rank": 79,
+    "domain": "Теория динамических систем: бифуркации и теория катастроф",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Точка бифуркации — математически точный момент 'выбора' между альтернативами, модель внезапного триггера различения.",
+    "sources": [
+      {
+        "citation": "Thom, René. Stabilité structurelle et morphogenèse: Essai d'une théorie générale des modèles. Reading, MA: W. A. Benjamin, 1972.",
+        "original_language": "french",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "79.1",
+        "short_name": "79.1. Том. Структурная устойчивость."
+      },
+      {
+        "citation": "Poincaré, Henri. «Mémoire sur les courbes définies par une équation différentielle». Journal de Mathématiques Pures et Appliquées, sér. 3, t. 7, 1881, pp. 375–422.",
+        "original_language": "french",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "79.2",
+        "short_name": "79.2. Пуанкаре. Дифференциальные уравнения."
+      },
+      {
+        "citation": "Strogatz, Steven H. Nonlinear Dynamics and Chaos. Reading, MA: Addison-Wesley, 1994.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "79.3",
+        "short_name": "79.3. Строгац. Нелинейная динамика."
+      }
+    ]
+  },
+  {
+    "rank": 80,
+    "domain": "Теория привязанности и теория ума (Theory of Mind)",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Развитие 'я' у младенцев через привязанность и понимание чужого ума — онтогенетический аналог филогенетического триггера.",
+    "sources": [
+      {
+        "citation": "Bowlby, John. Attachment and Loss. Vol. 1: Attachment. London: Hogarth Press, 1969.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "80.1",
+        "short_name": "80.1. Боулби. Привязанность."
+      },
+      {
+        "citation": "Premack, David, and Guy Woodruff. «Does the Chimpanzee Have a Theory of Mind?». Behavioral and Brain Sciences, vol. 1, no. 4, 1978, pp. 515–526.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "80.2",
+        "short_name": "80.2. Премак, Вудрафф. Теория разума шимпанзе."
+      },
+      {
+        "citation": "Baron-Cohen, Simon, Alan M. Leslie, and Uta Frith. «Does the Autistic Child Have a 'Theory of Mind'?». Cognition, vol. 21, no. 1, 1985, pp. 37–46.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "80.3",
+        "short_name": "80.3. Барон-Коэн и др. Теория разума у аутистов."
+      }
+    ]
+  },
+  {
+    "rank": 81,
+    "domain": "Третья кибернетика: клеточные автоматы с саморепликацией (фон Нейман)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Простейшие физические системы, порождающие границу между собой и средой — модель 'первого различения' в вычислительной вселенной.",
+    "sources": [
+      {
+        "citation": "von Neumann, John. Theory of Self-Reproducing Automata. Ed. and completed by Arthur W. Burks. Urbana: University of Illinois Press, 1966.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "81.1",
+        "short_name": "81.1. фон Нейман. Само-воспроизводящиеся автоматы."
+      },
+      {
+        "citation": "Wolfram, Stephen. A New Kind of Science. Champaign, IL: Wolfram Media, 2002.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "81.2",
+        "short_name": "81.2. Вольфрам. Новый вид науки."
+      },
+      {
+        "citation": "Langton, Christopher G. «Self-Reproduction in Cellular Automata». Physica D: Nonlinear Phenomena, vol. 10, no. 1–2, 1984, pp. 135–144.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "81.3",
+        "short_name": "81.3. Лэнгтон. Само-воспроизводство в КА."
+      }
+    ]
+  },
+  {
+    "rank": 82,
+    "domain": "Три-свабхава (три природы реальности, Йогачара)",
+    "authors": [
+      "ИИ4"
+    ],
+    "intersections": 1,
+    "defense": "Различение между иллюзорным, зависимым и абсолютным — онтология различения и его преодоления.",
+    "sources": [
+      {
+        "citation": "Asaṅga. Mahāyānasaṃgraha. Traduit et annoté par Étienne Lamotte. Louvain: Institut Orientaliste, 1938–1939.",
+        "original_language": "sanskrit",
+        "original_lost": true,
+        "authoritative_translation_language": "french",
+        "id": "82.1",
+        "short_name": "82.1. Асанга. Махаянасанграха."
+      },
+      {
+        "citation": "Vasubandhu. Madhyāntavibhāgabhāṣya. In: Anacker, Stefan. Seven Works of Vasubandhu. Delhi: Motilal Banarsidass, 1984.",
+        "original_language": "sanskrit",
+        "original_lost": true,
+        "authoritative_translation_language": "english",
+        "id": "82.2",
+        "short_name": "82.2. Васубандху. Мадхьянта-вибхага."
+      },
+      {
+        "citation": "Lusthaus, Dan. Buddhist Phenomenology: A Philosophical Investigation of Yogācāra Buddhism and the Ch'eng Wei-shih Lun. London: RoutledgeCurzon, 2002.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "82.3",
+        "short_name": "82.3. Ластхаус. Буддийская феноменология."
+      }
+    ]
+  },
+  {
+    "rank": 83,
+    "domain": "Учение о моментарности (кшаникавада)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Каждый момент сознания — акт различения; медитация позволяет наблюдать его возникновение и прекращение.",
+    "sources": [
+      {
+        "citation": "Vasubandhu. Abhidharmakośabhāṣya. Transl. by Louis de la Vallée Poussin as L'Abhidharmakośa de Vasubandhu. 6 vols. Paris: Geuthner, 1923–1931.",
+        "original_language": "sanskrit",
+        "original_lost": true,
+        "authoritative_translation_language": "french",
+        "id": "83.1",
+        "short_name": "83.1. Васубандху. Абхидхармакоша."
+      },
+      {
+        "citation": "Dharmakīrti. Pramāṇavārttika. In: Dunne, John D. Foundations of Dharmakīrti's Philosophy. Boston: Wisdom Publications, 2004.",
+        "original_language": "sanskrit",
+        "original_lost": true,
+        "authoritative_translation_language": "english",
+        "id": "83.2",
+        "short_name": "83.2. Дхармакирти. Праманаварттика."
+      },
+      {
+        "citation": "Kalupahana, David J. Buddhist Philosophy: A Historical Analysis. Honolulu: University Press of Hawaii, 1976.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "83.3",
+        "short_name": "83.3. Калупахана. Буддийская философия."
+      }
+    ]
+  },
+  {
+    "rank": 84,
+    "domain": "Эволюция сигнальных систем (хемотаксис как прото-различение)",
+    "authors": [
+      "ИИ2"
+    ],
+    "intersections": 1,
+    "defense": "Показывает, как простейшее различение (градиент химического вещества) становится предком субъект-объектного разделения.",
+    "sources": [
+      {
+        "citation": "Berg, Howard C., and Douglas A. Brown. «Chemotaxis in Escherichia coli Analysed by Three-Dimensional Tracking». Nature, vol. 239, no. 5374, 1972, pp. 500–504.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "84.1",
+        "short_name": "84.1. Берг, Браун. Хемотаксис E. coli."
+      },
+      {
+        "citation": "Adler, Julius. «Chemotaxis in Bacteria». Science, vol. 153, no. 3737, 1966, pp. 708–716.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "84.2",
+        "short_name": "84.2. Адлер. Хемотаксис бактерий."
+      },
+      {
+        "citation": "Eisenbach, Michael. Chemotaxis. London: Imperial College Press, 2004.",
+        "original_language": "english",
+        "original_lost": false,
+        "authoritative_translation_language": null,
+        "id": "84.3",
+        "short_name": "84.3. Айзенбах. Хемотаксис."
+      }
+    ]
+  }
+]

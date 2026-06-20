@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Импорт источников — Domains Tracker</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f5f0;
+    color: #1a1a1a;
+    font-size: 14px;
+  }
+
+  header {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 12px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  header h1 { font-size: 14px; font-weight: 600; }
+
+  .back-link {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 12.5px;
+    padding: 6px 12px;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+  }
+
+  .back-link:hover { color: #fff; border-color: #555; }
+
+  .btn-prompt {
+    margin-left: auto;
+    padding: 7px 14px;
+    background: #2a2a2a;
+    color: #ccc;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12.5px;
+  }
+
+  .btn-prompt:hover { background: #333; color: #fff; }
+
+  .prompt-topic-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .prompt-topic-row input {
+    flex: 1;
+    padding: 8px 11px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+
+  .prompt-topic-row input:focus { outline: none; border-color: #1a1a1a; }
+
+  .prompt-panel {
+    display: none;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+  }
+
+  .prompt-panel.open { display: block; }
+
+  .prompt-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .prompt-panel-title { font-size: 13px; font-weight: 700; color: #1a1a1a; }
+
+  .btn-copy-prompt {
+    padding: 6px 14px;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+
+  .btn-copy-prompt:hover { background: #333; }
+  .btn-copy-prompt.copied { background: #2e7d32; }
+
+  .prompt-text {
+    background: #f7f7f5;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: #444;
+    white-space: pre-wrap;
+    max-height: 320px;
+    overflow-y: auto;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+
+  .container { max-width: 800px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  .upload-zone {
+    background: #fff;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .upload-zone.dragover { border-color: #1a1a1a; background: #fafafa; }
+
+  .upload-zone p { color: #888; font-size: 13px; margin-bottom: 14px; }
+
+  .btn-choose-file {
+    padding: 10px 20px;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+
+  .btn-choose-file:hover { background: #333; }
+
+  #file-input { display: none; }
+
+  .summary-bar {
+    display: none;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .summary-bar.visible { display: flex; }
+
+  .summary-stats { display: flex; gap: 16px; font-size: 12.5px; color: #555; }
+  .summary-stats b { color: #1a1a1a; }
+
+  .summary-actions { display: flex; gap: 8px; }
+
+  .btn-select-all, .btn-select-new {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    color: #555;
+  }
+
+  .btn-select-all:hover, .btn-select-new:hover { background: #f0f0f0; }
+
+  .btn-import-confirm {
+    padding: 9px 18px;
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .btn-import-confirm:hover { background: #256728; }
+  .btn-import-confirm:disabled { background: #ccc; cursor: not-allowed; }
+
+  .import-row {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 7px;
+    margin-bottom: 8px;
+    padding: 12px 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .import-row.is-duplicate { border-color: #ffca28; background: #fffdf5; }
+  .import-row.unchecked { opacity: 0.5; }
+
+  .import-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .import-body { flex: 1; min-width: 0; }
+
+  .import-short { font-weight: 600; font-size: 13px; margin-bottom: 3px; }
+  .import-citation { font-size: 11.5px; color: #777; line-height: 1.4; margin-bottom: 6px; }
+
+  .import-status {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+
+  .import-status.new { background: #e8f5e9; color: #2e7d32; }
+  .import-status.duplicate { background: #fff3e0; color: #e65100; }
+
+  .import-match {
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 7px 10px;
+    margin-top: 4px;
+    font-size: 11px;
+  }
+
+  .import-match-score {
+    display: inline-block;
+    background: #ff9800;
+    color: #fff;
+    font-size: 9.5px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-right: 6px;
+  }
+
+  .import-match-name { font-weight: 600; }
+  .import-match-citation { color: #888; margin-top: 2px; }
+
+  .empty-state {
+    text-align: center;
+    color: #aaa;
+    padding: 40px;
+    font-size: 13px;
+  }
+
+  .error-box {
+    display: none;
+    background: #ffebee;
+    border: 1px solid #ffcdd2;
+    color: #c62828;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+
+  .error-box.visible { display: block; }
+
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 300;
+    pointer-events: none;
+  }
+
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="back-link">← Назад</a>
+    <h1>Импорт источников</h1>
+    <button class="btn-prompt" id="btn-toggle-prompt" type="button">Промт для ИИ</button>
+  </div>
+</header>
+
+<div class="container">
+  <div class="prompt-panel" id="prompt-panel">
+    <div class="prompt-panel-header">
+      <span class="prompt-panel-title">Промт для подготовки JSON</span>
+      <button class="btn-copy-prompt" id="btn-copy-prompt" type="button">Копировать</button>
+    </div>
+    <div class="prompt-topic-row">
+      <input type="text" id="prompt-topic" placeholder="Тема, область, сфера (например: паразитология, квантовые вычисления)">
+    </div>
+    <div class="prompt-text" id="prompt-text"></div>
+  </div>
+
+  <div class="error-box" id="error-box"></div>
+
+  <div class="upload-zone" id="upload-zone">
+    <p>Выбери JSON-файл со списком источников для импорта</p>
+    <button class="btn-choose-file" id="btn-choose-file">Выбрать файл</button>
+    <input type="file" id="file-input" accept=".json">
+  </div>
+
+  <div class="summary-bar" id="summary-bar">
+    <div class="summary-stats">
+      <span>Всего: <b id="stat-total">0</b></span>
+      <span>🆕 Новых: <b id="stat-new">0</b></span>
+      <span>⚠️ Похожих на существующие: <b id="stat-dup">0</b></span>
+      <span>Выбрано: <b id="stat-selected">0</b></span>
+    </div>
+    <div class="summary-actions">
+      <button class="btn-select-all" id="btn-select-all">Выбрать все</button>
+      <button class="btn-select-new" id="btn-select-new">Только новые</button>
+      <button class="btn-import-confirm" id="btn-import-confirm">Импортировать выбранные</button>
+    </div>
+  </div>
+
+  <div id="import-list"></div>
+  <div class="empty-state" id="empty-state" style="display:none">Загрузи JSON-файл, чтобы начать</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = 'http://localhost:5051/api';
+const IMPORT_PROMPT_TEMPLATE = `Тема: {{TOPIC}}
+
+Шаг 1. Составь строгий академический библиографический список источников, оказавших наиболее значимое влияние на развитие этой темы/области/сферы. Используй языки оригиналов работ.
+
+Шаг 2. Оформи этот список в виде JSON-массива объектов со следующими полями для каждого источника:
+
+[
+  {
+    "short_name": "Краткое название ЦЕЛИКОМ НА РУССКОМ ЯЗЫКЕ, формат: Фамилия. Название работы (не более 3-5 слов, переведённое на русский).",
+    "citation": "Полная библиографическая ссылка на языке оригинала (или на языке самого авторитетного перевода, если оригинал не сохранился). Формат: Автор. Название. Город: Издательство, год.",
+    "original_language": "Язык оригинала источника (например: english, german, french, sanskrit, russian, classical_chinese, latin, italian)",
+    "original_lost": false,
+    "authoritative_translation_language": "",
+    "notebook_url": ""
+  }
+]
+
+Правила заполнения:
+
+1. short_name — ВЕСЬ ТЕКСТ ЦЕЛИКОМ НА РУССКОМ ЯЗЫКЕ, без номера в начале (номер присвоится автоматически). Формат: "Фамилия автора (транслитерация на русский). Краткое название работы, переведённое на русский." Не длиннее 5 слов после фамилии. Никаких слов на английском, немецком, французском или другом языке — даже если оригинальное название работы на иностранном языке, переведи его смысл на русский. Пример неправильно: "Дарвин. On the Origin of Species." Пример правильно: "Дарвин. Происхождение видов."
+
+2. citation — строгий академический библиографический формат: Автор (Фамилия, Имя). Название работы. Город: Издательство, год. Для статей: Автор. «Название статьи». Название журнала, том, номер, год, страницы.
+
+3. original_language — один из: english, german, french, russian, sanskrit, pali, classical_chinese, japanese, italian, spanish, latin, greek, arabic, и т.д. На английском, строчными буквами.
+
+4. original_lost — true, если оригинальный текст не сохранился и доступен только в переводе (характерно для древних текстов — санскрит, пали, утраченные греческие источники). Иначе false.
+
+5. authoritative_translation_language — если original_lost: true, укажи язык самого авторитетного перевода (например "english", "french"). Если original_lost: false — оставь пустую строку "".
+
+6. notebook_url — всегда оставляй пустую строку "", это поле заполняется отдельно позже.
+
+Пример полностью заполненной записи:
+
+{
+  "short_name": "Дарвин. Происхождение видов.",
+  "citation": "Darwin, Charles. On the Origin of Species by Means of Natural Selection. London: John Murray, 1859.",
+  "original_language": "english",
+  "original_lost": false,
+  "authoritative_translation_language": "",
+  "notebook_url": ""
+}
+
+Пример записи с утраченным оригиналом:
+
+{
+  "short_name": "Нагарджуна. Муламадхьямака-карика.",
+  "citation": "Nāgārjuna. Mūlamadhyamakakārikā. In: Garfield, Jay L. (transl.). The Fundamental Wisdom of the Middle Way. New York: Oxford University Press, 1995.",
+  "original_language": "sanskrit",
+  "original_lost": true,
+  "authoritative_translation_language": "english",
+  "notebook_url": ""
+}
+
+Верни только валидный JSON-массив, без пояснений до или после. Выведи его в блоке кода (code block), а не обычным текстом в ответе.`;
+let importItems = [];
+let selectedRows = new Set();
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function showError(msg) {
+  const box = document.getElementById('error-box');
+  box.textContent = msg;
+  box.classList.add('visible');
+}
+
+function hideError() {
+  document.getElementById('error-box').classList.remove('visible');
+}
+
+function escHtml(str) {
+  return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+document.getElementById('btn-choose-file').addEventListener('click', () => {
+  document.getElementById('file-input').click();
+});
+
+document.getElementById('file-input').addEventListener('change', (e) => {
+  if (e.target.files.length > 0) {
+    uploadFile(e.target.files[0]);
+  }
+});
+
+const uploadZone = document.getElementById('upload-zone');
+uploadZone.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  uploadZone.classList.add('dragover');
+});
+uploadZone.addEventListener('dragleave', () => {
+  uploadZone.classList.remove('dragover');
+});
+uploadZone.addEventListener('drop', (e) => {
+  e.preventDefault();
+  uploadZone.classList.remove('dragover');
+  if (e.dataTransfer.files.length > 0) {
+    uploadFile(e.dataTransfer.files[0]);
+  }
+});
+
+async function uploadFile(file) {
+  hideError();
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const res = await fetch(`${API}/import/upload`, {
+      method: 'POST',
+      body: formData
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      showError(data.error || 'Не удалось загрузить файл');
+      return;
+    }
+
+    importItems = data.items;
+    selectedRows = new Set(
+      importItems.filter(i => i.status === 'new').map(i => i.row_index)
+    );
+
+    document.getElementById('stat-total').textContent = data.total;
+    document.getElementById('stat-new').textContent = data.new_count;
+    document.getElementById('stat-dup').textContent = data.duplicate_count;
+    document.getElementById('summary-bar').classList.add('visible');
+    document.getElementById('empty-state').style.display = 'none';
+
+    renderImportList();
+    showToast(`Загружено ${data.total} источников`);
+  } catch (err) {
+    showError('Ошибка соединения с сервером: ' + err.message);
+  }
+}
+
+function renderImportList() {
+  const list = document.getElementById('import-list');
+
+  list.innerHTML = importItems.map(item => {
+    const isDup = item.status === 'duplicate_candidate';
+    const isSelected = selectedRows.has(item.row_index);
+    const rowClass = `import-row ${isDup ? 'is-duplicate' : ''} ${!isSelected ? 'unchecked' : ''}`;
+
+    const matchesHtml = isDup ? item.matches.map(m => `
+      <div class="import-match">
+        <span class="import-match-score">${m.score}%</span>
+        <span class="import-match-name">${escHtml(m.short_name)}</span>
+        <div class="import-match-citation">${escHtml(m.citation)}</div>
+      </div>
+    `).join('') : '';
+
+    const statusBadge = isDup
+      ? `<span class="import-status duplicate">⚠️ похож на существующий</span>`
+      : `<span class="import-status new">🆕 новый</span>`;
+
+    return `
+      <div class="${rowClass}" data-row="${item.row_index}">
+        <input type="checkbox" class="import-checkbox js-import-check" data-row="${item.row_index}" ${isSelected ? 'checked' : ''}>
+        <div class="import-body">
+          ${statusBadge}
+          <div class="import-short">${escHtml(item.short_name || '(без названия)')}</div>
+          <div class="import-citation">${escHtml(item.citation)}</div>
+          ${matchesHtml}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  updateSelectedCount();
+}
+
+function updateSelectedCount() {
+  document.getElementById('stat-selected').textContent = selectedRows.size;
+}
+
+document.getElementById('import-list').addEventListener('change', (e) => {
+  const checkbox = e.target.closest('.js-import-check');
+  if (!checkbox) return;
+  const row = parseInt(checkbox.dataset.row);
+  if (checkbox.checked) {
+    selectedRows.add(row);
+  } else {
+    selectedRows.delete(row);
+  }
+  const rowEl = document.querySelector(`.import-row[data-row="${row}"]`);
+  rowEl.classList.toggle('unchecked', !checkbox.checked);
+  updateSelectedCount();
+});
+
+document.getElementById('btn-select-all').addEventListener('click', () => {
+  selectedRows = new Set(importItems.map(i => i.row_index));
+  renderImportList();
+});
+
+document.getElementById('btn-select-new').addEventListener('click', () => {
+  selectedRows = new Set(importItems.filter(i => i.status === 'new').map(i => i.row_index));
+  renderImportList();
+});
+
+document.getElementById('btn-import-confirm').addEventListener('click', async () => {
+  if (selectedRows.size === 0) {
+    showToast('Ничего не выбрано');
+    return;
+  }
+
+  const btn = document.getElementById('btn-import-confirm');
+  btn.disabled = true;
+  btn.textContent = 'Импортируем…';
+
+  try {
+    const res = await fetch(`${API}/import/confirm`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({row_indices: Array.from(selectedRows)})
+    });
+    const data = await res.json();
+
+    showToast(`Импортировано: ${data.imported}`);
+    importItems = [];
+    selectedRows = new Set();
+    document.getElementById('summary-bar').classList.remove('visible');
+    document.getElementById('import-list').innerHTML = '';
+    document.getElementById('empty-state').style.display = 'block';
+    document.getElementById('file-input').value = '';
+  } catch (err) {
+    showError('Ошибка при импорте: ' + err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Импортировать выбранные';
+  }
+});
+
+document.getElementById('empty-state').style.display = 'block';
+
+function getCurrentPromptText() {
+  const topic = document.getElementById('prompt-topic').value.trim() || '[впиши тему сюда]';
+  return IMPORT_PROMPT_TEMPLATE.replace('{{TOPIC}}', topic);
+}
+
+function refreshPromptDisplay() {
+  document.getElementById('prompt-text').textContent = getCurrentPromptText();
+}
+
+refreshPromptDisplay();
+document.getElementById('prompt-topic').addEventListener('input', refreshPromptDisplay);
+
+document.getElementById('btn-toggle-prompt').addEventListener('click', () => {
+  document.getElementById('prompt-panel').classList.toggle('open');
+});
+
+document.getElementById('btn-copy-prompt').addEventListener('click', (e) => {
+  navigator.clipboard.writeText(getCurrentPromptText()).then(() => {
+    const btn = e.target;
+    const orig = btn.textContent;
+    btn.textContent = '✓ Скопировано';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.classList.remove('copied');
+    }, 1800);
+  });
+});
+</script>
+</body>
+</html>

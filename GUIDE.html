@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Domains Tracker — Инструкция</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f5f0;
+    color: #1a1a1a;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 48px 16px;
+  }
+
+  .page { max-width: 680px; margin: 0 auto; }
+
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 36px;
+  }
+
+  .step-block {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+
+  .step-title {
+    font-size: 15px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .step-text {
+    font-size: 13.5px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+
+  .step-text b { color: #1a1a1a; }
+
+  h2.section-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #999;
+    margin: 36px 0 14px;
+  }
+
+  .cmd-block {
+    background: #1a1a1a;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .cmd-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    gap: 16px;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .cmd-line:last-child { border-bottom: none; }
+
+  .cmd-text {
+    font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
+    font-size: 12.5px;
+    color: #e8e8e8;
+    flex: 1;
+    word-break: break-all;
+  }
+
+  .btn-copy {
+    flex-shrink: 0;
+    padding: 5px 11px;
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    border-radius: 5px;
+    color: #aaa;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn-copy:hover { background: #333; color: #fff; border-color: #555; }
+  .btn-copy.copied { background: #1a3a1a; color: #4caf50; border-color: #2e7d32; }
+
+  .note {
+    font-size: 12.5px;
+    color: #888;
+    margin-top: 8px;
+  }
+
+  .note a { color: #1a73e8; text-decoration: none; }
+  .note a:hover { text-decoration: underline; }
+
+  .warn {
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #7a5b00;
+    margin-top: 10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e8e8e8;
+    font-size: 13px;
+  }
+
+  th {
+    text-align: left;
+    padding: 10px 14px;
+    background: #f5f5f5;
+    color: #666;
+    font-weight: 600;
+    font-size: 12px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  td { padding: 10px 14px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { color: #555; white-space: nowrap; }
+  td:last-child {
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 11.5px;
+    color: #1a1a1a;
+    word-break: break-all;
+  }
+
+  hr { border: none; border-top: 1px solid #e8e8e8; margin: 36px 0; }
+
+  .emoji-legend {
+    display: flex;
+    gap: 24px;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Domains Tracker — Инструкция</h1>
+  <p class="subtitle">Подробно, по шагам. Для тех, кто не программист.</p>
+
+  <h2 class="section-title">Каждый раз, когда садишься работать</h2>
+
+  <div class="step-block">
+    <div class="step-title"><span class="step-number">1</span>Открой Docker Desktop</div>
+    <p class="step-text">Найди приложение <b>Docker</b> в Launchpad или через Spotlight (Cmd+Пробел → набери «Docker» → Enter). Подожди, пока в строке меню сверху появится спокойный значок кита — это значит, что Docker запустился и готов к работе. Обычно занимает 20–40 секунд.</p>
+    <div class="warn">Если этот шаг пропустить — все команды ниже будут выдавать ошибку про «Docker daemon». Просто открой Docker Desktop и подожди.</div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-title"><span class="step-number">2</span>Запусти приложение командой</div>
+    <p class="step-text">Открой Терминал и вставь команду:</p>
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-text">dt-start</span>
+        <button class="btn-copy" data-text="dt-start">Копировать</button>
+      </div>
+    </div>
+    <p class="note">Эта команда сама сделает резервную копию базы данных и запустит приложение. Подожди, пока в Терминале появится строка <code>Container domains_tracker_backend Started</code>.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-title"><span class="step-number">3</span>Открой приложение в браузере</div>
+    <p class="step-text">Перейди по ссылке:</p>
+    <p class="note"><a href="http://localhost:5051" target="_blank">http://localhost:5051</a></p>
+    <p class="step-text" style="margin-top:10px">Работай как обычно: ставь галочки, копируй источники, добавляй ссылки на блокноты.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-title"><span class="step-number">4</span>Когда закончил — останови приложение</div>
+    <p class="step-text">Вернись в Терминал и вставь:</p>
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-text">dt-stop</span>
+        <button class="btn-copy" data-text="dt-stop">Копировать</button>
+      </div>
+    </div>
+    <p class="note">Тоже сделает резервную копию автоматически, затем остановит приложение. Docker Desktop можно после этого закрыть, а можно оставить открытым — как удобнее.</p>
+  </div>
+
+  <hr>
+
+  <h2 class="section-title">Что означают значки в приложении</h2>
+
+  <div class="emoji-legend">
+    <span>✅ — источник обработан (загружен в NotebookLM)</span>
+    <span>🎧 — аудиопересказ прослушан</span>
+  </div>
+  <p class="note">Обе метки независимы — можно поставить только одну, обе сразу или ни одной. Фильтры в шапке (нажми «Фильтры ▾») работают так же: можно одновременно включить «обработано: да» и «прослушано: нет», чтобы увидеть всё, что обработано, но ещё не прослушано. Рядом есть кнопка «Сбросить фильтры».</p>
+
+  <hr>
+
+  <h2 class="section-title">Массовый импорт источников через ИИ</h2>
+
+  <div class="step-block">
+    <div class="step-title">Как добавить сразу много источников по теме</div>
+    <p class="step-text">В шапке приложения нажми на значок ☰ (меню) слева от поля поиска → <b>«Импорт источников»</b>. Откроется отдельная страница.</p>
+    <p class="step-text">Дальше всё происходит в три шага:</p>
+    <p class="step-text">
+      <b>1.</b> На странице импорта нажми кнопку «Промт для ИИ» — откроется панель с готовым текстом запроса.<br>
+      <b>2.</b> В поле вверху панели впиши тему (например «история криптографии» или «теория эволюции»), нажми «Копировать».<br>
+      <b>3.</b> Вставь промт в любой ИИ-чат (проверено на ChatGPT, Claude, Gemini, Grok, DeepSeek — работает на всех). ИИ сам составит список источников по теме и сразу оформит его в нужном формате JSON.
+    </p>
+    <div class="warn">ИИ выведет результат в блоке кода. Скопируй только сам JSON (от открывающей до закрывающей квадратной скобки), сохрани его в текстовый файл с расширением <code>.json</code> — например через TextEdit, сохранив как обычный текст без форматирования.</div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-title">Загрузка файла и проверка на дубликаты</div>
+    <p class="step-text">На странице импорта нажми «Выбрать файл» (или перетащи файл в зону загрузки) и укажи сохранённый <code>.json</code>. Приложение покажет весь список источников из файла, каждый — с одной из двух меток:</p>
+    <p class="step-text">
+      🆕 <b>новый</b> — источника нет в базе, можно смело импортировать.<br>
+      ⚠️ <b>похож на существующий</b> — под источником появится карточка с тем, на что он похож, и процент схожести.
+    </p>
+    <p class="step-text">Все «новые» источники отмечены галочкой по умолчанию. Похожие на существующие — сними галочку вручную, если уверен, что это дубликат, или оставь, если убедился, что это разные источники со схожим текстом. Кнопки «Выбрать все» и «Только новые» наверху помогают быстро отметить нужное.</p>
+    <p class="step-text">Когда список просмотрен — нажми «Импортировать выбранные». Загруженный файл при этом нигде не сохраняется внутри приложения — после импорта временные данные удаляются автоматически.</p>
+  </div>
+
+  <hr>
+
+  <h2 class="section-title">Бэкапы (резервные копии)</h2>
+
+  <div class="step-block">
+    <div class="step-title">Бэкап создаётся автоматически</div>
+    <p class="step-text">Каждый раз при <code>dt-start</code> и <code>dt-stop</code> приложение само сохраняет копию базы данных в папку <code>~/projects/domains-tracker/backups/</code>. Хранится 5 последних копий, старые сами удаляются — следить за этим не нужно.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-title">Сделать бэкап вручную (на всякий случай)</div>
+    <p class="step-text">Если хочешь подстраховаться перед каким-то рискованным действием — сохрани копию на Рабочий стол:</p>
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-text">cp ~/projects/domains-tracker/backend/data/tracker.db ~/Desktop/tracker_SAFE_backup.db</span>
+        <button class="btn-copy" data-text="cp ~/projects/domains-tracker/backend/data/tracker.db ~/Desktop/tracker_SAFE_backup.db">Копировать</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-title">Восстановить из бэкапа</div>
+    <p class="step-text">Если что-то пошло не так и нужно вернуть прежнее состояние — выполни по очереди:</p>
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-text">dt-stop</span>
+        <button class="btn-copy" data-text="dt-stop">Копировать</button>
+      </div>
+      <div class="cmd-line">
+        <span class="cmd-text">cp ~/Desktop/tracker_SAFE_backup.db ~/projects/domains-tracker/backend/data/tracker.db</span>
+        <button class="btn-copy" data-text="cp ~/Desktop/tracker_SAFE_backup.db ~/projects/domains-tracker/backend/data/tracker.db">Копировать</button>
+      </div>
+      <div class="cmd-line">
+        <span class="cmd-text">dt-start</span>
+        <button class="btn-copy" data-text="dt-start">Копировать</button>
+      </div>
+    </div>
+    <p class="note">Замени имя файла на нужный бэкап, если восстанавливаешь не из ручного, а из автоматического (например <code>~/projects/domains-tracker/backups/tracker_1.db</code>).</p>
+  </div>
+
+  <hr>
+
+  <h2 class="section-title">Реже нужные команды</h2>
+
+  <div class="step-block">
+    <div class="step-title">Проверить, что приложение работает</div>
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-text">docker ps</span>
+        <button class="btn-copy" data-text="docker ps">Копировать</button>
+      </div>
+    </div>
+    <p class="note">Контейнер <code>domains_tracker_backend</code> должен быть со статусом <code>Up</code>.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-title">Посмотреть логи (если что-то не работает)</div>
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-text">cd ~/projects/domains-tracker && docker compose logs</span>
+        <button class="btn-copy" data-text="cd ~/projects/domains-tracker && docker compose logs">Копировать</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-title">Пересборка после изменений в коде</div>
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-text">cd ~/projects/domains-tracker && rm -rf backend/frontend && cp -r frontend backend/frontend && dt-stop && docker compose up --build -d</span>
+        <button class="btn-copy" data-text="cd ~/projects/domains-tracker && rm -rf backend/frontend && cp -r frontend backend/frontend && dt-stop && docker compose up --build -d">Копировать</button>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2 class="section-title">Где хранятся данные</h2>
+  <table>
+    <tr><th>Что</th><th>Где</th></tr>
+    <tr><td>База данных</td><td>~/projects/domains-tracker/backend/data/tracker.db</td></tr>
+    <tr><td>Автобэкапы (5 шт.)</td><td>~/projects/domains-tracker/backups/</td></tr>
+    <tr><td>Код приложения (исходники)</td><td>~/projects/domains-tracker/frontend/</td></tr>
+    <tr><td>Код backend</td><td>~/projects/domains-tracker/backend/</td></tr>
+  </table>
+
+</div>
+
+<script>
+document.querySelectorAll('.btn-copy').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const text = btn.getAttribute('data-text');
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = '✓ Скопировано';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.classList.remove('copied');
+      }, 1800);
+    });
+  });
+});
+</script>
+</body>
+</html>

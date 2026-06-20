@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+backend/data/import_temp/
+.DS_Store

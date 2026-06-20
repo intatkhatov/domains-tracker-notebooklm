@@ -1,0 +1,15 @@
+services:
+  backend:
+    build: ./backend
+    container_name: domains_tracker_backend
+    ports:
+      - "5051:5051"
+    volumes:
+      - ./backend/data:/app/data
+    networks:
+      - domains_network
+    restart: unless-stopped
+
+networks:
+  domains_network:
+    driver: bridge
