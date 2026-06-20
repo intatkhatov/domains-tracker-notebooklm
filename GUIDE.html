@@ -267,8 +267,13 @@
   <h2 class="section-title">Бэкапы (резервные копии)</h2>
 
   <div class="step-block">
-    <div class="step-title">Бэкап создаётся автоматически</div>
-    <p class="step-text">Каждый раз при <code>dt-start</code> и <code>dt-stop</code> приложение само сохраняет копию базы данных в папку <code>~/projects/domains-tracker/backups/</code>. Хранится 5 последних копий, старые сами удаляются — следить за этим не нужно.</p>
+    <div class="step-title">Бэкап создаётся автоматически — в двух местах</div>
+    <p class="step-text">Каждый раз при <code>dt-start</code> и <code>dt-stop</code> приложение само:</p>
+    <p class="step-text">
+      <b>1.</b> Сохраняет копию базы данных в папку <code>~/projects/domains-tracker/backups/</code>. Хранится 5 последних копий, старые сами удаляются.<br>
+      <b>2.</b> Отправляет весь проект (код + базу данных) на GitHub — в репозиторий <code>domains-tracker-notebooklm</code>. Это полноценная резервная копия в облаке, независимая от твоего Mac.
+    </p>
+    <p class="note">Следить за этим не нужно — всё происходит само. Если увидишь в Терминале «Git backup pushed to GitHub» — значит сохранилось. Если «WARNING: Git push failed» — открой <code>/tmp/git_push_error.log</code>, чтобы понять причину (чаще всего — нет интернета).</p>
   </div>
 
   <div class="step-block">
