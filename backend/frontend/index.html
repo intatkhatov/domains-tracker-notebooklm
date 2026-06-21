@@ -214,11 +214,14 @@
     border: 1px solid #e8e8e8;
     border-radius: 7px;
     margin-bottom: 8px;
+    padding: 10px 12px 12px;
+    transition: background 0.4s, border-color 0.4s;
+  }
+
+  .source-top {
     display: flex;
     align-items: flex-start;
-    padding: 10px 12px 12px;
     gap: 10px;
-    transition: background 0.4s, border-color 0.4s;
   }
 
   .source-row.processed { background: #f9fffe; border-color: #d8f0e8; }
@@ -491,7 +494,12 @@
     justify-content: space-between;
     gap: 10px;
     margin-top: 8px;
-    padding-left: 0;
+    padding-left: 38px;
+  }
+
+  .comment-zone-wrap {
+    flex: 1;
+    min-width: 0;
   }
 
   .comment-display {
@@ -778,36 +786,38 @@ function renderSource(s) {
 
   return `
     <div class="source-row ${s.processed ? 'processed' : ''} ${justAddedClass}" id="source-row-${s.id}" data-id="${s.id}">
-      <div class="source-flags">
-        <label class="flag-line ${s.processed ? 'on' : ''}">
-          <span class="flag-icon">✅</span>
-          <input type="checkbox" class="toggle-checkbox processed-cb js-toggle" data-field="processed" data-id="${s.id}" ${s.processed ? 'checked' : ''}>
-        </label>
-        <label class="flag-line ${s.listened ? 'on' : ''}">
-          <span class="flag-icon">🎧</span>
-          <input type="checkbox" class="toggle-checkbox listened-cb js-toggle" data-field="listened" data-id="${s.id}" ${s.listened ? 'checked' : ''}>
-        </label>
-      </div>
-      <div class="source-body">
-        <div class="source-short">${escHtml(s.short_name)}</div>
-        <div class="source-citation">${escHtml(s.citation)}</div>
-        <div class="source-tags">${lostTag}</div>
-        ${notebookHtml}
-        <div class="source-date">${formatDate(s.created_at)}</div>
-        <div class="rating-row">${renderRatingButtons(s)}</div>
-        <div class="source-bottom-row" id="bottom-row-${s.id}">
-          ${renderCommentZone(s)}
-          <div class="manage-actions">
-            <button class="btn-manage js-edit" data-id="${s.id}">✎ Редакт.</button>
-            <button class="btn-manage js-notebook" data-id="${s.id}">🔗 Ссылка</button>
-            <button class="btn-manage danger js-delete" data-id="${s.id}">✕ Удалить</button>
-          </div>
+      <div class="source-top">
+        <div class="source-flags">
+          <label class="flag-line ${s.processed ? 'on' : ''}">
+            <span class="flag-icon">✅</span>
+            <input type="checkbox" class="toggle-checkbox processed-cb js-toggle" data-field="processed" data-id="${s.id}" ${s.processed ? 'checked' : ''}>
+          </label>
+          <label class="flag-line ${s.listened ? 'on' : ''}">
+            <span class="flag-icon">🎧</span>
+            <input type="checkbox" class="toggle-checkbox listened-cb js-toggle" data-field="listened" data-id="${s.id}" ${s.listened ? 'checked' : ''}>
+          </label>
+        </div>
+        <div class="source-body">
+          <div class="source-short">${escHtml(s.short_name)}</div>
+          <div class="source-citation">${escHtml(s.citation)}</div>
+          <div class="source-tags">${lostTag}</div>
+          ${notebookHtml}
+          <div class="source-date">${formatDate(s.created_at)}</div>
+          <div class="rating-row">${renderRatingButtons(s)}</div>
+        </div>
+        <div class="source-actions">
+          <button class="btn-copy js-copy" data-id="${s.id}" data-kind="citation">Источник</button>
+          <button class="btn-copy js-copy" data-id="${s.id}" data-kind="short_name">ID</button>
+          <button class="btn-copy js-copy" data-id="${s.id}" data-kind="prompt">Промт</button>
         </div>
       </div>
-      <div class="source-actions">
-        <button class="btn-copy js-copy" data-id="${s.id}" data-kind="citation">Источник</button>
-        <button class="btn-copy js-copy" data-id="${s.id}" data-kind="short_name">ID</button>
-        <button class="btn-copy js-copy" data-id="${s.id}" data-kind="prompt">Промт</button>
+      <div class="source-bottom-row" id="bottom-row-${s.id}">
+        <div class="comment-zone-wrap">${renderCommentZone(s)}</div>
+        <div class="manage-actions">
+          <button class="btn-manage js-edit" data-id="${s.id}">✎ Редакт.</button>
+          <button class="btn-manage js-notebook" data-id="${s.id}">🔗 Ссылка</button>
+          <button class="btn-manage danger js-delete" data-id="${s.id}">✕ Удалить</button>
+        </div>
       </div>
     </div>
   `;
