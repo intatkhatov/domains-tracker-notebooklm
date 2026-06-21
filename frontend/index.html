@@ -249,6 +249,7 @@
     color: #777;
     line-height: 1.4;
     margin-bottom: 5px;
+    margin-right: 40px;
   }
 
   .source-tags { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; margin-bottom: 6px; }
@@ -268,6 +269,7 @@
     font-size: 9.5px;
     color: #bbb;
     margin-top: 2px;
+    margin-bottom: 10px;
   }
 
   .source-notebook { margin-bottom: 8px; }
@@ -500,6 +502,7 @@
     line-height: 1.4;
     flex: 1;
     min-width: 0;
+    margin-right: 40px;
   }
 
   .comment-display.has-text { color: #666; }
@@ -535,12 +538,13 @@
   .btn-comment-cancel:hover { background: #f0f0f0; }
 
   .manage-actions {
-    display: none;
+    display: flex;
     gap: 4px;
     flex-shrink: 0;
+    visibility: hidden;
   }
 
-  .source-row:hover .manage-actions { display: flex; }
+  .source-row:hover .manage-actions { visibility: visible; }
 
   .btn-manage {
     padding: 4px 8px;
