@@ -172,6 +172,38 @@ def toggle_listened(source_id):
     return jsonify({'status': 'ok'})
 
 
+@app.route('/api/sources/<int:source_id>/rating', methods=['PATCH'])
+def update_rating(source_id):
+    data = request.json
+    rating = data.get('rating')
+    if rating is not None:
+        rating = int(rating)
+        if rating < 1 or rating > 10:
+            return jsonify({'error': 'Оценка должна быть от 1 до 10'}), 400
+    conn = get_db()
+    conn.execute(
+        'UPDATE sources SET rating=? WHERE id=?',
+        (rating, source_id)
+    )
+    conn.commit()
+    conn.close()
+    return jsonify({'status': 'ok'})
+
+
+@app.route('/api/sources/<int:source_id>/comment', methods=['PATCH'])
+def update_comment(source_id):
+    data = request.json
+    comment = (data.get('comment') or '').strip()
+    conn = get_db()
+    conn.execute(
+        'UPDATE sources SET comment=? WHERE id=?',
+        (comment if comment else None, source_id)
+    )
+    conn.commit()
+    conn.close()
+    return jsonify({'status': 'ok'})
+
+
 @app.route('/api/sources/<int:source_id>/notebook', methods=['PATCH'])
 def update_notebook(source_id):
     data = request.json

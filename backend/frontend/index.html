@@ -452,6 +452,110 @@
   .toast.show { opacity: 1; }
   .empty { text-align: center; color: #aaa; padding: 40px; font-size: 13px; }
 
+  /* RATING & COMMENT - можно полностью удалить без последствий для остального */
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .rating-label { font-size: 11px; color: #888; margin-right: 4px; }
+
+  .rating-btn {
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    font-size: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background: #fff;
+    color: #888;
+    cursor: pointer;
+  }
+
+  .rating-btn:hover { background: #f0f0f0; }
+  .rating-btn.selected {
+    background: #e3f2fd;
+    color: #1565c0;
+    border-color: #90caf9;
+    font-weight: 700;
+  }
+
+  .source-bottom-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 8px;
+    padding-left: 0;
+  }
+
+  .comment-display {
+    font-size: 11.5px;
+    color: #999;
+    border-bottom: 1px dashed #ccc;
+    cursor: pointer;
+    line-height: 1.4;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .comment-display.has-text { color: #666; }
+  .comment-display:hover { color: #333; border-color: #999; }
+
+  .comment-edit-zone { flex: 1; min-width: 0; }
+
+  .comment-textarea {
+    width: 100%;
+    min-height: 50px;
+    padding: 6px 8px;
+    font-size: 11.5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    font-family: inherit;
+    margin-bottom: 6px;
+  }
+
+  .comment-actions { display: flex; gap: 6px; }
+
+  .btn-comment-save, .btn-comment-cancel, .btn-comment-delete {
+    padding: 4px 10px;
+    font-size: 11px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+  }
+
+  .btn-comment-save:hover { background: #e8f5e9; border-color: #a5d6a7; color: #2e7d32; }
+  .btn-comment-delete:hover { background: #ffebee; border-color: #ffcdd2; color: #c62828; }
+  .btn-comment-cancel:hover { background: #f0f0f0; }
+
+  .manage-actions {
+    display: none;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .source-row:hover .manage-actions { display: flex; }
+
+  .btn-manage {
+    padding: 4px 8px;
+    font-size: 11px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background: #fafafa;
+    cursor: pointer;
+    white-space: nowrap;
+    color: #555;
+  }
+
+  .btn-manage:hover { background: #f0f0f0; }
+  .btn-manage.danger:hover { background: #ffebee; color: #c62828; border-color: #ffcdd2; }
+
   /* DUPLICATE WARNING - изолированный блок, можно удалить без последствий */
   .dup-warning {
     display: none;
@@ -641,6 +745,22 @@ function formatDate(isoString) {
   }
 }
 
+function renderRatingButtons(s) {
+  let html = `<span class="rating-label">Оценка</span>`;
+  for (let i = 1; i <= 10; i++) {
+    const selected = s.rating === i ? 'selected' : '';
+    html += `<button class="rating-btn ${selected} js-rating" data-id="${s.id}" data-value="${i}">${i}</button>`;
+  }
+  return html;
+}
+
+function renderCommentZone(s) {
+  if (s.comment && s.comment.trim()) {
+    return `<span class="comment-display has-text js-comment-open" data-id="${s.id}">${escHtml(s.comment)}</span>`;
+  }
+  return `<span class="comment-display js-comment-open" data-id="${s.id}">+ добавить комментарий</span>`;
+}
+
 function renderSource(s) {
   const lostTag = s.original_lost
     ? `<span class="tag lost">оригинал утрачен · ${escHtml(s.original_language)}</span><span class="tag translation">перевод: ${escHtml(s.authoritative_translation_language)}</span>`
@@ -670,14 +790,20 @@ function renderSource(s) {
         <div class="source-tags">${lostTag}</div>
         ${notebookHtml}
         <div class="source-date">${formatDate(s.created_at)}</div>
-        <div class="source-actions">
-          <button class="btn-copy js-copy" data-id="${s.id}" data-kind="citation">Источник</button>
-          <button class="btn-copy js-copy" data-id="${s.id}" data-kind="short_name">ID</button>
-          <button class="btn-copy js-copy" data-id="${s.id}" data-kind="prompt">Промт</button>
-          <button class="btn-icon js-edit" data-id="${s.id}">✎</button>
-          <button class="btn-icon js-notebook" data-id="${s.id}">🔗</button>
-          <button class="btn-icon danger js-delete" data-id="${s.id}">✕</button>
+        <div class="rating-row">${renderRatingButtons(s)}</div>
+        <div class="source-bottom-row" id="bottom-row-${s.id}">
+          ${renderCommentZone(s)}
+          <div class="manage-actions">
+            <button class="btn-manage js-edit" data-id="${s.id}">✎ Редакт.</button>
+            <button class="btn-manage js-notebook" data-id="${s.id}">🔗 Ссылка</button>
+            <button class="btn-manage danger js-delete" data-id="${s.id}">✕ Удалить</button>
+          </div>
         </div>
+      </div>
+      <div class="source-actions">
+        <button class="btn-copy js-copy" data-id="${s.id}" data-kind="citation">Источник</button>
+        <button class="btn-copy js-copy" data-id="${s.id}" data-kind="short_name">ID</button>
+        <button class="btn-copy js-copy" data-id="${s.id}" data-kind="prompt">Промт</button>
       </div>
     </div>
   `;
@@ -993,6 +1119,109 @@ function attachDuplicateCheckListener() {
   textarea.addEventListener('paste', () => setTimeout(trigger, 30));
   textarea.addEventListener('input', trigger);
 }
+
+// --- RATING & COMMENT HANDLERS (можно удалить без последствий) ---
+async function setRating(id, value) {
+  const s = sourcesById[id];
+  const newValue = (s.rating === value) ? null : value;
+
+  await fetch(`${API}/sources/${id}/rating`, {
+    method: 'PATCH',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({rating: newValue})
+  });
+
+  s.rating = newValue;
+  renderSources();
+  showToast(newValue ? `Оценка: ${newValue}/10` : 'Оценка снята');
+}
+
+function openCommentEditor(id) {
+  const s = sourcesById[id];
+  const row = document.getElementById(`bottom-row-${id}`);
+  if (!row) return;
+
+  row.innerHTML = `
+    <div class="comment-edit-zone">
+      <textarea class="comment-textarea js-comment-textarea" data-id="${id}">${escHtml(s.comment || '')}</textarea>
+      <div class="comment-actions">
+        <button class="btn-comment-save js-comment-save" data-id="${id}">Сохранить</button>
+        ${s.comment ? `<button class="btn-comment-delete js-comment-delete" data-id="${id}">Удалить</button>` : ''}
+        <button class="btn-comment-cancel js-comment-cancel" data-id="${id}">Отмена</button>
+      </div>
+    </div>
+  `;
+
+  const textarea = row.querySelector('.js-comment-textarea');
+  textarea.focus();
+  textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+}
+
+async function saveComment(id) {
+  const row = document.getElementById(`bottom-row-${id}`);
+  const textarea = row.querySelector('.js-comment-textarea');
+  const text = textarea.value.trim();
+
+  await fetch(`${API}/sources/${id}/comment`, {
+    method: 'PATCH',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({comment: text})
+  });
+
+  sourcesById[id].comment = text;
+  renderSources();
+  showToast('Комментарий сохранён');
+}
+
+async function deleteComment(id) {
+  await fetch(`${API}/sources/${id}/comment`, {
+    method: 'PATCH',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({comment: ''})
+  });
+
+  sourcesById[id].comment = '';
+  renderSources();
+  showToast('Комментарий удалён');
+}
+
+function cancelCommentEdit(id) {
+  renderSources();
+}
+
+document.getElementById('sources-list').addEventListener('click', (e) => {
+  const ratingBtn = e.target.closest('.js-rating');
+  if (ratingBtn) {
+    const id = parseInt(ratingBtn.dataset.id);
+    const value = parseInt(ratingBtn.dataset.value);
+    setRating(id, value);
+    return;
+  }
+
+  const commentOpen = e.target.closest('.js-comment-open');
+  if (commentOpen) {
+    openCommentEditor(parseInt(commentOpen.dataset.id));
+    return;
+  }
+
+  const commentSave = e.target.closest('.js-comment-save');
+  if (commentSave) {
+    saveComment(parseInt(commentSave.dataset.id));
+    return;
+  }
+
+  const commentDelete = e.target.closest('.js-comment-delete');
+  if (commentDelete) {
+    deleteComment(parseInt(commentDelete.dataset.id));
+    return;
+  }
+
+  const commentCancel = e.target.closest('.js-comment-cancel');
+  if (commentCancel) {
+    cancelCommentEdit(parseInt(commentCancel.dataset.id));
+    return;
+  }
+});
 
 load();
 </script>
