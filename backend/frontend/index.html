@@ -16,6 +16,9 @@
   .search-clear { display: none; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; border: none; border-radius: 50%; background: #444; color: #ccc; font-size: 12px; cursor: pointer; align-items: center; justify-content: center; }
   .search-clear.visible { display: flex; }
   .search-clear:hover { background: #555; color: #fff; }
+  .btn-filters-text { padding: 7px 14px; background: #2a2a2a; color: #ccc; border: 1px solid #3a3a3a; border-radius: 6px; cursor: pointer; font-size: 12.5px; white-space: nowrap; flex-shrink: 0; }
+  .btn-filters-text:hover { background: #333; color: #fff; }
+  .btn-filters-text.active { background: #3a3a3a; color: #fff; border-color: #666; }
   .btn-header { width: 34px; height: 34px; border: 1px solid #3a3a3a; border-radius: 6px; background: #2a2a2a; color: #ccc; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .btn-header:hover { background: #333; color: #fff; }
   .btn-header.active { background: #3a3a3a; color: #fff; border-color: #666; }
@@ -29,12 +32,10 @@
 
   .layout { display: flex; justify-content: center; align-items: flex-start; padding: 20px 16px 40px; margin-top: 54px; }
 
-  .sidebar { position: fixed; top: 54px; bottom: 0; left: 0; width: 296px; transform: translateX(-280px); transition: transform 0.25s ease; z-index: 50; display: flex; align-items: flex-start; padding-top: 20px; }
-  .sidebar.open { transform: translateX(0); }
-  .sidebar-card { width: 280px; flex-shrink: 0; background: #fff; border: 1px solid #e8e8e8; border-left: none; border-radius: 0 8px 8px 0; padding: 14px 16px; box-shadow: 2px 2px 12px rgba(0,0,0,0.08); }
+  .sidebar { display: none; position: fixed; top: 54px; bottom: 0; left: 0; width: 280px; z-index: 50; padding-top: 20px; }
+  .sidebar.open { display: block; }
+  .sidebar-card { width: 260px; background: #fff; border: 1px solid #e8e8e8; border-radius: 8px; padding: 14px 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); margin: 0 12px; }
   .sidebar-title { font-size: 11px; color: #888; margin-bottom: 14px; }
-  .btn-sidebar-tab { flex-shrink: 0; align-self: flex-start; margin-top: 8px; width: 16px; padding: 14px 3px; background: #fff; color: #999; border: 1px solid #e8e8e8; border-left: none; border-radius: 0 6px 6px 0; cursor: pointer; font-size: 9px; writing-mode: vertical-rl; text-orientation: mixed; letter-spacing: 1px; box-shadow: 2px 2px 8px rgba(0,0,0,0.06); white-space: nowrap; }
-  .btn-sidebar-tab:hover { color: #1a1a1a; }
 
   .filter-section { margin-bottom: 16px; }
   .filter-section:last-child { margin-bottom: 0; }
@@ -144,7 +145,7 @@
 
 <header>
   <div class="header-top">
-    <button class="btn-header" id="btn-filters-header" type="button" title="Фильтры">⚙︎</button>
+    <button class="btn-filters-text" id="btn-filters-header" type="button">Фильтры</button>
     <div class="burger-wrap">
       <button class="btn-header" id="btn-burger" type="button" title="Меню">☰</button>
       <div class="burger-menu" id="burger-menu">
@@ -166,7 +167,6 @@
       <div id="filters-mount"></div>
       <button class="btn-reset-filters" id="btn-reset-filters">Сбросить все</button>
     </div>
-    <button class="btn-sidebar-tab" id="btn-sidebar-tab">Фильтры</button>
   </aside>
   <div class="content">
     <div id="sources-list"></div>
@@ -204,15 +204,12 @@ const SIDEBAR_KEY = 'dt_sidebar_open';
 
 function setSidebarOpen(open) {
   const sidebar = document.getElementById('sidebar');
-  const tab = document.getElementById('btn-sidebar-tab');
   const btnF = document.getElementById('btn-filters-header');
   if (open) {
     sidebar.classList.add('open');
-    tab.textContent = '◀ Скрыть';
     if (btnF) btnF.classList.add('active');
   } else {
     sidebar.classList.remove('open');
-    tab.textContent = 'Фильтры';
     if (btnF) btnF.classList.remove('active');
   }
   localStorage.setItem(SIDEBAR_KEY, String(open));
@@ -223,10 +220,6 @@ function initSidebar() {
   const isOpen = stored === null ? true : stored === 'true';
   setSidebarOpen(isOpen);
 }
-
-document.getElementById('btn-sidebar-tab').addEventListener('click', () => {
-  setSidebarOpen(!document.getElementById('sidebar').classList.contains('open'));
-});
 
 document.getElementById('btn-filters-header').addEventListener('click', () => {
   setSidebarOpen(!document.getElementById('sidebar').classList.contains('open'));
