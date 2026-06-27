@@ -330,6 +330,25 @@ FilterRegistry.register({
 });
 
 FilterRegistry.register({
+  id: 'comment',
+  getDefaultState: () => 'any',
+  apply: (s, state) => {
+    if (state === 'yes') return !!(s.comment && s.comment.trim());
+    if (state === 'no') return !(s.comment && s.comment.trim());
+    return true;
+  },
+  render: (state) => `
+    <div class="filter-section">
+      <div class="filter-section-label">💬 Комментарий</div>
+      <div class="filter-chip-group">
+        <button class="filter-chip ${state==='any'?'active':''}" data-filter="comment" data-value="any">любое</button>
+        <button class="filter-chip ${state==='yes'?'active':''}" data-filter="comment" data-value="yes">да</button>
+        <button class="filter-chip ${state==='no'?'active':''}" data-filter="comment" data-value="no">нет</button>
+      </div>
+    </div>`
+});
+
+FilterRegistry.register({
   id: 'rating',
   getDefaultState: () => ({ min: 0, max: 10 }),
   apply: (s, state) => { if (!s.rating) return state.min === 0; return s.rating >= state.min && s.rating <= state.max; },
