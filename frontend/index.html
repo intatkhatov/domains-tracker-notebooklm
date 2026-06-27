@@ -7,11 +7,13 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f0; color: #1a1a1a; font-size: 14px; }
+
+  /* HEADER */
   header { background: #1a1a1a; color: #fff; padding: 10px 20px; position: sticky; top: 0; z-index: 100; }
-  .header-top { display: flex; align-items: center; gap: 12px; }
+  .header-top { display: flex; align-items: center; gap: 12px; max-width: 760px; margin: 0 auto; }
   .header-top h1 { font-size: 14px; font-weight: 600; letter-spacing: 0.3px; white-space: nowrap; }
   .stats { font-size: 11px; color: #999; display: flex; gap: 12px; white-space: nowrap; }
-  .search-wrap { position: relative; flex: 1; }
+  .search-wrap { position: relative; flex: 1; max-width: 360px; }
   #search { width: 100%; padding: 7px 28px 7px 11px; border: 1px solid #3a3a3a; border-radius: 6px; font-size: 13px; background: #2a2a2a; color: #fff; }
   #search::placeholder { color: #888; }
   #search:focus { outline: none; border-color: #666; }
@@ -19,35 +21,93 @@
   .search-clear.visible { display: flex; }
   .search-clear:hover { background: #555; color: #fff; }
   .burger-wrap { position: relative; flex-shrink: 0; }
-  .btn-burger, .btn-sidebar-toggle { width: 34px; height: 34px; border: 1px solid #3a3a3a; border-radius: 6px; background: #2a2a2a; color: #ccc; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .btn-burger:hover, .btn-sidebar-toggle:hover { background: #333; color: #fff; }
-  .btn-sidebar-toggle.active { background: #3a3a3a; color: #fff; border-color: #666; }
+  .btn-burger { width: 34px; height: 34px; border: 1px solid #3a3a3a; border-radius: 6px; background: #2a2a2a; color: #ccc; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+  .btn-burger:hover { background: #333; color: #fff; }
   .burger-menu { display: none; position: absolute; top: 40px; left: 0; background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.15); min-width: 180px; z-index: 150; overflow: hidden; }
   .burger-menu.open { display: block; }
   .burger-menu a { display: block; padding: 10px 16px; font-size: 13px; color: #1a1a1a; text-decoration: none; }
   .burger-menu a:hover { background: #f5f5f5; }
   .btn-add { padding: 7px 14px; background: #fff; color: #1a1a1a; border: none; border-radius: 6px; cursor: pointer; font-size: 12.5px; white-space: nowrap; font-weight: 600; flex-shrink: 0; }
   .btn-add:hover { background: #eee; }
-  .layout { display: flex; max-width: 1200px; margin: 0 auto; align-items: flex-start; padding: 20px 16px 40px; gap: 20px; }
-  .sidebar { width: 220px; flex-shrink: 0; display: none; }
-  .sidebar.open { display: block; }
-  .sidebar-card { background: #fff; border: 1px solid #e8e8e8; border-radius: 8px; padding: 14px 16px; position: sticky; top: 60px; }
+
+  /* LAYOUT */
+  .layout { display: flex; justify-content: center; align-items: flex-start; padding: 20px 16px 40px; }
+
+  /* SIDEBAR — выезжает из-за левого края, не перекрывает контент */
+  .sidebar {
+    position: fixed;
+    top: 54px;
+    left: 0;
+    width: 236px;
+    transform: translateX(-220px);
+    transition: transform 0.25s ease;
+    z-index: 50;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 24px;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-card {
+    width: 220px;
+    flex-shrink: 0;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.08);
+  }
   .sidebar-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #999; margin-bottom: 14px; }
+
+  /* ЯЗЫЧОК — прикреплён к правому краю карточки фильтров */
+  .btn-sidebar-tab {
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 8px;
+    width: 16px;
+    padding: 14px 3px;
+    background: #fff;
+    color: #999;
+    border: 1px solid #e8e8e8;
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    font-size: 9px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 1px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.06);
+    white-space: nowrap;
+  }
+  .btn-sidebar-tab:hover { color: #1a1a1a; }
+
+  /* FILTER SECTIONS */
   .filter-section { margin-bottom: 18px; }
   .filter-section:last-child { margin-bottom: 0; }
   .filter-section-label { font-size: 11.5px; font-weight: 600; color: #555; margin-bottom: 8px; }
   .filter-chip-group { display: flex; gap: 4px; flex-wrap: wrap; }
   .filter-chip { padding: 5px 10px; border: 1px solid #ddd; border-radius: 6px; background: #fafafa; cursor: pointer; font-size: 11.5px; color: #666; transition: all 0.15s; user-select: none; white-space: nowrap; }
   .filter-chip:hover { background: #f0f0f0; }
+  .filter-chip.active { background: #555; color: #fff; border-color: #555; }
   .filter-chip.active.processed-chip { background: #2e7d32; color: #fff; border-color: #2e7d32; }
   .filter-chip.active.listened-chip { background: #1565c0; color: #fff; border-color: #1565c0; }
-  .rating-filter-display { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: #555; margin-bottom: 6px; font-weight: 600; }
-  .rating-slider-row { display: flex; flex-direction: column; gap: 8px; }
-  .rating-slider-row input[type=range] { width: 100%; accent-color: #1565c0; }
-  .slider-labels { display: flex; justify-content: space-between; font-size: 10px; color: #aaa; }
+  .rating-filter-display { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: #555; margin-bottom: 10px; font-weight: 600; }
+
+  /* ДВУРУЧНЫЙ СЛАЙДЕР */
+  .range-slider-wrap { position: relative; height: 28px; margin: 4px 0; cursor: pointer; }
+  .range-slider-track { position: absolute; top: 50%; left: 0; right: 0; height: 4px; background: #e0e0e0; border-radius: 2px; transform: translateY(-50%); }
+  .range-slider-fill { position: absolute; top: 50%; height: 4px; background: #1565c0; border-radius: 2px; transform: translateY(-50%); }
+  .range-thumb { position: absolute; top: 50%; width: 16px; height: 16px; background: #fff; border: 2px solid #1565c0; border-radius: 50%; transform: translate(-50%, -50%); cursor: grab; z-index: 2; box-shadow: 0 1px 4px rgba(0,0,0,0.15); }
+  .range-thumb:active { cursor: grabbing; box-shadow: 0 0 0 4px rgba(21,101,192,0.15); }
+  .slider-labels { display: flex; justify-content: space-between; font-size: 10px; color: #aaa; margin-top: 2px; }
+
   .btn-reset-filters { width: 100%; padding: 7px 0; border: 1px solid #e0b0b0; border-radius: 6px; background: #fff; cursor: pointer; font-size: 11.5px; color: #c62828; margin-top: 16px; }
   .btn-reset-filters:hover { background: #ffebee; }
-  .content { flex: 1; min-width: 0; }
+
+  /* CONTENT — всегда фиксированной ширины */
+  .content { width: 760px; flex-shrink: 0; }
+
+  /* SOURCE ROW */
   .source-row { background: #fff; border: 1px solid #e8e8e8; border-radius: 7px; margin-bottom: 8px; padding: 10px 12px 12px; transition: background 0.4s, border-color 0.4s; }
   .source-top { display: flex; align-items: flex-start; gap: 10px; }
   .source-row.processed { background: #f9fffe; border-color: #d8f0e8; }
@@ -78,6 +138,8 @@
   .btn-copy.copied { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
   .btn-icon:hover { background: #f0f0f0; }
   .btn-icon.danger:hover { background: #ffebee; color: #c62828; border-color: #ffcdd2; }
+
+  /* MODAL */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; align-items: center; justify-content: center; }
   .modal-overlay.open { display: flex; }
   .modal { background: #fff; border-radius: 10px; padding: 24px; width: 540px; max-width: 95vw; max-height: 90vh; overflow-y: auto; box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
@@ -136,7 +198,6 @@
 
 <header>
   <div class="header-top">
-    <button class="btn-sidebar-toggle" id="btn-sidebar-toggle" type="button" title="Показать/скрыть фильтры">☰</button>
     <h1>Domains Tracker</h1>
     <div class="burger-wrap">
       <button class="btn-burger" id="btn-burger" type="button" title="Меню">⋮</button>
@@ -160,6 +221,7 @@
       <div id="filters-mount"></div>
       <button class="btn-reset-filters" id="btn-reset-filters">Сбросить все</button>
     </div>
+    <button class="btn-sidebar-tab" id="btn-sidebar-tab">Фильтры</button>
   </aside>
   <div class="content">
     <div id="sources-list"></div>
@@ -193,26 +255,43 @@ let currentSearch = '';
 let justAddedId = null;
 
 // =========================================================================
-// FILTER REGISTRY — изолированный расширяемый модуль фильтрации.
-// Добавить новый фильтр: добавь объект с методами register() ниже.
+// SIDEBAR
+// =========================================================================
+const SIDEBAR_KEY = 'dt_sidebar_open';
+
+function setSidebarOpen(open) {
+  const sidebar = document.getElementById('sidebar');
+  const tab = document.getElementById('btn-sidebar-tab');
+  if (open) {
+    sidebar.classList.add('open');
+    tab.textContent = '◀ Скрыть';
+  } else {
+    sidebar.classList.remove('open');
+    tab.textContent = 'Фильтры';
+  }
+  localStorage.setItem(SIDEBAR_KEY, String(open));
+}
+
+function initSidebar() {
+  const stored = localStorage.getItem(SIDEBAR_KEY);
+  const isOpen = stored === null ? true : stored === 'true';
+  setSidebarOpen(isOpen);
+}
+
+document.getElementById('btn-sidebar-tab').addEventListener('click', () => {
+  const sidebar = document.getElementById('sidebar');
+  setSidebarOpen(!sidebar.classList.contains('open'));
+});
+
+// =========================================================================
+// FILTER REGISTRY
 // =========================================================================
 const FilterRegistry = {
   filters: [],
   state: {},
-
-  register(filter) {
-    this.filters.push(filter);
-    this.state[filter.id] = filter.getDefaultState();
-  },
-
-  resetAll() {
-    this.filters.forEach(f => { this.state[f.id] = f.getDefaultState(); });
-  },
-
-  applyAll(sources) {
-    return sources.filter(s => this.filters.every(f => f.apply(s, this.state[f.id])));
-  },
-
+  register(filter) { this.filters.push(filter); this.state[filter.id] = filter.getDefaultState(); },
+  resetAll() { this.filters.forEach(f => { this.state[f.id] = f.getDefaultState(); }); },
+  applyAll(sources) { return sources.filter(s => this.filters.every(f => f.apply(s, this.state[f.id]))); },
   renderAll() {
     const mount = document.getElementById('filters-mount');
     if (!mount) return;
@@ -224,11 +303,7 @@ const FilterRegistry = {
 FilterRegistry.register({
   id: 'processed',
   getDefaultState: () => 'any',
-  apply: (s, state) => {
-    if (state === 'yes') return !!s.processed;
-    if (state === 'no') return !s.processed;
-    return true;
-  },
+  apply: (s, state) => { if (state === 'yes') return !!s.processed; if (state === 'no') return !s.processed; return true; },
   render: (state) => `
     <div class="filter-section">
       <div class="filter-section-label">✅ Обработано</div>
@@ -243,11 +318,7 @@ FilterRegistry.register({
 FilterRegistry.register({
   id: 'listened',
   getDefaultState: () => 'any',
-  apply: (s, state) => {
-    if (state === 'yes') return !!s.listened;
-    if (state === 'no') return !s.listened;
-    return true;
-  },
+  apply: (s, state) => { if (state === 'yes') return !!s.listened; if (state === 'no') return !s.listened; return true; },
   render: (state) => `
     <div class="filter-section">
       <div class="filter-section-label">🎧 Прослушано</div>
@@ -262,46 +333,80 @@ FilterRegistry.register({
 FilterRegistry.register({
   id: 'rating',
   getDefaultState: () => ({ min: 1, max: 10, anyRating: true }),
-  apply: (s, state) => {
-    if (state.anyRating) return true;
-    if (!s.rating) return false;
-    return s.rating >= state.min && s.rating <= state.max;
-  },
+  apply: (s, state) => { if (state.anyRating) return true; if (!s.rating) return false; return s.rating >= state.min && s.rating <= state.max; },
   render: (state) => `
     <div class="filter-section">
       <div class="filter-section-label">⭐ Оценка</div>
       <div class="filter-chip-group" style="margin-bottom:10px">
-        <button class="filter-chip ${state.anyRating?'active':''}" style="${state.anyRating?'background:#555;color:#fff;border-color:#555':''}" data-filter="rating" data-value="any">любая</button>
-        <button class="filter-chip ${!state.anyRating?'active':''}" style="${!state.anyRating?'background:#555;color:#fff;border-color:#555':''}" data-filter="rating" data-value="range">диапазон</button>
+        <button class="filter-chip ${state.anyRating?'active':''}" data-filter="rating" data-value="any">любая</button>
+        <button class="filter-chip ${!state.anyRating?'active':''}" data-filter="rating" data-value="range">диапазон</button>
       </div>
       ${!state.anyRating ? `
       <div class="rating-filter-display">
         <span>от <b id="rmin-label">${state.min}</b></span>
         <span>до <b id="rmax-label">${state.max}</b></span>
       </div>
-      <div class="rating-slider-row">
-        <input type="range" min="1" max="10" value="${state.min}" id="rmin-slider">
-        <input type="range" min="1" max="10" value="${state.max}" id="rmax-slider">
+      <div class="range-slider-wrap" id="range-slider-wrap">
+        <div class="range-slider-track"></div>
+        <div class="range-slider-fill" id="range-slider-fill"></div>
+        <div class="range-thumb" id="range-thumb-min"></div>
+        <div class="range-thumb" id="range-thumb-max"></div>
       </div>
       <div class="slider-labels"><span>1</span><span>10</span></div>
       ` : ''}
     </div>`,
   afterRender: (registry) => {
-    const minSlider = document.getElementById('rmin-slider');
-    const maxSlider = document.getElementById('rmax-slider');
-    if (!minSlider || !maxSlider) return;
-    const update = () => {
-      let min = parseInt(minSlider.value);
-      let max = parseInt(maxSlider.value);
-      if (min > max) { max = min; maxSlider.value = max; }
-      if (max < min) { min = max; minSlider.value = min; }
-      registry.state.rating = { min, max, anyRating: false };
-      document.getElementById('rmin-label').textContent = min;
-      document.getElementById('rmax-label').textContent = max;
-      renderSources();
-    };
-    minSlider.addEventListener('input', update);
-    maxSlider.addEventListener('input', update);
+    const wrap = document.getElementById('range-slider-wrap');
+    if (!wrap) return;
+    const fill = document.getElementById('range-slider-fill');
+    const thumbMin = document.getElementById('range-thumb-min');
+    const thumbMax = document.getElementById('range-thumb-max');
+    const minLabel = document.getElementById('rmin-label');
+    const maxLabel = document.getElementById('rmax-label');
+    const MIN = 1, MAX = 10;
+    let st = registry.state.rating;
+
+    function pct(val) { return (val - MIN) / (MAX - MIN) * 100; }
+
+    function updateUI() {
+      thumbMin.style.left = pct(st.min) + '%';
+      thumbMax.style.left = pct(st.max) + '%';
+      fill.style.left = pct(st.min) + '%';
+      fill.style.width = (pct(st.max) - pct(st.min)) + '%';
+      minLabel.textContent = st.min;
+      maxLabel.textContent = st.max;
+    }
+
+    function startDrag(isMin) {
+      const rect = wrap.getBoundingClientRect();
+      function onMove(e) {
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        let ratio = (clientX - rect.left) / rect.width;
+        ratio = Math.max(0, Math.min(1, ratio));
+        let val = Math.round(MIN + ratio * (MAX - MIN));
+        if (isMin) { st.min = Math.min(val, st.max); }
+        else { st.max = Math.max(val, st.min); }
+        registry.state.rating = { ...st, anyRating: false };
+        updateUI();
+        renderSources();
+      }
+      function onUp() {
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+        document.removeEventListener('touchmove', onMove);
+        document.removeEventListener('touchend', onUp);
+      }
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+      document.addEventListener('touchmove', onMove);
+      document.addEventListener('touchend', onUp);
+    }
+
+    thumbMin.addEventListener('mousedown', e => { e.preventDefault(); startDrag(true); });
+    thumbMax.addEventListener('mousedown', e => { e.preventDefault(); startDrag(false); });
+    thumbMin.addEventListener('touchstart', e => { e.preventDefault(); startDrag(true); });
+    thumbMax.addEventListener('touchstart', e => { e.preventDefault(); startDrag(false); });
+    updateUI();
   }
 });
 
@@ -327,13 +432,6 @@ document.getElementById('btn-reset-filters').addEventListener('click', () => {
   renderSources();
 });
 
-document.getElementById('btn-sidebar-toggle').addEventListener('click', () => {
-  const sidebar = document.getElementById('sidebar');
-  const btn = document.getElementById('btn-sidebar-toggle');
-  sidebar.classList.toggle('open');
-  btn.classList.toggle('active');
-});
-
 // =========================================================================
 
 async function load() {
@@ -352,8 +450,7 @@ function updateStats() {
   const total = allSources.length;
   const done = allSources.filter(s => s.processed).length;
   const listened = allSources.filter(s => s.listened).length;
-  document.getElementById('stats').innerHTML =
-    `<span>✅ ${done}/${total}</span><span>🎧 ${listened}/${total}</span>`;
+  document.getElementById('stats').innerHTML = `<span>✅ ${done}/${total}</span><span>🎧 ${listened}/${total}</span>`;
 }
 
 function renderSources() {
@@ -551,7 +648,7 @@ async function deleteComment(id){await fetch(`${API}/sources/${id}/comment`,{met
 
 function cancelCommentEdit(id){renderSources();}
 
-document.getElementById('sources-list').addEventListener('click',e=>{
+document.getElementById('sources-list').addEventListener('click',(e)=>{
   const ratingBtn=e.target.closest('.js-rating');if(ratingBtn){setRating(parseInt(ratingBtn.dataset.id),parseInt(ratingBtn.dataset.value));return;}
   const commentOpen=e.target.closest('.js-comment-open');if(commentOpen){openCommentEditor(parseInt(commentOpen.dataset.id));return;}
   const commentSave=e.target.closest('.js-comment-save');if(commentSave){saveComment(parseInt(commentSave.dataset.id));return;}
@@ -559,6 +656,7 @@ document.getElementById('sources-list').addEventListener('click',e=>{
   const commentCancel=e.target.closest('.js-comment-cancel');if(commentCancel){cancelCommentEdit(parseInt(commentCancel.dataset.id));return;}
 });
 
+initSidebar();
 load();
 </script>
 </body>
