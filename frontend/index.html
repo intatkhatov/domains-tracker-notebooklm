@@ -221,6 +221,10 @@ function initSidebar() {
   setSidebarOpen(isOpen);
 }
 
+document.getElementById('btn-sidebar-close').addEventListener('click', () => {
+  setSidebarOpen(false);
+});
+
 document.getElementById('btn-filters-header').addEventListener('click', () => {
   setSidebarOpen(!document.getElementById('sidebar').classList.contains('open'));
 });
