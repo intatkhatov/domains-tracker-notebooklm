@@ -102,6 +102,8 @@
   .slider-labels { display: flex; justify-content: space-between; font-size: 10px; color: #aaa; margin-top: 2px; }
 
   .btn-reset-filters { width: 100%; padding: 7px 0; border: 1px solid #e0b0b0; border-radius: 6px; background: #fff; cursor: pointer; font-size: 11.5px; color: #c62828; margin-top: 16px; }
+  .filter-count { text-align: center; font-size: 11px; color: #aaa; margin-top: 10px; }
+  .filter-count b { color: #555; }
   .btn-reset-filters:hover { background: #ffebee; }
 
   /* CONTENT — всегда фиксированной ширины */
@@ -219,6 +221,7 @@
       <div class="sidebar-title">Фильтры</div>
       <div id="filters-mount"></div>
       <button class="btn-reset-filters" id="btn-reset-filters">Сбросить все</button>
+      <div class="filter-count" id="filter-count"></div>
     </div>
     <button class="btn-sidebar-tab" id="btn-sidebar-tab">Фильтры</button>
   </aside>
@@ -459,6 +462,8 @@ function renderSources() {
   let sources = allSources;
   if (q) sources = sources.filter(s => s.short_name.toLowerCase().includes(q) || s.citation.toLowerCase().includes(q));
   sources = FilterRegistry.applyAll(sources);
+  const countEl = document.getElementById('filter-count');
+  if (countEl) countEl.innerHTML = `Показано: <b>${sources.length}</b> из <b>${allSources.length}</b>`;
   if (sources.length === 0) { list.innerHTML = ''; empty.style.display = 'block'; return; }
   empty.style.display = 'none';
   list.innerHTML = sources.map(s => renderSource(s)).join('');
