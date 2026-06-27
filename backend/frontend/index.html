@@ -261,12 +261,15 @@ const SIDEBAR_KEY = 'dt_sidebar_open';
 function setSidebarOpen(open) {
   const sidebar = document.getElementById('sidebar');
   const tab = document.getElementById('btn-sidebar-tab');
+  const btnFH = document.getElementById('btn-filters-header');
   if (open) {
     sidebar.classList.add('open');
     tab.textContent = '◀ Скрыть';
+    if (btnFH) btnFH.classList.add('active');
   } else {
     sidebar.classList.remove('open');
     tab.textContent = 'Фильтры';
+    if (btnFH) btnFH.classList.remove('active');
   }
   localStorage.setItem(SIDEBAR_KEY, String(open));
 }
@@ -627,6 +630,13 @@ const searchInput=document.getElementById('search');
 const searchClear=document.getElementById('search-clear');
 searchInput.addEventListener('input',e=>{currentSearch=e.target.value;searchClear.classList.toggle('visible',currentSearch.length>0);renderSources();});
 searchClear.addEventListener('click',()=>{searchInput.value='';currentSearch='';searchClear.classList.remove('visible');renderSources();searchInput.focus();});
+
+document.getElementById('btn-filters-header').addEventListener('click', () => {
+  const sidebar = document.getElementById('sidebar');
+  const btn = document.getElementById('btn-filters-header');
+  setSidebarOpen(!sidebar.classList.contains('open'));
+  btn.classList.toggle('active', sidebar.classList.contains('open'));
+});
 
 document.getElementById('btn-burger').addEventListener('click',e=>{e.stopPropagation();document.getElementById('burger-menu').classList.toggle('open');});
 document.addEventListener('click',e=>{const menu=document.getElementById('burger-menu');const btn=document.getElementById('btn-burger');if(menu.classList.contains('open')&&!menu.contains(e.target)&&e.target!==btn)menu.classList.remove('open');});
