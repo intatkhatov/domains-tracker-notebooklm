@@ -6,617 +6,190 @@
 <title>Domains Tracker</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f0; color: #1a1a1a; font-size: 14px; }
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #f5f5f0;
-    color: #1a1a1a;
-    font-size: 14px;
-  }
-
-  header {
-    background: #1a1a1a;
-    color: #fff;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-
-  .header-inner {
-    max-width: 760px;
-    margin: 0 auto;
-  }
-
-  .header-top {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .header-top h1 {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    white-space: nowrap;
-  }
-
+  /* HEADER */
+  header { background: #1a1a1a; color: #fff; padding: 10px 20px; position: sticky; top: 0; z-index: 100; }
+  .header-top { display: flex; align-items: center; gap: 12px; max-width: 760px; margin: 0 auto; }
+  .header-top h1 { font-size: 14px; font-weight: 600; letter-spacing: 0.3px; white-space: nowrap; }
   .stats { font-size: 11px; color: #999; display: flex; gap: 12px; white-space: nowrap; }
-
-  .search-wrap {
-    position: relative;
-    flex: 1;
-    max-width: 360px;
-  }
-
-  #search {
-    width: 100%;
-    padding: 7px 28px 7px 11px;
-    border: 1px solid #3a3a3a;
-    border-radius: 6px;
-    font-size: 13px;
-    background: #2a2a2a;
-    color: #fff;
-  }
-
+  .search-wrap { position: relative; flex: 1; max-width: 360px; }
+  #search { width: 100%; padding: 7px 28px 7px 11px; border: 1px solid #3a3a3a; border-radius: 6px; font-size: 13px; background: #2a2a2a; color: #fff; }
   #search::placeholder { color: #888; }
   #search:focus { outline: none; border-color: #666; }
-
-  .search-clear {
-    display: none;
-    position: absolute;
-    right: 6px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 18px;
-    height: 18px;
-    border: none;
-    border-radius: 50%;
-    background: #444;
-    color: #ccc;
-    font-size: 12px;
-    line-height: 1;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-  }
-
+  .search-clear { display: none; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; border: none; border-radius: 50%; background: #444; color: #ccc; font-size: 12px; cursor: pointer; align-items: center; justify-content: center; }
   .search-clear.visible { display: flex; }
   .search-clear:hover { background: #555; color: #fff; }
-
   .burger-wrap { position: relative; flex-shrink: 0; }
-
-  .btn-burger {
-    width: 34px;
-    height: 34px;
-    border: 1px solid #3a3a3a;
-    border-radius: 6px;
-    background: #2a2a2a;
-    color: #ccc;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
+  .btn-burger { width: 34px; height: 34px; border: 1px solid #3a3a3a; border-radius: 6px; background: #2a2a2a; color: #ccc; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; }
   .btn-burger:hover { background: #333; color: #fff; }
-
-  .burger-menu {
-    display: none;
-    position: absolute;
-    top: 40px;
-    left: 0;
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    min-width: 180px;
-    z-index: 150;
-    overflow: hidden;
-  }
-
+  .burger-menu { display: none; position: absolute; top: 40px; left: 0; background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.15); min-width: 180px; z-index: 150; overflow: hidden; }
   .burger-menu.open { display: block; }
-
-  .burger-menu a {
-    display: block;
-    padding: 10px 16px;
-    font-size: 13px;
-    color: #1a1a1a;
-    text-decoration: none;
-  }
-
+  .burger-menu a { display: block; padding: 10px 16px; font-size: 13px; color: #1a1a1a; text-decoration: none; }
   .burger-menu a:hover { background: #f5f5f5; }
-
-  .btn-add {
-    padding: 7px 14px;
-    background: #fff;
-    color: #1a1a1a;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 12.5px;
-    white-space: nowrap;
-    font-weight: 600;
-  }
-
+  .btn-add { padding: 7px 14px; background: #fff; color: #1a1a1a; border: none; border-radius: 6px; cursor: pointer; font-size: 12.5px; white-space: nowrap; font-weight: 600; flex-shrink: 0; }
   .btn-add:hover { background: #eee; }
 
-  .btn-filters-toggle {
-    padding: 7px 12px;
-    background: transparent;
-    color: #bbb;
-    border: 1px solid #3a3a3a;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 12.5px;
-    white-space: nowrap;
-  }
+  /* LAYOUT */
+  .layout { display: flex; justify-content: center; align-items: flex-start; padding: 20px 16px 40px; }
 
-  .btn-filters-toggle:hover { color: #fff; border-color: #555; }
-  .btn-filters-toggle.active { background: #2a2a2a; color: #fff; border-color: #555; }
-
-  .filters-panel {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease;
-  }
-
-  .filters-panel.open { max-height: 100px; margin-top: 10px; }
-
-  .filters-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
-    padding: 8px 0;
-  }
-
-  .filters-row + .filters-row { padding-top: 0; }
-
-  .filter-label { font-size: 11px; color: #888; margin-right: 2px; white-space: nowrap; }
-
-  .filter-chip {
-    padding: 5px 11px;
-    border: 1px solid #3a3a3a;
-    border-radius: 6px;
-    background: #2a2a2a;
-    cursor: pointer;
-    font-size: 11.5px;
-    color: #bbb;
-    transition: all 0.15s;
-    user-select: none;
-    white-space: nowrap;
-  }
-
-  .filter-chip:hover { background: #333; }
-  .filter-chip.active.processed-chip { background: #2e7d32; color: #fff; border-color: #2e7d32; }
-  .filter-chip.active.listened-chip { background: #1565c0; color: #fff; border-color: #1565c0; }
-
-  .btn-reset-filters {
-    padding: 5px 11px;
-    border: 1px solid #5a2a2a;
-    border-radius: 6px;
-    background: transparent;
-    cursor: pointer;
-    font-size: 11.5px;
-    color: #e0a0a0;
-    white-space: nowrap;
-  }
-
-  .btn-reset-filters:hover { background: #3a1a1a; }
-
-  .container { max-width: 760px; margin: 0 auto; padding: 20px 16px 40px; }
-
-  /* SOURCE ROW */
-  .source-row {
-    background: #fff;
-    border: 1px solid #e8e8e8;
-    border-radius: 7px;
-    margin-bottom: 8px;
-    padding: 10px 12px 12px;
-    transition: background 0.4s, border-color 0.4s;
-  }
-
-  .source-top {
+  /* SIDEBAR — выезжает из-за левого края, не перекрывает контент */
+  .sidebar {
+    position: fixed;
+    top: 54px;
+    left: 0;
+    width: 236px;
+    transform: translateX(-220px);
+    transition: transform 0.25s ease;
+    z-index: 50;
     display: flex;
     align-items: flex-start;
-    gap: 10px;
+    padding-top: 24px;
   }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-card {
+    width: 220px;
+    flex-shrink: 0;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.08);
+  }
+  .sidebar-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #999; margin-bottom: 14px; }
 
+  /* ЯЗЫЧОК — прикреплён к правому краю карточки фильтров */
+  .btn-sidebar-tab {
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 8px;
+    width: 16px;
+    padding: 14px 3px;
+    background: #fff;
+    color: #999;
+    border: 1px solid #e8e8e8;
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    font-size: 9px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 1px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.06);
+    white-space: nowrap;
+  }
+  .btn-sidebar-tab:hover { color: #1a1a1a; }
+
+  /* FILTER SECTIONS */
+  .filter-section { margin-bottom: 18px; }
+  .filter-section:last-child { margin-bottom: 0; }
+  .filter-section-label { font-size: 11.5px; font-weight: 600; color: #555; margin-bottom: 8px; }
+  .filter-chip-group { display: flex; gap: 4px; flex-wrap: wrap; }
+  .filter-chip { padding: 5px 10px; border: 1px solid #ddd; border-radius: 6px; background: #fafafa; cursor: pointer; font-size: 11.5px; color: #666; transition: all 0.15s; user-select: none; white-space: nowrap; }
+  .filter-chip:hover { background: #f0f0f0; }
+  .filter-chip.active { background: #555; color: #fff; border-color: #555; }
+  .filter-chip.active.processed-chip { background: #2e7d32; color: #fff; border-color: #2e7d32; }
+  .filter-chip.active.listened-chip { background: #1565c0; color: #fff; border-color: #1565c0; }
+  .rating-filter-display { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: #555; margin-bottom: 10px; font-weight: 600; }
+
+  /* ДВУРУЧНЫЙ СЛАЙДЕР */
+  .range-slider-wrap { position: relative; height: 28px; margin: 4px 0; cursor: pointer; }
+  .range-slider-track { position: absolute; top: 50%; left: 0; right: 0; height: 4px; background: #e0e0e0; border-radius: 2px; transform: translateY(-50%); }
+  .range-slider-fill { position: absolute; top: 50%; height: 4px; background: #1565c0; border-radius: 2px; transform: translateY(-50%); }
+  .range-thumb { position: absolute; top: 50%; width: 16px; height: 16px; background: #fff; border: 2px solid #1565c0; border-radius: 50%; transform: translate(-50%, -50%); cursor: grab; z-index: 2; box-shadow: 0 1px 4px rgba(0,0,0,0.15); }
+  .range-thumb:active { cursor: grabbing; box-shadow: 0 0 0 4px rgba(21,101,192,0.15); }
+  .slider-labels { display: flex; justify-content: space-between; font-size: 10px; color: #aaa; margin-top: 2px; }
+
+  .btn-reset-filters { width: 100%; padding: 7px 0; border: 1px solid #e0b0b0; border-radius: 6px; background: #fff; cursor: pointer; font-size: 11.5px; color: #c62828; margin-top: 16px; }
+  .btn-reset-filters:hover { background: #ffebee; }
+
+  /* CONTENT — всегда фиксированной ширины */
+  .content { width: 760px; flex-shrink: 0; }
+
+  /* SOURCE ROW */
+  .source-row { background: #fff; border: 1px solid #e8e8e8; border-radius: 7px; margin-bottom: 8px; padding: 10px 12px 12px; transition: background 0.4s, border-color 0.4s; }
+  .source-top { display: flex; align-items: flex-start; gap: 10px; }
   .source-row.processed { background: #f9fffe; border-color: #d8f0e8; }
   .source-row.just-added { background: #fff9e6; border-color: #ffe082; }
-
   .source-flags { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; padding-top: 2px; }
-
   .flag-line { display: flex; align-items: center; gap: 4px; cursor: pointer; }
   .flag-icon { font-size: 13px; opacity: 0.35; }
   .flag-line.on .flag-icon { opacity: 1; }
   .toggle-checkbox { width: 14px; height: 14px; cursor: pointer; }
   .toggle-checkbox.processed-cb { accent-color: #2e7d32; }
   .toggle-checkbox.listened-cb { accent-color: #1565c0; }
-
   .source-body { flex: 1; min-width: 0; }
-
-  .source-short {
-    font-weight: 600;
-    font-size: 13px;
-    color: #1a1a1a;
-    margin-bottom: 2px;
-  }
-
+  .source-short { font-weight: 600; font-size: 13px; color: #1a1a1a; margin-bottom: 2px; }
   .source-row.processed .source-short { color: #2e7d32; }
-
-  .source-citation {
-    font-size: 11.5px;
-    color: #777;
-    line-height: 1.4;
-    margin-bottom: 5px;
-    margin-right: 40px;
-  }
-
+  .source-citation { font-size: 11.5px; color: #777; line-height: 1.4; margin-bottom: 5px; margin-right: 40px; }
   .source-tags { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; margin-bottom: 6px; }
-
-  .tag {
-    font-size: 9.5px;
-    padding: 1px 6px;
-    border-radius: 4px;
-    background: #f0f0f0;
-    color: #888;
-  }
-
+  .tag { font-size: 9.5px; padding: 1px 6px; border-radius: 4px; background: #f0f0f0; color: #888; }
   .tag.lost { background: #fff3e0; color: #e65100; }
   .tag.translation { background: #e8eaf6; color: #3949ab; }
-
-  .source-date {
-    font-size: 9.5px;
-    color: #bbb;
-    margin-top: 2px;
-    margin-bottom: 10px;
-  }
-
+  .source-date { font-size: 9.5px; color: #bbb; margin-top: 2px; margin-bottom: 10px; }
   .source-notebook { margin-bottom: 8px; }
-
-  .source-notebook a {
-    font-size: 10.5px;
-    color: #1a73e8;
-    text-decoration: none;
-  }
-
+  .source-notebook a { font-size: 10.5px; color: #1a73e8; text-decoration: none; }
   .source-notebook a:hover { text-decoration: underline; }
-
-  .source-actions {
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
-    flex-wrap: wrap;
-    margin-top: 4px;
-    flex-shrink: 0;
-    width: 220px;
-    justify-content: flex-end;
-  }
-
-  .source-actions .btn-copy {
-    width: 66px;
-    text-align: center;
-  }
-
-  .btn-copy, .btn-icon {
-    padding: 5px 9px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    background: #fafafa;
-    cursor: pointer;
-    font-size: 11px;
-    color: #555;
-    white-space: nowrap;
-    text-align: center;
-  }
-
+  .source-actions { display: flex; flex-direction: row; gap: 4px; flex-wrap: wrap; margin-top: 4px; flex-shrink: 0; width: 220px; justify-content: flex-end; }
+  .source-actions .btn-copy { width: 66px; text-align: center; }
+  .btn-copy, .btn-icon { padding: 5px 9px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fafafa; cursor: pointer; font-size: 11px; color: #555; white-space: nowrap; text-align: center; }
   .btn-copy:hover { background: #e8f5e9; border-color: #a5d6a7; color: #2e7d32; }
   .btn-copy.copied { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
   .btn-icon:hover { background: #f0f0f0; }
   .btn-icon.danger:hover { background: #ffebee; color: #c62828; border-color: #ffcdd2; }
 
   /* MODAL */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 200;
-    align-items: center;
-    justify-content: center;
-  }
-
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; align-items: center; justify-content: center; }
   .modal-overlay.open { display: flex; }
-
-  .modal {
-    background: #fff;
-    border-radius: 10px;
-    padding: 24px;
-    width: 540px;
-    max-width: 95vw;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-  }
-
-  .modal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 18px;
-  }
-
+  .modal { background: #fff; border-radius: 10px; padding: 24px; width: 540px; max-width: 95vw; max-height: 90vh; overflow-y: auto; box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+  .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
   .modal h2 { font-size: 16px; }
-
-  .btn-modal-close {
-    width: 26px;
-    height: 26px;
-    border: none;
-    background: #f0f0f0;
-    border-radius: 50%;
-    color: #666;
-    font-size: 14px;
-    cursor: pointer;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
+  .btn-modal-close { width: 26px; height: 26px; border: none; background: #f0f0f0; border-radius: 50%; color: #666; font-size: 14px; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
   .btn-modal-close:hover { background: #e0e0e0; color: #1a1a1a; }
-
   .form-group { margin-bottom: 16px; }
-
-  .form-group label {
-    display: block;
-    font-size: 12px;
-    color: #666;
-    margin-bottom: 5px;
-    font-weight: 500;
-  }
-
-  .form-group input[type="text"],
-  .form-group textarea {
-    width: 100%;
-    padding: 8px 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 13px;
-    font-family: inherit;
-    resize: vertical;
-  }
-
-  .form-group input:focus,
-  .form-group textarea:focus { outline: none; border-color: #1a1a1a; }
-
+  .form-group label { display: block; font-size: 12px; color: #666; margin-bottom: 5px; font-weight: 500; }
+  .form-group input[type="text"], .form-group textarea { width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; font-family: inherit; resize: vertical; }
+  .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #1a1a1a; }
   .form-group textarea { min-height: 80px; }
-
-  .form-check {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    padding: 9px 12px;
-    background: #f7f7f5;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-
-  .form-check input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
-    flex-shrink: 0;
-    cursor: pointer;
-    margin: 0;
-    position: relative;
-    top: 0;
-  }
-
-  .form-check span {
-    line-height: 15px;
-  }
-
-  .modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-    margin-top: 22px;
-  }
-
-  .btn-cancel {
-    padding: 8px 16px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background: #fff;
-    cursor: pointer;
-    font-size: 13px;
-  }
-
-  .btn-save {
-    padding: 8px 16px;
-    background: #1a1a1a;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-  }
-
+  .form-check { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 9px 12px; background: #f7f7f5; border-radius: 6px; cursor: pointer; }
+  .form-check input[type="checkbox"] { width: 15px; height: 15px; flex-shrink: 0; cursor: pointer; margin: 0; }
+  .form-check span { line-height: 15px; }
+  .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 22px; }
+  .btn-cancel { padding: 8px 16px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 13px; }
+  .btn-save { padding: 8px 16px; background: #1a1a1a; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; }
   .btn-save:hover { background: #333; }
-
-  .toast {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    background: #1a1a1a;
-    color: #fff;
-    padding: 10px 18px;
-    border-radius: 6px;
-    font-size: 13px;
-    opacity: 0;
-    transition: opacity 0.2s;
-    z-index: 300;
-    pointer-events: none;
-  }
-
+  .toast { position: fixed; bottom: 24px; right: 24px; background: #1a1a1a; color: #fff; padding: 10px 18px; border-radius: 6px; font-size: 13px; opacity: 0; transition: opacity 0.2s; z-index: 300; pointer-events: none; }
   .toast.show { opacity: 1; }
   .empty { text-align: center; color: #aaa; padding: 40px; font-size: 13px; }
-
-  /* RATING & COMMENT - можно полностью удалить без последствий для остального */
-  .rating-row {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
-  }
-
+  .rating-row { display: flex; align-items: center; gap: 4px; margin-bottom: 8px; flex-wrap: wrap; }
   .rating-label { font-size: 11px; color: #888; margin-right: 4px; }
-
-  .rating-btn {
-    width: 22px;
-    height: 22px;
-    padding: 0;
-    font-size: 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    background: #fff;
-    color: #888;
-    cursor: pointer;
-  }
-
+  .rating-btn { width: 22px; height: 22px; padding: 0; font-size: 10px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fff; color: #888; cursor: pointer; }
   .rating-btn:hover { background: #f0f0f0; }
-  .rating-btn.selected {
-    background: #e3f2fd;
-    color: #1565c0;
-    border-color: #90caf9;
-    font-weight: 700;
-  }
-
-  .source-bottom-row {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 8px;
-    padding-left: 38px;
-  }
-
-  .comment-zone-wrap {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .comment-display {
-    font-size: 11.5px;
-    color: #999;
-    border-bottom: 1px dashed #ccc;
-    cursor: pointer;
-    line-height: 1.4;
-    flex: 1;
-    min-width: 0;
-    margin-right: 40px;
-  }
-
+  .rating-btn.selected { background: #e3f2fd; color: #1565c0; border-color: #90caf9; font-weight: 700; }
+  .source-bottom-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-top: 8px; padding-left: 38px; }
+  .comment-zone-wrap { flex: 1; min-width: 0; }
+  .comment-display { font-size: 11.5px; color: #999; border-bottom: 1px dashed #ccc; cursor: pointer; line-height: 1.4; margin-right: 40px; display: inline-block; }
   .comment-display.has-text { color: #666; }
   .comment-display:hover { color: #333; border-color: #999; }
-
   .comment-edit-zone { flex: 1; min-width: 0; }
-
-  .comment-textarea {
-    width: 100%;
-    min-height: 50px;
-    padding: 6px 8px;
-    font-size: 11.5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: vertical;
-    font-family: inherit;
-    margin-bottom: 6px;
-  }
-
+  .comment-textarea { width: 100%; min-height: 50px; padding: 6px 8px; font-size: 11.5px; border: 1px solid #ccc; border-radius: 5px; resize: vertical; font-family: inherit; margin-bottom: 6px; }
   .comment-actions { display: flex; gap: 6px; }
-
-  .btn-comment-save, .btn-comment-cancel, .btn-comment-delete {
-    padding: 4px 10px;
-    font-size: 11px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    background: #fff;
-    cursor: pointer;
-  }
-
+  .btn-comment-save, .btn-comment-cancel, .btn-comment-delete { padding: 4px 10px; font-size: 11px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fff; cursor: pointer; }
   .btn-comment-save:hover { background: #e8f5e9; border-color: #a5d6a7; color: #2e7d32; }
   .btn-comment-delete:hover { background: #ffebee; border-color: #ffcdd2; color: #c62828; }
   .btn-comment-cancel:hover { background: #f0f0f0; }
-
-  .manage-actions {
-    display: flex;
-    gap: 4px;
-    flex-shrink: 0;
-    visibility: hidden;
-  }
-
+  .manage-actions { display: flex; gap: 4px; flex-shrink: 0; visibility: hidden; }
   .source-row:hover .manage-actions { visibility: visible; }
-
-  .btn-manage {
-    padding: 4px 8px;
-    font-size: 11px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    background: #fafafa;
-    cursor: pointer;
-    white-space: nowrap;
-    color: #555;
-  }
-
+  .btn-manage { padding: 4px 8px; font-size: 11px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fafafa; cursor: pointer; white-space: nowrap; color: #555; }
   .btn-manage:hover { background: #f0f0f0; }
   .btn-manage.danger:hover { background: #ffebee; color: #c62828; border-color: #ffcdd2; }
-
-  /* DUPLICATE WARNING - изолированный блок, можно удалить без последствий */
-  .dup-warning {
-    display: none;
-    background: #fff8e1;
-    border: 1px solid #ffca28;
-    border-radius: 8px;
-    padding: 12px 14px;
-    margin-top: 10px;
-    margin-bottom: 14px;
-    font-size: 12.5px;
-  }
-
+  .dup-warning { display: none; background: #fff8e1; border: 1px solid #ffca28; border-radius: 8px; padding: 12px 14px; margin-top: 10px; margin-bottom: 14px; font-size: 12.5px; }
   .dup-warning.visible { display: block; }
-
-  .dup-warning-title {
-    font-weight: 700;
-    color: #7a5b00;
-    margin-bottom: 8px;
-  }
-
-  .dup-match {
-    background: #fff;
-    border: 1px solid #ffe082;
-    border-radius: 6px;
-    padding: 8px 10px;
-    margin-bottom: 6px;
-  }
-
+  .dup-warning-title { font-weight: 700; color: #7a5b00; margin-bottom: 8px; }
+  .dup-match { background: #fff; border: 1px solid #ffe082; border-radius: 6px; padding: 8px 10px; margin-bottom: 6px; }
   .dup-match:last-child { margin-bottom: 0; }
-
-  .dup-match-score {
-    display: inline-block;
-    background: #ff9800;
-    color: #fff;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 1px 7px;
-    border-radius: 4px;
-    margin-right: 6px;
-  }
-
+  .dup-match-score { display: inline-block; background: #ff9800; color: #fff; font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 6px; }
   .dup-match-name { font-weight: 600; color: #1a1a1a; }
   .dup-match-citation { color: #777; font-size: 11px; margin-top: 3px; line-height: 1.4; }
 </style>
@@ -624,42 +197,36 @@
 <body>
 
 <header>
-  <div class="header-inner">
-    <div class="header-top">
-      <h1>Domains Tracker</h1>
-      <div class="burger-wrap">
-        <button class="btn-burger" id="btn-burger" type="button" title="Меню">☰</button>
-        <div class="burger-menu" id="burger-menu">
-          <a href="/import.html">Импорт источников</a>
-        </div>
-      </div>
-      <div class="search-wrap">
-        <input type="text" id="search" placeholder="Поиск по источникам…">
-        <button class="search-clear" id="search-clear" type="button">✕</button>
-      </div>
-      <button class="btn-filters-toggle" id="btn-filters-toggle">Фильтры ▾</button>
-      <button class="btn-add" id="btn-add-source">+ Источник</button>
-      <span class="stats" id="stats"></span>
-    </div>
-    <div class="filters-panel" id="filters-panel">
-      <div class="filters-row">
-        <span class="filter-label">✅ обработано:</span>
-        <button class="filter-chip processed-chip" data-group="processed" data-value="any">любое</button>
-        <button class="filter-chip processed-chip" data-group="processed" data-value="yes">да</button>
-        <button class="filter-chip processed-chip" data-group="processed" data-value="no">нет</button>
-        <span class="filter-label" style="margin-left:14px">🎧 прослушано:</span>
-        <button class="filter-chip listened-chip" data-group="listened" data-value="any">любое</button>
-        <button class="filter-chip listened-chip" data-group="listened" data-value="yes">да</button>
-        <button class="filter-chip listened-chip" data-group="listened" data-value="no">нет</button>
-        <button class="btn-reset-filters" id="btn-reset-filters" style="margin-left:14px">Сбросить фильтры</button>
+  <div class="header-top">
+    <h1>Domains Tracker</h1>
+    <div class="burger-wrap">
+      <button class="btn-burger" id="btn-burger" type="button" title="Меню">⋮</button>
+      <div class="burger-menu" id="burger-menu">
+        <a href="/import.html">Импорт источников</a>
       </div>
     </div>
+    <div class="search-wrap">
+      <input type="text" id="search" placeholder="Поиск по источникам…">
+      <button class="search-clear" id="search-clear" type="button">✕</button>
+    </div>
+    <button class="btn-add" id="btn-add-source">+ Источник</button>
+    <span class="stats" id="stats"></span>
   </div>
 </header>
 
-<div class="container">
-  <div id="sources-list"></div>
-  <div class="empty" id="empty" style="display:none">Ничего не найдено</div>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">Фильтры</div>
+      <div id="filters-mount"></div>
+      <button class="btn-reset-filters" id="btn-reset-filters">Сбросить все</button>
+    </div>
+    <button class="btn-sidebar-tab" id="btn-sidebar-tab">Фильтры</button>
+  </aside>
+  <div class="content">
+    <div id="sources-list"></div>
+    <div class="empty" id="empty" style="display:none">Ничего не найдено</div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -685,8 +252,187 @@ const PROMPT_TEXT = 'Подготовь аудиопересказ в форма
 let allSources = [];
 let sourcesById = {};
 let currentSearch = '';
-let filters = { processed: 'any', listened: 'any' };
 let justAddedId = null;
+
+// =========================================================================
+// SIDEBAR
+// =========================================================================
+const SIDEBAR_KEY = 'dt_sidebar_open';
+
+function setSidebarOpen(open) {
+  const sidebar = document.getElementById('sidebar');
+  const tab = document.getElementById('btn-sidebar-tab');
+  if (open) {
+    sidebar.classList.add('open');
+    tab.textContent = '◀ Скрыть';
+  } else {
+    sidebar.classList.remove('open');
+    tab.textContent = 'Фильтры';
+  }
+  localStorage.setItem(SIDEBAR_KEY, String(open));
+}
+
+function initSidebar() {
+  const stored = localStorage.getItem(SIDEBAR_KEY);
+  const isOpen = stored === null ? true : stored === 'true';
+  setSidebarOpen(isOpen);
+}
+
+document.getElementById('btn-sidebar-tab').addEventListener('click', () => {
+  const sidebar = document.getElementById('sidebar');
+  setSidebarOpen(!sidebar.classList.contains('open'));
+});
+
+// =========================================================================
+// FILTER REGISTRY
+// =========================================================================
+const FilterRegistry = {
+  filters: [],
+  state: {},
+  register(filter) { this.filters.push(filter); this.state[filter.id] = filter.getDefaultState(); },
+  resetAll() { this.filters.forEach(f => { this.state[f.id] = f.getDefaultState(); }); },
+  applyAll(sources) { return sources.filter(s => this.filters.every(f => f.apply(s, this.state[f.id]))); },
+  renderAll() {
+    const mount = document.getElementById('filters-mount');
+    if (!mount) return;
+    mount.innerHTML = this.filters.map(f => f.render(this.state[f.id])).join('');
+    this.filters.forEach(f => { if (f.afterRender) f.afterRender(this); });
+  }
+};
+
+FilterRegistry.register({
+  id: 'processed',
+  getDefaultState: () => 'any',
+  apply: (s, state) => { if (state === 'yes') return !!s.processed; if (state === 'no') return !s.processed; return true; },
+  render: (state) => `
+    <div class="filter-section">
+      <div class="filter-section-label">✅ Обработано</div>
+      <div class="filter-chip-group">
+        <button class="filter-chip processed-chip ${state==='any'?'active':''}" data-filter="processed" data-value="any">любое</button>
+        <button class="filter-chip processed-chip ${state==='yes'?'active':''}" data-filter="processed" data-value="yes">да</button>
+        <button class="filter-chip processed-chip ${state==='no'?'active':''}" data-filter="processed" data-value="no">нет</button>
+      </div>
+    </div>`
+});
+
+FilterRegistry.register({
+  id: 'listened',
+  getDefaultState: () => 'any',
+  apply: (s, state) => { if (state === 'yes') return !!s.listened; if (state === 'no') return !s.listened; return true; },
+  render: (state) => `
+    <div class="filter-section">
+      <div class="filter-section-label">🎧 Прослушано</div>
+      <div class="filter-chip-group">
+        <button class="filter-chip listened-chip ${state==='any'?'active':''}" data-filter="listened" data-value="any">любое</button>
+        <button class="filter-chip listened-chip ${state==='yes'?'active':''}" data-filter="listened" data-value="yes">да</button>
+        <button class="filter-chip listened-chip ${state==='no'?'active':''}" data-filter="listened" data-value="no">нет</button>
+      </div>
+    </div>`
+});
+
+FilterRegistry.register({
+  id: 'rating',
+  getDefaultState: () => ({ min: 1, max: 10, anyRating: true }),
+  apply: (s, state) => { if (state.anyRating) return true; if (!s.rating) return false; return s.rating >= state.min && s.rating <= state.max; },
+  render: (state) => `
+    <div class="filter-section">
+      <div class="filter-section-label">⭐ Оценка</div>
+      <div class="filter-chip-group" style="margin-bottom:10px">
+        <button class="filter-chip ${state.anyRating?'active':''}" data-filter="rating" data-value="any">любая</button>
+        <button class="filter-chip ${!state.anyRating?'active':''}" data-filter="rating" data-value="range">диапазон</button>
+      </div>
+      ${!state.anyRating ? `
+      <div class="rating-filter-display">
+        <span>от <b id="rmin-label">${state.min}</b></span>
+        <span>до <b id="rmax-label">${state.max}</b></span>
+      </div>
+      <div class="range-slider-wrap" id="range-slider-wrap">
+        <div class="range-slider-track"></div>
+        <div class="range-slider-fill" id="range-slider-fill"></div>
+        <div class="range-thumb" id="range-thumb-min"></div>
+        <div class="range-thumb" id="range-thumb-max"></div>
+      </div>
+      <div class="slider-labels"><span>1</span><span>10</span></div>
+      ` : ''}
+    </div>`,
+  afterRender: (registry) => {
+    const wrap = document.getElementById('range-slider-wrap');
+    if (!wrap) return;
+    const fill = document.getElementById('range-slider-fill');
+    const thumbMin = document.getElementById('range-thumb-min');
+    const thumbMax = document.getElementById('range-thumb-max');
+    const minLabel = document.getElementById('rmin-label');
+    const maxLabel = document.getElementById('rmax-label');
+    const MIN = 1, MAX = 10;
+    let st = registry.state.rating;
+
+    function pct(val) { return (val - MIN) / (MAX - MIN) * 100; }
+
+    function updateUI() {
+      thumbMin.style.left = pct(st.min) + '%';
+      thumbMax.style.left = pct(st.max) + '%';
+      fill.style.left = pct(st.min) + '%';
+      fill.style.width = (pct(st.max) - pct(st.min)) + '%';
+      minLabel.textContent = st.min;
+      maxLabel.textContent = st.max;
+    }
+
+    function startDrag(isMin) {
+      const rect = wrap.getBoundingClientRect();
+      function onMove(e) {
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        let ratio = (clientX - rect.left) / rect.width;
+        ratio = Math.max(0, Math.min(1, ratio));
+        let val = Math.round(MIN + ratio * (MAX - MIN));
+        if (isMin) { st.min = Math.min(val, st.max); }
+        else { st.max = Math.max(val, st.min); }
+        registry.state.rating = { ...st, anyRating: false };
+        updateUI();
+        renderSources();
+      }
+      function onUp() {
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+        document.removeEventListener('touchmove', onMove);
+        document.removeEventListener('touchend', onUp);
+      }
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+      document.addEventListener('touchmove', onMove);
+      document.addEventListener('touchend', onUp);
+    }
+
+    thumbMin.addEventListener('mousedown', e => { e.preventDefault(); startDrag(true); });
+    thumbMax.addEventListener('mousedown', e => { e.preventDefault(); startDrag(false); });
+    thumbMin.addEventListener('touchstart', e => { e.preventDefault(); startDrag(true); });
+    thumbMax.addEventListener('touchstart', e => { e.preventDefault(); startDrag(false); });
+    updateUI();
+  }
+});
+
+document.getElementById('filters-mount').addEventListener('click', e => {
+  const chip = e.target.closest('.filter-chip[data-filter]');
+  if (!chip) return;
+  const filterId = chip.dataset.filter;
+  const value = chip.dataset.value;
+  if (filterId === 'rating') {
+    FilterRegistry.state.rating = value === 'any'
+      ? { min: 1, max: 10, anyRating: true }
+      : { min: FilterRegistry.state.rating.min, max: FilterRegistry.state.rating.max, anyRating: false };
+  } else {
+    FilterRegistry.state[filterId] = value;
+  }
+  FilterRegistry.renderAll();
+  renderSources();
+});
+
+document.getElementById('btn-reset-filters').addEventListener('click', () => {
+  FilterRegistry.resetAll();
+  FilterRegistry.renderAll();
+  renderSources();
+});
+
+// =========================================================================
 
 async function load() {
   const res = await fetch(`${API}/domains`);
@@ -695,6 +441,7 @@ async function load() {
   allSources.sort((a, b) => parseInt(a.source_id) - parseInt(b.source_id));
   sourcesById = {};
   allSources.forEach(s => sourcesById[s.id] = s);
+  FilterRegistry.renderAll();
   renderSources();
   updateStats();
 }
@@ -703,81 +450,46 @@ function updateStats() {
   const total = allSources.length;
   const done = allSources.filter(s => s.processed).length;
   const listened = allSources.filter(s => s.listened).length;
-  document.getElementById('stats').innerHTML =
-    `<span>✅ ${done}/${total}</span><span>🎧 ${listened}/${total}</span>`;
+  document.getElementById('stats').innerHTML = `<span>✅ ${done}/${total}</span><span>🎧 ${listened}/${total}</span>`;
 }
 
 function renderSources() {
   const list = document.getElementById('sources-list');
   const empty = document.getElementById('empty');
   const q = currentSearch.toLowerCase();
-
   let sources = allSources;
-
-  if (q) {
-    sources = sources.filter(s =>
-      s.short_name.toLowerCase().includes(q) ||
-      s.citation.toLowerCase().includes(q)
-    );
-  }
-
-  if (filters.processed === 'yes') sources = sources.filter(s => s.processed);
-  else if (filters.processed === 'no') sources = sources.filter(s => !s.processed);
-
-  if (filters.listened === 'yes') sources = sources.filter(s => s.listened);
-  else if (filters.listened === 'no') sources = sources.filter(s => !s.listened);
-
-  if (sources.length === 0) {
-    list.innerHTML = '';
-    empty.style.display = 'block';
-    return;
-  }
-
+  if (q) sources = sources.filter(s => s.short_name.toLowerCase().includes(q) || s.citation.toLowerCase().includes(q));
+  sources = FilterRegistry.applyAll(sources);
+  if (sources.length === 0) { list.innerHTML = ''; empty.style.display = 'block'; return; }
   empty.style.display = 'none';
   list.innerHTML = sources.map(s => renderSource(s)).join('');
-
   if (justAddedId) {
     const el = document.getElementById(`source-row-${justAddedId}`);
-    if (el) {
-      el.scrollIntoView({behavior: 'smooth', block: 'center'});
-      setTimeout(() => el.classList.remove('just-added'), 2500);
-    }
+    if (el) { el.scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(()=>el.classList.remove('just-added'),2500); }
     justAddedId = null;
   }
 }
 
 function escHtml(str) {
-  return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return (str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 function formatDate(isoString) {
   if (!isoString) return '';
   try {
     const d = new Date(isoString);
-    const day = String(d.getDate()).padStart(2, '0');
-    const month = String(d.getMonth() + 1).padStart(2, '0');
-    const year = d.getFullYear();
-    const hours = String(d.getHours()).padStart(2, '0');
-    const minutes = String(d.getMinutes()).padStart(2, '0');
-    return `добавлено ${day}.${month}.${year} ${hours}:${minutes}`;
-  } catch (e) {
-    return '';
-  }
+    return `добавлено ${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+  } catch(e) { return ''; }
 }
 
 function renderRatingButtons(s) {
   let html = `<span class="rating-label">Оценка</span>`;
-  for (let i = 1; i <= 10; i++) {
-    const selected = s.rating === i ? 'selected' : '';
-    html += `<button class="rating-btn ${selected} js-rating" data-id="${s.id}" data-value="${i}">${i}</button>`;
-  }
+  for (let i=1;i<=10;i++) html += `<button class="rating-btn ${s.rating===i?'selected':''} js-rating" data-id="${s.id}" data-value="${i}">${i}</button>`;
   return html;
 }
 
 function renderCommentZone(s) {
-  if (s.comment && s.comment.trim()) {
-    return `<span class="comment-display has-text js-comment-open" data-id="${s.id}">${escHtml(s.comment)}</span>`;
-  }
+  if (s.comment && s.comment.trim()) return `<span class="comment-display has-text js-comment-open" data-id="${s.id}">${escHtml(s.comment)}</span>`;
   return `<span class="comment-display js-comment-open" data-id="${s.id}">+ добавить комментарий</span>`;
 }
 
@@ -785,25 +497,14 @@ function renderSource(s) {
   const lostTag = s.original_lost
     ? `<span class="tag lost">оригинал утрачен · ${escHtml(s.original_language)}</span><span class="tag translation">перевод: ${escHtml(s.authoritative_translation_language)}</span>`
     : `<span class="tag">${escHtml(s.original_language)}</span>`;
-
-  const notebookHtml = s.notebook_url
-    ? `<div class="source-notebook"><a href="${escHtml(s.notebook_url)}" target="_blank">📓 NotebookLM</a></div>`
-    : '';
-
-  const justAddedClass = (s.id === justAddedId) ? 'just-added' : '';
-
+  const notebookHtml = s.notebook_url ? `<div class="source-notebook"><a href="${escHtml(s.notebook_url)}" target="_blank">📓 NotebookLM</a></div>` : '';
+  const justAddedClass = s.id === justAddedId ? 'just-added' : '';
   return `
-    <div class="source-row ${s.processed ? 'processed' : ''} ${justAddedClass}" id="source-row-${s.id}" data-id="${s.id}">
+    <div class="source-row ${s.processed?'processed':''} ${justAddedClass}" id="source-row-${s.id}" data-id="${s.id}">
       <div class="source-top">
         <div class="source-flags">
-          <label class="flag-line ${s.processed ? 'on' : ''}">
-            <span class="flag-icon">✅</span>
-            <input type="checkbox" class="toggle-checkbox processed-cb js-toggle" data-field="processed" data-id="${s.id}" ${s.processed ? 'checked' : ''}>
-          </label>
-          <label class="flag-line ${s.listened ? 'on' : ''}">
-            <span class="flag-icon">🎧</span>
-            <input type="checkbox" class="toggle-checkbox listened-cb js-toggle" data-field="listened" data-id="${s.id}" ${s.listened ? 'checked' : ''}>
-          </label>
+          <label class="flag-line ${s.processed?'on':''}"><span class="flag-icon">✅</span><input type="checkbox" class="toggle-checkbox processed-cb js-toggle" data-field="processed" data-id="${s.id}" ${s.processed?'checked':''}></label>
+          <label class="flag-line ${s.listened?'on':''}"><span class="flag-icon">🎧</span><input type="checkbox" class="toggle-checkbox listened-cb js-toggle" data-field="listened" data-id="${s.id}" ${s.listened?'checked':''}></label>
         </div>
         <div class="source-body">
           <div class="source-short">${escHtml(s.short_name)}</div>
@@ -827,57 +528,35 @@ function renderSource(s) {
           <button class="btn-manage danger js-delete" data-id="${s.id}">✕ Удалить</button>
         </div>
       </div>
-    </div>
-  `;
+    </div>`;
 }
 
 function copyToClipboard(text, btn) {
   navigator.clipboard.writeText(text).then(() => {
-    const orig = btn.textContent;
-    btn.textContent = '✓';
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = orig;
-      btn.classList.remove('copied');
-    }, 1200);
-  }).catch(err => {
-    console.error('Copy failed', err);
-    showToast('Не удалось скопировать');
-  });
+    const orig = btn.textContent; btn.textContent = '✓'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1200);
+  }).catch(() => showToast('Не удалось скопировать'));
 }
 
 async function toggleField(id, field, val) {
-  await fetch(`${API}/sources/${id}/${field}`, {
-    method: 'PATCH',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({[field]: val})
-  });
-  const s = sourcesById[id];
-  if (s) s[field] = val;
-  renderSources();
-  updateStats();
+  await fetch(`${API}/sources/${id}/${field}`, {method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({[field]:val})});
+  const s = sourcesById[id]; if (s) s[field] = val;
+  renderSources(); updateStats();
   showToast(val ? 'Отмечено' : 'Отметка снята');
 }
 
 function openNotebookPrompt(id) {
   const s = sourcesById[id];
-  const url = prompt('Ссылка на NotebookLM (оставь пустой чтобы удалить):', s.notebook_url || '');
-  if (url === null) return;
-  fetch(`${API}/sources/${id}/notebook`, {
-    method: 'PATCH',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({notebook_url: url.trim()})
-  }).then(() => { load(); showToast('Ссылка обновлена'); });
+  const url = prompt('Ссылка на NotebookLM (оставь пустой чтобы удалить):', s.notebook_url||'');
+  if (url===null) return;
+  fetch(`${API}/sources/${id}/notebook`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({notebook_url:url.trim()})}).then(()=>{load();showToast('Ссылка обновлена');});
 }
 
 async function deleteSourceById(id) {
   if (!confirm('Удалить источник?')) return;
-  await fetch(`${API}/sources/${id}`, {method: 'DELETE'});
-  allSources = allSources.filter(s => s.id !== id);
-  delete sourcesById[id];
-  renderSources();
-  updateStats();
-  showToast('Источник удалён');
+  await fetch(`${API}/sources/${id}`,{method:'DELETE'});
+  allSources = allSources.filter(s=>s.id!==id); delete sourcesById[id];
+  renderSources(); updateStats(); showToast('Источник удалён');
 }
 
 function openModal(title, bodyHtml, onSave) {
@@ -885,366 +564,99 @@ function openModal(title, bodyHtml, onSave) {
   document.getElementById('modal-body').innerHTML = bodyHtml;
   document.getElementById('modal-save').onclick = onSave;
   document.getElementById('modal-overlay').classList.add('open');
-  if (typeof attachDuplicateCheckListener === 'function') {
-    attachDuplicateCheckListener();
-  }
+  if (typeof attachDuplicateCheckListener === 'function') attachDuplicateCheckListener();
 }
 
-function closeModal() {
-  document.getElementById('modal-overlay').classList.remove('open');
-}
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
 
-function sourceFormHtml(s = {}) {
+function sourceFormHtml(s={}) {
   return `
-    <div class="form-group">
-      <label>Краткое название (номер добавится автоматически)</label>
-      <input id="f-short-name" type="text" placeholder="например: Асанга. Махаянасанграха." value="${escHtml(s.short_name || '')}">
-    </div>
-    <div class="form-group">
-      <label>Полная библиографическая ссылка</label>
-      <textarea id="f-citation">${escHtml(s.citation || '')}</textarea>
-      <div class="dup-warning" id="dup-warning"></div>
-    </div>
-    <div class="form-group">
-      <label>Язык оригинала</label>
-      <input id="f-lang" type="text" value="${escHtml(s.original_language || '')}">
-    </div>
-    <div class="form-group">
-      <label class="form-check">
-        <input type="checkbox" id="f-lost" ${s.original_lost ? 'checked' : ''}>
-        <span>Оригинал утрачен</span>
-      </label>
-    </div>
-    <div class="form-group">
-      <label>Язык авторитетного перевода</label>
-      <input id="f-translation-lang" type="text" value="${escHtml(s.authoritative_translation_language || '')}">
-    </div>
-    <div class="form-group">
-      <label>Ссылка на NotebookLM</label>
-      <input id="f-notebook-url" type="text" value="${escHtml(s.notebook_url || '')}">
-    </div>
-  `;
+    <div class="form-group"><label>Краткое название (номер добавится автоматически)</label><input id="f-short-name" type="text" placeholder="например: Асанга. Махаянасанграха." value="${escHtml(s.short_name||'')}"></div>
+    <div class="form-group"><label>Полная библиографическая ссылка</label><textarea id="f-citation">${escHtml(s.citation||'')}</textarea><div class="dup-warning" id="dup-warning"></div></div>
+    <div class="form-group"><label>Язык оригинала</label><input id="f-lang" type="text" value="${escHtml(s.original_language||'')}"></div>
+    <div class="form-group"><label class="form-check"><input type="checkbox" id="f-lost" ${s.original_lost?'checked':''}><span>Оригинал утрачен</span></label></div>
+    <div class="form-group"><label>Язык авторитетного перевода</label><input id="f-translation-lang" type="text" value="${escHtml(s.authoritative_translation_language||'')}"></div>
+    <div class="form-group"><label>Ссылка на NotebookLM</label><input id="f-notebook-url" type="text" value="${escHtml(s.notebook_url||'')}"></div>`;
 }
 
 function openAddSource() {
   openModal('Новый источник', sourceFormHtml(), async () => {
-    const res = await fetch(`${API}/sources`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        domain_rank: 1,
-        short_name: document.getElementById('f-short-name').value,
-        citation: document.getElementById('f-citation').value,
-        original_language: document.getElementById('f-lang').value,
-        original_lost: document.getElementById('f-lost').checked,
-        authoritative_translation_language: document.getElementById('f-translation-lang').value,
-        notebook_url: document.getElementById('f-notebook-url').value
-      })
-    });
+    const res = await fetch(`${API}/sources`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({domain_rank:1,short_name:document.getElementById('f-short-name').value,citation:document.getElementById('f-citation').value,original_language:document.getElementById('f-lang').value,original_lost:document.getElementById('f-lost').checked,authoritative_translation_language:document.getElementById('f-translation-lang').value,notebook_url:document.getElementById('f-notebook-url').value})});
     const data = await res.json();
-    closeModal();
-    filters = { processed: 'any', listened: 'any' };
-    document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
-    document.querySelector('.filter-chip[data-group="processed"][data-value="any"]').classList.add('active');
-    document.querySelector('.filter-chip[data-group="listened"][data-value="any"]').classList.add('active');
-    currentSearch = '';
-    document.getElementById('search').value = '';
-    justAddedId = data.id;
-    await load();
-    showToast('Источник добавлен');
+    closeModal(); FilterRegistry.resetAll(); FilterRegistry.renderAll();
+    currentSearch=''; document.getElementById('search').value='';
+    justAddedId=data.id; await load(); showToast('Источник добавлен');
   });
 }
 
 function openEditSourceById(id) {
   const s = sourcesById[id];
   openModal('Редактировать источник', sourceFormHtml(s), async () => {
-    await fetch(`${API}/sources/${id}`, {
-      method: 'PUT',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        short_name: document.getElementById('f-short-name').value,
-        citation: document.getElementById('f-citation').value,
-        original_language: document.getElementById('f-lang').value,
-        original_lost: document.getElementById('f-lost').checked,
-        authoritative_translation_language: document.getElementById('f-translation-lang').value,
-        notebook_url: document.getElementById('f-notebook-url').value,
-        processed: s.processed,
-        listened: s.listened
-      })
-    });
-    closeModal();
-    load();
-    showToast('Источник обновлён');
+    await fetch(`${API}/sources/${id}`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({short_name:document.getElementById('f-short-name').value,citation:document.getElementById('f-citation').value,original_language:document.getElementById('f-lang').value,original_lost:document.getElementById('f-lost').checked,authoritative_translation_language:document.getElementById('f-translation-lang').value,notebook_url:document.getElementById('f-notebook-url').value,processed:s.processed,listened:s.listened})});
+    closeModal(); load(); showToast('Источник обновлён');
   });
 }
 
 function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2000);
+  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2000);
 }
 
-// --- EVENTS ---
-const searchInput = document.getElementById('search');
-const searchClear = document.getElementById('search-clear');
+const searchInput=document.getElementById('search');
+const searchClear=document.getElementById('search-clear');
+searchInput.addEventListener('input',e=>{currentSearch=e.target.value;searchClear.classList.toggle('visible',currentSearch.length>0);renderSources();});
+searchClear.addEventListener('click',()=>{searchInput.value='';currentSearch='';searchClear.classList.remove('visible');renderSources();searchInput.focus();});
 
-searchInput.addEventListener('input', e => {
-  currentSearch = e.target.value;
-  searchClear.classList.toggle('visible', currentSearch.length > 0);
-  renderSources();
+document.getElementById('btn-burger').addEventListener('click',e=>{e.stopPropagation();document.getElementById('burger-menu').classList.toggle('open');});
+document.addEventListener('click',e=>{const menu=document.getElementById('burger-menu');const btn=document.getElementById('btn-burger');if(menu.classList.contains('open')&&!menu.contains(e.target)&&e.target!==btn)menu.classList.remove('open');});
+document.getElementById('btn-add-source').addEventListener('click',openAddSource);
+document.getElementById('modal-cancel').addEventListener('click',closeModal);
+document.getElementById('modal-close-x').addEventListener('click',closeModal);
+
+document.getElementById('sources-list').addEventListener('click',e=>{
+  const copyBtn=e.target.closest('.js-copy');
+  if(copyBtn){const id=parseInt(copyBtn.dataset.id);const kind=copyBtn.dataset.kind;const s=sourcesById[id];let text='';if(kind==='citation')text=s.citation;else if(kind==='short_name')text=s.short_name;else if(kind==='prompt')text=PROMPT_TEXT;copyToClipboard(text,copyBtn);return;}
+  const editBtn=e.target.closest('.js-edit');if(editBtn){openEditSourceById(parseInt(editBtn.dataset.id));return;}
+  const notebookBtn=e.target.closest('.js-notebook');if(notebookBtn){openNotebookPrompt(parseInt(notebookBtn.dataset.id));return;}
+  const deleteBtn=e.target.closest('.js-delete');if(deleteBtn){deleteSourceById(parseInt(deleteBtn.dataset.id));return;}
 });
 
-searchClear.addEventListener('click', () => {
-  searchInput.value = '';
-  currentSearch = '';
-  searchClear.classList.remove('visible');
-  renderSources();
-  searchInput.focus();
+document.getElementById('sources-list').addEventListener('change',e=>{
+  const toggle=e.target.closest('.js-toggle');
+  if(toggle){const id=parseInt(toggle.dataset.id);const field=toggle.dataset.field;toggleField(id,field,toggle.checked);}
 });
 
-document.getElementById('btn-burger').addEventListener('click', (e) => {
-  e.stopPropagation();
-  document.getElementById('burger-menu').classList.toggle('open');
-});
-
-document.addEventListener('click', (e) => {
-  const menu = document.getElementById('burger-menu');
-  const burgerBtn = document.getElementById('btn-burger');
-  if (menu.classList.contains('open') && !menu.contains(e.target) && e.target !== burgerBtn) {
-    menu.classList.remove('open');
-  }
-});
-
-document.getElementById('btn-add-source').addEventListener('click', openAddSource);
-document.getElementById('modal-cancel').addEventListener('click', closeModal);
-document.getElementById('modal-close-x').addEventListener('click', closeModal);
-
-document.getElementById('btn-filters-toggle').addEventListener('click', () => {
-  const panel = document.getElementById('filters-panel');
-  const btn = document.getElementById('btn-filters-toggle');
-  panel.classList.toggle('open');
-  btn.classList.toggle('active');
-  btn.textContent = panel.classList.contains('open') ? 'Фильтры ▴' : 'Фильтры ▾';
-});
-
-document.getElementById('btn-reset-filters').addEventListener('click', () => {
-  filters = { processed: 'any', listened: 'any' };
-  document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
-  document.querySelector('.filter-chip[data-group="processed"][data-value="any"]').classList.add('active');
-  document.querySelector('.filter-chip[data-group="listened"][data-value="any"]').classList.add('active');
-  renderSources();
-});
-
-document.querySelectorAll('.filter-chip').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const group = btn.dataset.group;
-    const value = btn.dataset.value;
-    filters[group] = value;
-    document.querySelectorAll(`.filter-chip[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderSources();
-  });
-});
-
-document.querySelector('.filter-chip[data-group="processed"][data-value="any"]').classList.add('active');
-document.querySelector('.filter-chip[data-group="listened"][data-value="any"]').classList.add('active');
-
-document.getElementById('sources-list').addEventListener('click', e => {
-  const copyBtn = e.target.closest('.js-copy');
-  if (copyBtn) {
-    const id = parseInt(copyBtn.dataset.id);
-    const kind = copyBtn.dataset.kind;
-    const s = sourcesById[id];
-    let text = '';
-    if (kind === 'citation') text = s.citation;
-    else if (kind === 'short_name') text = s.short_name;
-    else if (kind === 'prompt') text = PROMPT_TEXT;
-    copyToClipboard(text, copyBtn);
-    return;
-  }
-  const editBtn = e.target.closest('.js-edit');
-  if (editBtn) { openEditSourceById(parseInt(editBtn.dataset.id)); return; }
-
-  const notebookBtn = e.target.closest('.js-notebook');
-  if (notebookBtn) { openNotebookPrompt(parseInt(notebookBtn.dataset.id)); return; }
-
-  const deleteBtn = e.target.closest('.js-delete');
-  if (deleteBtn) { deleteSourceById(parseInt(deleteBtn.dataset.id)); return; }
-});
-
-document.getElementById('sources-list').addEventListener('change', e => {
-  const toggle = e.target.closest('.js-toggle');
-  if (toggle) {
-    const id = parseInt(toggle.dataset.id);
-    const field = toggle.dataset.field;
-    toggleField(id, field, toggle.checked);
-  }
-});
-
-// --- DUPLICATE CHECK MODULE (изолированный, можно удалить без последствий) ---
-let dupCheckTimer = null;
-
+let dupCheckTimer=null;
 async function runDuplicateCheck(citationText) {
-  const warningBox = document.getElementById('dup-warning');
-  if (!warningBox) return;
-
-  const text = (citationText || '').trim();
-  if (text.length < 8) {
-    warningBox.classList.remove('visible');
-    warningBox.innerHTML = '';
-    return;
-  }
-
-  try {
-    const res = await fetch(`${API}/sources/check-duplicate`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({citation: text})
-    });
-    const data = await res.json();
-    const matches = data.matches || [];
-
-    if (matches.length === 0) {
-      warningBox.classList.remove('visible');
-      warningBox.innerHTML = '';
-      return;
-    }
-
-    const matchesHtml = matches.map(m => `
-      <div class="dup-match">
-        <span class="dup-match-score">${m.score}%</span>
-        <span class="dup-match-name">${escHtml(m.short_name)}</span>
-        <div class="dup-match-citation">${escHtml(m.citation)}</div>
-      </div>
-    `).join('');
-
-    warningBox.innerHTML = `
-      <div class="dup-warning-title">⚠ Похоже на уже существующий источник:</div>
-      ${matchesHtml}
-    `;
+  const warningBox=document.getElementById('dup-warning'); if(!warningBox)return;
+  const text=(citationText||'').trim(); if(text.length<8){warningBox.classList.remove('visible');warningBox.innerHTML='';return;}
+  try{const res=await fetch(`${API}/sources/check-duplicate`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({citation:text})});const data=await res.json();const matches=data.matches||[];
+    if(matches.length===0){warningBox.classList.remove('visible');warningBox.innerHTML='';return;}
+    warningBox.innerHTML=`<div class="dup-warning-title">⚠ Похоже на уже существующий источник:</div>${matches.map(m=>`<div class="dup-match"><span class="dup-match-score">${m.score}%</span><span class="dup-match-name">${escHtml(m.short_name)}</span><div class="dup-match-citation">${escHtml(m.citation)}</div></div>`).join('')}`;
     warningBox.classList.add('visible');
-  } catch (err) {
-    console.error('Duplicate check failed', err);
-  }
+  }catch(err){console.error('Duplicate check failed',err);}
 }
+function attachDuplicateCheckListener(){const textarea=document.getElementById('f-citation');if(!textarea)return;const trigger=()=>{clearTimeout(dupCheckTimer);dupCheckTimer=setTimeout(()=>runDuplicateCheck(textarea.value),150);};textarea.addEventListener('paste',()=>setTimeout(trigger,30));textarea.addEventListener('input',trigger);}
 
-function attachDuplicateCheckListener() {
-  const textarea = document.getElementById('f-citation');
-  if (!textarea) return;
+async function setRating(id,value){const s=sourcesById[id];const newValue=(s.rating===value)?null:value;await fetch(`${API}/sources/${id}/rating`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({rating:newValue})});s.rating=newValue;renderSources();showToast(newValue?`Оценка: ${newValue}/10`:'Оценка снята');}
 
-  const trigger = () => {
-    clearTimeout(dupCheckTimer);
-    dupCheckTimer = setTimeout(() => runDuplicateCheck(textarea.value), 150);
-  };
+function openCommentEditor(id){const s=sourcesById[id];const row=document.getElementById(`bottom-row-${id}`);if(!row)return;row.innerHTML=`<div class="comment-edit-zone"><textarea class="comment-textarea js-comment-textarea" data-id="${id}">${escHtml(s.comment||'')}</textarea><div class="comment-actions"><button class="btn-comment-save js-comment-save" data-id="${id}">Сохранить</button>${s.comment?`<button class="btn-comment-delete js-comment-delete" data-id="${id}">Удалить</button>`:''}<button class="btn-comment-cancel js-comment-cancel" data-id="${id}">Отмена</button></div></div>`;const textarea=row.querySelector('.js-comment-textarea');textarea.focus();textarea.setSelectionRange(textarea.value.length,textarea.value.length);}
 
-  textarea.addEventListener('paste', () => setTimeout(trigger, 30));
-  textarea.addEventListener('input', trigger);
-}
+async function saveComment(id){const row=document.getElementById(`bottom-row-${id}`);const textarea=row.querySelector('.js-comment-textarea');const text=textarea.value.trim();await fetch(`${API}/sources/${id}/comment`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({comment:text})});sourcesById[id].comment=text;renderSources();showToast('Комментарий сохранён');}
 
-// --- RATING & COMMENT HANDLERS (можно удалить без последствий) ---
-async function setRating(id, value) {
-  const s = sourcesById[id];
-  const newValue = (s.rating === value) ? null : value;
+async function deleteComment(id){await fetch(`${API}/sources/${id}/comment`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({comment:''})});sourcesById[id].comment='';renderSources();showToast('Комментарий удалён');}
 
-  await fetch(`${API}/sources/${id}/rating`, {
-    method: 'PATCH',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({rating: newValue})
-  });
+function cancelCommentEdit(id){renderSources();}
 
-  s.rating = newValue;
-  renderSources();
-  showToast(newValue ? `Оценка: ${newValue}/10` : 'Оценка снята');
-}
-
-function openCommentEditor(id) {
-  const s = sourcesById[id];
-  const row = document.getElementById(`bottom-row-${id}`);
-  if (!row) return;
-
-  row.innerHTML = `
-    <div class="comment-edit-zone">
-      <textarea class="comment-textarea js-comment-textarea" data-id="${id}">${escHtml(s.comment || '')}</textarea>
-      <div class="comment-actions">
-        <button class="btn-comment-save js-comment-save" data-id="${id}">Сохранить</button>
-        ${s.comment ? `<button class="btn-comment-delete js-comment-delete" data-id="${id}">Удалить</button>` : ''}
-        <button class="btn-comment-cancel js-comment-cancel" data-id="${id}">Отмена</button>
-      </div>
-    </div>
-  `;
-
-  const textarea = row.querySelector('.js-comment-textarea');
-  textarea.focus();
-  textarea.setSelectionRange(textarea.value.length, textarea.value.length);
-}
-
-async function saveComment(id) {
-  const row = document.getElementById(`bottom-row-${id}`);
-  const textarea = row.querySelector('.js-comment-textarea');
-  const text = textarea.value.trim();
-
-  await fetch(`${API}/sources/${id}/comment`, {
-    method: 'PATCH',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({comment: text})
-  });
-
-  sourcesById[id].comment = text;
-  renderSources();
-  showToast('Комментарий сохранён');
-}
-
-async function deleteComment(id) {
-  await fetch(`${API}/sources/${id}/comment`, {
-    method: 'PATCH',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({comment: ''})
-  });
-
-  sourcesById[id].comment = '';
-  renderSources();
-  showToast('Комментарий удалён');
-}
-
-function cancelCommentEdit(id) {
-  renderSources();
-}
-
-document.getElementById('sources-list').addEventListener('click', (e) => {
-  const ratingBtn = e.target.closest('.js-rating');
-  if (ratingBtn) {
-    const id = parseInt(ratingBtn.dataset.id);
-    const value = parseInt(ratingBtn.dataset.value);
-    setRating(id, value);
-    return;
-  }
-
-  const commentOpen = e.target.closest('.js-comment-open');
-  if (commentOpen) {
-    openCommentEditor(parseInt(commentOpen.dataset.id));
-    return;
-  }
-
-  const commentSave = e.target.closest('.js-comment-save');
-  if (commentSave) {
-    saveComment(parseInt(commentSave.dataset.id));
-    return;
-  }
-
-  const commentDelete = e.target.closest('.js-comment-delete');
-  if (commentDelete) {
-    deleteComment(parseInt(commentDelete.dataset.id));
-    return;
-  }
-
-  const commentCancel = e.target.closest('.js-comment-cancel');
-  if (commentCancel) {
-    cancelCommentEdit(parseInt(commentCancel.dataset.id));
-    return;
-  }
+document.getElementById('sources-list').addEventListener('click',(e)=>{
+  const ratingBtn=e.target.closest('.js-rating');if(ratingBtn){setRating(parseInt(ratingBtn.dataset.id),parseInt(ratingBtn.dataset.value));return;}
+  const commentOpen=e.target.closest('.js-comment-open');if(commentOpen){openCommentEditor(parseInt(commentOpen.dataset.id));return;}
+  const commentSave=e.target.closest('.js-comment-save');if(commentSave){saveComment(parseInt(commentSave.dataset.id));return;}
+  const commentDelete=e.target.closest('.js-comment-delete');if(commentDelete){deleteComment(parseInt(commentDelete.dataset.id));return;}
+  const commentCancel=e.target.closest('.js-comment-cancel');if(commentCancel){cancelCommentEdit(parseInt(commentCancel.dataset.id));return;}
 });
 
+initSidebar();
 load();
 </script>
 </body>
