@@ -331,7 +331,7 @@ FilterRegistry.register({
 
 FilterRegistry.register({
   id: 'rating',
-  getDefaultState: () => ({ min: 1, max: 10, anyRating: true }),
+  getDefaultState: () => ({ min: 0, max: 10, anyRating: true }),
   apply: (s, state) => { if (state.anyRating) return true; if (!s.rating) return false; return s.rating >= state.min && s.rating <= state.max; },
   render: (state) => `
     <div class="filter-section">
@@ -351,7 +351,7 @@ FilterRegistry.register({
         <div class="range-thumb" id="range-thumb-min"></div>
         <div class="range-thumb" id="range-thumb-max"></div>
       </div>
-      <div class="slider-labels"><span>1</span><span>10</span></div>
+      <div class="slider-labels"><span>0</span><span>10</span></div>
       ` : ''}
     </div>`,
   afterRender: (registry) => {
@@ -362,7 +362,7 @@ FilterRegistry.register({
     const thumbMax = document.getElementById('range-thumb-max');
     const minLabel = document.getElementById('rmin-label');
     const maxLabel = document.getElementById('rmax-label');
-    const MIN = 1, MAX = 10;
+    const MIN = 0, MAX = 10;
     let st = registry.state.rating;
 
     function pct(val) { return (val - MIN) / (MAX - MIN) * 100; }
@@ -417,7 +417,7 @@ document.getElementById('filters-mount').addEventListener('click', e => {
   if (filterId === 'rating') {
     FilterRegistry.state.rating = value === 'any'
       ? { min: 1, max: 10, anyRating: true }
-      : { min: FilterRegistry.state.rating.min, max: FilterRegistry.state.rating.max, anyRating: false };
+      : { min: 0, max: 10, anyRating: false };
   } else {
     FilterRegistry.state[filterId] = value;
   }
