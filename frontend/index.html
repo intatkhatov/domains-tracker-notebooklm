@@ -88,6 +88,7 @@
   .filter-chip-group { display: flex; gap: 4px; flex-wrap: wrap; }
   .filter-chip { padding: 5px 10px; border: 1px solid #ddd; border-radius: 6px; background: #fafafa; cursor: pointer; font-size: 11.5px; color: #666; transition: all 0.15s; user-select: none; white-space: nowrap; }
   .filter-chip:hover { background: #f0f0f0; }
+  .chip-count { font-size: 10px; opacity: 0.6; margin-left: 2px; }
   .filter-chip.active { background: #555; color: #fff; border-color: #555; }
   .filter-chip.active.processed-chip { background: #2e7d32; color: #fff; border-color: #2e7d32; }
   .filter-chip.active.listened-chip { background: #1565c0; color: #fff; border-color: #1565c0; }
@@ -291,10 +292,19 @@ const FilterRegistry = {
   register(filter) { this.filters.push(filter); this.state[filter.id] = filter.getDefaultState(); },
   resetAll() { this.filters.forEach(f => { this.state[f.id] = f.getDefaultState(); }); },
   applyAll(sources) { return sources.filter(s => this.filters.every(f => f.apply(s, this.state[f.id]))); },
+  countFor(filterId, value) {
+    // Считаем источники если в filterId выбрать value, остальные фильтры как есть
+    return allSources.filter(s => {
+      return this.filters.every(f => {
+        const st = f.id === filterId ? value : this.state[f.id];
+        return f.apply(s, st);
+      });
+    }).length;
+  },
   renderAll() {
     const mount = document.getElementById('filters-mount');
     if (!mount) return;
-    mount.innerHTML = this.filters.map(f => f.render(this.state[f.id])).join('');
+    mount.innerHTML = this.filters.map(f => f.render(this.state[f.id], this)).join('');
     this.filters.forEach(f => { if (f.afterRender) f.afterRender(this); });
   }
 };
@@ -303,13 +313,13 @@ FilterRegistry.register({
   id: 'processed',
   getDefaultState: () => 'any',
   apply: (s, state) => { if (state === 'yes') return !!s.processed; if (state === 'no') return !s.processed; return true; },
-  render: (state) => `
+  render: (state, reg) => `
     <div class="filter-section">
       <div class="filter-section-label">✅ Обработано</div>
       <div class="filter-chip-group">
-        <button class="filter-chip processed-chip ${state==='any'?'active':''}" data-filter="processed" data-value="any">любое</button>
-        <button class="filter-chip processed-chip ${state==='yes'?'active':''}" data-filter="processed" data-value="yes">да</button>
-        <button class="filter-chip processed-chip ${state==='no'?'active':''}" data-filter="processed" data-value="no">нет</button>
+        <button class="filter-chip processed-chip ${state==='any'?'active':''}" data-filter="processed" data-value="any">любое ${reg?'<span class=\'chip-count\'>'+reg.countFor('processed','any')+'</span>':''}</button>
+        <button class="filter-chip processed-chip ${state==='yes'?'active':''}" data-filter="processed" data-value="yes">да ${reg?'<span class=\'chip-count\'>'+reg.countFor('processed','yes')+'</span>':''}</button>
+        <button class="filter-chip processed-chip ${state==='no'?'active':''}" data-filter="processed" data-value="no">нет ${reg?'<span class=\'chip-count\'>'+reg.countFor('processed','no')+'</span>':''}</button>
       </div>
     </div>`
 });
@@ -318,13 +328,13 @@ FilterRegistry.register({
   id: 'listened',
   getDefaultState: () => 'any',
   apply: (s, state) => { if (state === 'yes') return !!s.listened; if (state === 'no') return !s.listened; return true; },
-  render: (state) => `
+  render: (state, reg) => `
     <div class="filter-section">
       <div class="filter-section-label">🎧 Прослушано</div>
       <div class="filter-chip-group">
-        <button class="filter-chip listened-chip ${state==='any'?'active':''}" data-filter="listened" data-value="any">любое</button>
-        <button class="filter-chip listened-chip ${state==='yes'?'active':''}" data-filter="listened" data-value="yes">да</button>
-        <button class="filter-chip listened-chip ${state==='no'?'active':''}" data-filter="listened" data-value="no">нет</button>
+        <button class="filter-chip listened-chip ${state==='any'?'active':''}" data-filter="listened" data-value="any">любое ${reg?'<span class=\'chip-count\'>'+reg.countFor('listened','any')+'</span>':''}</button>
+        <button class="filter-chip listened-chip ${state==='yes'?'active':''}" data-filter="listened" data-value="yes">да ${reg?'<span class=\'chip-count\'>'+reg.countFor('listened','yes')+'</span>':''}</button>
+        <button class="filter-chip listened-chip ${state==='no'?'active':''}" data-filter="listened" data-value="no">нет ${reg?'<span class=\'chip-count\'>'+reg.countFor('listened','no')+'</span>':''}</button>
       </div>
     </div>`
 });
@@ -337,13 +347,13 @@ FilterRegistry.register({
     if (state === 'no') return !(s.comment && s.comment.trim());
     return true;
   },
-  render: (state) => `
+  render: (state, reg) => `
     <div class="filter-section">
       <div class="filter-section-label">💬 Комментарий</div>
       <div class="filter-chip-group">
-        <button class="filter-chip ${state==='any'?'active':''}" data-filter="comment" data-value="any">любое</button>
-        <button class="filter-chip ${state==='yes'?'active':''}" data-filter="comment" data-value="yes">да</button>
-        <button class="filter-chip ${state==='no'?'active':''}" data-filter="comment" data-value="no">нет</button>
+        <button class="filter-chip ${state==='any'?'active':''}" data-filter="comment" data-value="any">любое ${reg?'<span class=\'chip-count\'>'+reg.countFor('comment','any')+'</span>':''}</button>
+        <button class="filter-chip ${state==='yes'?'active':''}" data-filter="comment" data-value="yes">да ${reg?'<span class=\'chip-count\'>'+reg.countFor('comment','yes')+'</span>':''}</button>
+        <button class="filter-chip ${state==='no'?'active':''}" data-filter="comment" data-value="no">нет ${reg?'<span class=\'chip-count\'>'+reg.countFor('comment','no')+'</span>':''}</button>
       </div>
     </div>`
 });
