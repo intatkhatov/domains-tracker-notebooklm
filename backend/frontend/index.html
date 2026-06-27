@@ -332,7 +332,7 @@ FilterRegistry.register({
 FilterRegistry.register({
   id: 'rating',
   getDefaultState: () => ({ min: 0, max: 10, anyRating: true }),
-  apply: (s, state) => { if (state.anyRating) return true; if (!s.rating) return false; return s.rating >= state.min && s.rating <= state.max; },
+  apply: (s, state) => { if (state.anyRating) return true; if (!s.rating) return state.min === 0; return s.rating >= state.min && s.rating <= state.max; },
   render: (state) => `
     <div class="filter-section">
       <div class="filter-section-label">⭐ Оценка</div>
