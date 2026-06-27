@@ -331,16 +331,11 @@ FilterRegistry.register({
 
 FilterRegistry.register({
   id: 'rating',
-  getDefaultState: () => ({ min: 0, max: 10, anyRating: true }),
-  apply: (s, state) => { if (state.anyRating) return true; if (!s.rating) return state.min === 0; return s.rating >= state.min && s.rating <= state.max; },
+  getDefaultState: () => ({ min: 0, max: 10 }),
+  apply: (s, state) => { if (!s.rating) return state.min === 0; return s.rating >= state.min && s.rating <= state.max; },
   render: (state) => `
     <div class="filter-section">
       <div class="filter-section-label">⭐ Оценка</div>
-      <div class="filter-chip-group" style="margin-bottom:10px">
-        <button class="filter-chip ${state.anyRating?'active':''}" data-filter="rating" data-value="any">любая</button>
-        <button class="filter-chip ${!state.anyRating?'active':''}" data-filter="rating" data-value="range">диапазон</button>
-      </div>
-      ${!state.anyRating ? `
       <div class="rating-filter-display">
         <span>от <b id="rmin-label">${state.min}</b></span>
         <span>до <b id="rmax-label">${state.max}</b></span>
@@ -352,7 +347,6 @@ FilterRegistry.register({
         <div class="range-thumb" id="range-thumb-max"></div>
       </div>
       <div class="slider-labels"><span>0</span><span>10</span></div>
-      ` : ''}
     </div>`,
   afterRender: (registry) => {
     const wrap = document.getElementById('range-slider-wrap');
@@ -363,7 +357,7 @@ FilterRegistry.register({
     const minLabel = document.getElementById('rmin-label');
     const maxLabel = document.getElementById('rmax-label');
     const MIN = 0, MAX = 10;
-    let st = registry.state.rating;
+    let st = registry.state.rating; st.anyRating = undefined;
 
     function pct(val) { return (val - MIN) / (MAX - MIN) * 100; }
 
@@ -415,9 +409,7 @@ document.getElementById('filters-mount').addEventListener('click', e => {
   const filterId = chip.dataset.filter;
   const value = chip.dataset.value;
   if (filterId === 'rating') {
-    FilterRegistry.state.rating = value === 'any'
-      ? { min: 1, max: 10, anyRating: true }
-      : { min: 0, max: 10, anyRating: false };
+    // слайдер управляет напрямую
   } else {
     FilterRegistry.state[filterId] = value;
   }
