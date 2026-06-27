@@ -35,7 +35,10 @@
   .sidebar { display: none; position: fixed; top: 54px; bottom: 0; left: 0; width: 280px; z-index: 50; padding-top: 20px; }
   .sidebar.open { display: block; }
   .sidebar-card { width: 260px; background: #fff; border: 1px solid #e8e8e8; border-radius: 8px; padding: 14px 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); margin: 0 12px; }
-  .sidebar-title { font-size: 11px; color: #888; margin-bottom: 14px; }
+  .sidebar-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .sidebar-title { font-size: 11px; color: #888; }
+  .btn-sidebar-close { width: 20px; height: 20px; border: none; background: #f0f0f0; border-radius: 50%; color: #888; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .btn-sidebar-close:hover { background: #e0e0e0; color: #1a1a1a; }
 
   .filter-section { margin-bottom: 16px; }
   .filter-section:last-child { margin-bottom: 0; }
@@ -163,7 +166,10 @@
 <div class="layout">
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-card">
-      <div class="sidebar-title"><span id="filter-count"></span></div>
+      <div class="sidebar-header-row">
+        <div class="sidebar-title"><span id="filter-count"></span></div>
+        <button class="btn-sidebar-close" id="btn-sidebar-close" type="button">✕</button>
+      </div>
       <div id="filters-mount"></div>
       <button class="btn-reset-filters" id="btn-reset-filters">Сбросить все</button>
     </div>
@@ -220,6 +226,10 @@ function initSidebar() {
   const isOpen = stored === null ? true : stored === 'true';
   setSidebarOpen(isOpen);
 }
+
+document.getElementById('btn-sidebar-close').addEventListener('click', () => {
+  setSidebarOpen(false);
+});
 
 document.getElementById('btn-sidebar-close').addEventListener('click', () => {
   setSidebarOpen(false);
