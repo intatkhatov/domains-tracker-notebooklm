@@ -7,12 +7,8 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f0; color: #1a1a1a; font-size: 14px; }
-
-  /* HEADER */
   header { background: #1a1a1a; color: #fff; padding: 10px 20px; position: fixed; top: 0; left: 0; right: 0; z-index: 100; }
   .header-top { display: flex; align-items: center; gap: 12px; max-width: 720px; margin: 0 auto; width: 100%; }
-  .header-top h1 { font-size: 14px; font-weight: 600; letter-spacing: 0.3px; white-space: nowrap; }
-  .stats { font-size: 11px; color: #999; display: flex; gap: 12px; white-space: nowrap; }
   .search-wrap { position: relative; flex: 1; max-width: 440px; }
   #search { width: 100%; padding: 7px 28px 7px 11px; border: 1px solid #3a3a3a; border-radius: 6px; font-size: 13px; background: #2a2a2a; color: #fff; }
   #search::placeholder { color: #888; }
@@ -20,9 +16,10 @@
   .search-clear { display: none; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; border: none; border-radius: 50%; background: #444; color: #ccc; font-size: 12px; cursor: pointer; align-items: center; justify-content: center; }
   .search-clear.visible { display: flex; }
   .search-clear:hover { background: #555; color: #fff; }
+  .btn-header { width: 34px; height: 34px; border: 1px solid #3a3a3a; border-radius: 6px; background: #2a2a2a; color: #ccc; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .btn-header:hover { background: #333; color: #fff; }
+  .btn-header.active { background: #3a3a3a; color: #fff; border-color: #666; }
   .burger-wrap { position: relative; flex-shrink: 0; }
-  .btn-burger { width: 34px; height: 34px; border: 1px solid #3a3a3a; border-radius: 6px; background: #2a2a2a; color: #ccc; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; }
-  .btn-burger:hover { background: #333; color: #fff; }
   .burger-menu { display: none; position: absolute; top: 40px; left: 0; background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.15); min-width: 180px; z-index: 150; overflow: hidden; }
   .burger-menu.open { display: block; }
   .burger-menu a { display: block; padding: 10px 16px; font-size: 13px; color: #1a1a1a; text-decoration: none; }
@@ -30,85 +27,36 @@
   .btn-add { padding: 7px 14px; background: #fff; color: #1a1a1a; border: none; border-radius: 6px; cursor: pointer; font-size: 12.5px; white-space: nowrap; font-weight: 600; flex-shrink: 0; }
   .btn-add:hover { background: #eee; }
 
-  /* LAYOUT */
   .layout { display: flex; justify-content: center; align-items: flex-start; padding: 20px 16px 40px; margin-top: 54px; }
 
-  /* SIDEBAR — выезжает из-за левого края, не перекрывает контент */
-  .sidebar {
-    position: fixed;
-    top: 54px;
-    left: 0;
-    width: 296px;
-    transform: translateX(-280px);
-    transition: transform 0.25s ease;
-    z-index: 50;
-    display: flex;
-    align-items: flex-start;
-    padding-top: 24px;
-  }
+  .sidebar { position: fixed; top: 54px; bottom: 0; left: 0; width: 296px; transform: translateX(-280px); transition: transform 0.25s ease; z-index: 50; display: flex; align-items: flex-start; padding-top: 20px; }
   .sidebar.open { transform: translateX(0); }
-  .sidebar-card {
-    width: 280px;
-    flex-shrink: 0;
-    background: #fff;
-    border: 1px solid #e8e8e8;
-    border-left: none;
-    border-radius: 0 8px 8px 0;
-    padding: 14px 16px;
-    box-shadow: 2px 2px 12px rgba(0,0,0,0.08);
-  }
-  .sidebar-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #999; margin-bottom: 14px; }
-
-  /* ЯЗЫЧОК — прикреплён к правому краю карточки фильтров */
-  .btn-sidebar-tab {
-    flex-shrink: 0;
-    align-self: flex-start;
-    margin-top: 8px;
-    width: 16px;
-    padding: 14px 3px;
-    background: #fff;
-    color: #999;
-    border: 1px solid #e8e8e8;
-    border-left: none;
-    border-radius: 0 6px 6px 0;
-    cursor: pointer;
-    font-size: 9px;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    letter-spacing: 1px;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.06);
-    white-space: nowrap;
-  }
+  .sidebar-card { width: 280px; flex-shrink: 0; background: #fff; border: 1px solid #e8e8e8; border-left: none; border-radius: 0 8px 8px 0; padding: 14px 16px; box-shadow: 2px 2px 12px rgba(0,0,0,0.08); }
+  .sidebar-title { font-size: 11px; color: #888; margin-bottom: 14px; }
+  .btn-sidebar-tab { flex-shrink: 0; align-self: flex-start; margin-top: 8px; width: 16px; padding: 14px 3px; background: #fff; color: #999; border: 1px solid #e8e8e8; border-left: none; border-radius: 0 6px 6px 0; cursor: pointer; font-size: 9px; writing-mode: vertical-rl; text-orientation: mixed; letter-spacing: 1px; box-shadow: 2px 2px 8px rgba(0,0,0,0.06); white-space: nowrap; }
   .btn-sidebar-tab:hover { color: #1a1a1a; }
 
-  /* FILTER SECTIONS */
-  .filter-section { margin-bottom: 18px; }
+  .filter-section { margin-bottom: 16px; }
   .filter-section:last-child { margin-bottom: 0; }
   .filter-section-label { font-size: 11.5px; font-weight: 600; color: #555; margin-bottom: 8px; }
   .filter-chip-group { display: flex; gap: 4px; flex-wrap: wrap; }
   .filter-chip { padding: 5px 10px; border: 1px solid #ddd; border-radius: 6px; background: #fafafa; cursor: pointer; font-size: 11.5px; color: #666; transition: all 0.15s; user-select: none; white-space: nowrap; }
   .filter-chip:hover { background: #f0f0f0; }
-  .chip-count { font-size: 10px; opacity: 0.6; margin-left: 2px; }
   .filter-chip.active { background: #555; color: #fff; border-color: #555; }
   .filter-chip.active.processed-chip { background: #2e7d32; color: #fff; border-color: #2e7d32; }
   .filter-chip.active.listened-chip { background: #1565c0; color: #fff; border-color: #1565c0; }
+  .chip-count { font-size: 10px; opacity: 0.65; margin-left: 3px; }
   .rating-filter-display { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: #555; margin-bottom: 10px; font-weight: 600; }
-
-  /* ДВУРУЧНЫЙ СЛАЙДЕР */
   .range-slider-wrap { position: relative; height: 28px; margin: 4px 0; cursor: pointer; }
   .range-slider-track { position: absolute; top: 50%; left: 0; right: 0; height: 4px; background: #e0e0e0; border-radius: 2px; transform: translateY(-50%); }
   .range-slider-fill { position: absolute; top: 50%; height: 4px; background: #1565c0; border-radius: 2px; transform: translateY(-50%); }
   .range-thumb { position: absolute; top: 50%; width: 16px; height: 16px; background: #fff; border: 2px solid #1565c0; border-radius: 50%; transform: translate(-50%, -50%); cursor: grab; z-index: 2; box-shadow: 0 1px 4px rgba(0,0,0,0.15); }
   .range-thumb:active { cursor: grabbing; box-shadow: 0 0 0 4px rgba(21,101,192,0.15); }
   .slider-labels { display: flex; justify-content: space-between; font-size: 10px; color: #aaa; margin-top: 2px; }
-
   .btn-reset-filters { width: 100%; padding: 7px 0; border: 1px solid #e0b0b0; border-radius: 6px; background: #fff; cursor: pointer; font-size: 11.5px; color: #c62828; margin-top: 16px; }
   .btn-reset-filters:hover { background: #ffebee; }
 
-  /* CONTENT — всегда фиксированной ширины */
   .content { width: 720px; flex-shrink: 0; }
-
-  /* SOURCE ROW */
   .source-row { background: #fff; border: 1px solid #e8e8e8; border-radius: 7px; margin-bottom: 8px; padding: 10px 12px 12px; transition: background 0.4s, border-color 0.4s; }
   .source-top { display: flex; align-items: flex-start; gap: 10px; }
   .source-row.processed { background: #f9fffe; border-color: #d8f0e8; }
@@ -138,9 +86,6 @@
   .btn-copy:hover { background: #e8f5e9; border-color: #a5d6a7; color: #2e7d32; }
   .btn-copy.copied { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
   .btn-icon:hover { background: #f0f0f0; }
-  .btn-icon.danger:hover { background: #ffebee; color: #c62828; border-color: #ffcdd2; }
-
-  /* MODAL */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; align-items: center; justify-content: center; }
   .modal-overlay.open { display: flex; }
   .modal { background: #fff; border-radius: 10px; padding: 24px; width: 540px; max-width: 95vw; max-height: 90vh; overflow-y: auto; box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
@@ -172,7 +117,7 @@
   .comment-zone-wrap { flex: 1; min-width: 0; }
   .comment-display { font-size: 11.5px; color: #999; text-decoration: underline; text-decoration-style: dashed; text-decoration-color: #bbb; text-underline-offset: 4px; cursor: pointer; line-height: 1.6; margin-right: 40px; display: inline-block; }
   .comment-display.has-text { color: #666; }
-  .comment-display:hover { color: #333; border-color: #999; }
+  .comment-display:hover { color: #333; }
   .comment-edit-zone { flex: 1; min-width: 0; }
   .comment-textarea { width: 100%; min-height: 50px; padding: 6px 8px; font-size: 11.5px; border: 1px solid #ccc; border-radius: 5px; resize: vertical; font-family: inherit; margin-bottom: 6px; }
   .comment-actions { display: flex; gap: 6px; }
@@ -199,8 +144,9 @@
 
 <header>
   <div class="header-top">
+    <button class="btn-header" id="btn-filters-header" type="button" title="Фильтры">⚙︎</button>
     <div class="burger-wrap">
-      <button class="btn-burger" id="btn-burger" type="button" title="Меню">☰</button>
+      <button class="btn-header" id="btn-burger" type="button" title="Меню">☰</button>
       <div class="burger-menu" id="burger-menu">
         <a href="/import.html">Импорт источников</a>
       </div>
@@ -216,7 +162,7 @@
 <div class="layout">
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-card">
-      <div class="sidebar-title"><span id="filter-count" style="font-weight:400;color:#888;text-transform:none;letter-spacing:0;font-size:11px"></span></div>
+      <div class="sidebar-title"><span id="filter-count"></span></div>
       <div id="filters-mount"></div>
       <button class="btn-reset-filters" id="btn-reset-filters">Сбросить все</button>
     </div>
@@ -253,23 +199,21 @@ let sourcesById = {};
 let currentSearch = '';
 let justAddedId = null;
 
-// =========================================================================
 // SIDEBAR
-// =========================================================================
 const SIDEBAR_KEY = 'dt_sidebar_open';
 
 function setSidebarOpen(open) {
   const sidebar = document.getElementById('sidebar');
   const tab = document.getElementById('btn-sidebar-tab');
-  const btnFH = document.getElementById('btn-filters-header');
+  const btnF = document.getElementById('btn-filters-header');
   if (open) {
     sidebar.classList.add('open');
     tab.textContent = '◀ Скрыть';
-    if (btnFH) btnFH.classList.add('active');
+    if (btnF) btnF.classList.add('active');
   } else {
     sidebar.classList.remove('open');
     tab.textContent = 'Фильтры';
-    if (btnFH) btnFH.classList.remove('active');
+    if (btnF) btnF.classList.remove('active');
   }
   localStorage.setItem(SIDEBAR_KEY, String(open));
 }
@@ -281,28 +225,37 @@ function initSidebar() {
 }
 
 document.getElementById('btn-sidebar-tab').addEventListener('click', () => {
-  const sidebar = document.getElementById('sidebar');
-  setSidebarOpen(!sidebar.classList.contains('open'));
+  setSidebarOpen(!document.getElementById('sidebar').classList.contains('open'));
 });
 
-// =========================================================================
+document.getElementById('btn-filters-header').addEventListener('click', () => {
+  setSidebarOpen(!document.getElementById('sidebar').classList.contains('open'));
+});
+
 // FILTER REGISTRY
-// =========================================================================
 const FilterRegistry = {
   filters: [],
   state: {},
+
   register(filter) { this.filters.push(filter); this.state[filter.id] = filter.getDefaultState(); },
+
   resetAll() { this.filters.forEach(f => { this.state[f.id] = f.getDefaultState(); }); },
-  applyAll(sources) { return sources.filter(s => this.filters.every(f => f.apply(s, this.state[f.id]))); },
+
+  applyAll(sources) {
+    return sources.filter(s => this.filters.every(f => f.apply(s, this.state[f.id])));
+  },
+
   countFor(filterId, value) {
-    // Считаем источники если в filterId выбрать value, остальные фильтры как есть
-    return allSources.filter(s => {
+    if (!allSources.length) return '';
+    const n = allSources.filter(s => {
       return this.filters.every(f => {
         const st = f.id === filterId ? value : this.state[f.id];
         return f.apply(s, st);
       });
     }).length;
+    return n;
   },
+
   renderAll() {
     const mount = document.getElementById('filters-mount');
     if (!mount) return;
@@ -311,36 +264,47 @@ const FilterRegistry = {
   }
 };
 
+// Фильтр: Обработано
 FilterRegistry.register({
   id: 'processed',
   getDefaultState: () => 'any',
-  apply: (s, state) => { if (state === 'yes') return !!s.processed; if (state === 'no') return !s.processed; return true; },
+  apply: (s, state) => {
+    if (state === 'yes') return !!s.processed;
+    if (state === 'no') return !s.processed;
+    return true;
+  },
   render: (state, reg) => `
     <div class="filter-section">
       <div class="filter-section-label">✅ Обработано</div>
       <div class="filter-chip-group">
-        <button class="filter-chip processed-chip ${state==='any'?'active':''}" data-filter="processed" data-value="any">любое ${reg?'<span class=\'chip-count\'>'+reg.countFor('processed','any')+'</span>':''}</button>
-        <button class="filter-chip processed-chip ${state==='yes'?'active':''}" data-filter="processed" data-value="yes">да ${reg?'<span class=\'chip-count\'>'+reg.countFor('processed','yes')+'</span>':''}</button>
-        <button class="filter-chip processed-chip ${state==='no'?'active':''}" data-filter="processed" data-value="no">нет ${reg?'<span class=\'chip-count\'>'+reg.countFor('processed','no')+'</span>':''}</button>
+        <button class="filter-chip processed-chip ${state==='any'?'active':''}" data-filter="processed" data-value="any">любое<span class="chip-count">${reg ? reg.countFor('processed','any') : ''}</span></button>
+        <button class="filter-chip processed-chip ${state==='yes'?'active':''}" data-filter="processed" data-value="yes">да<span class="chip-count">${reg ? reg.countFor('processed','yes') : ''}</span></button>
+        <button class="filter-chip processed-chip ${state==='no'?'active':''}" data-filter="processed" data-value="no">нет<span class="chip-count">${reg ? reg.countFor('processed','no') : ''}</span></button>
       </div>
     </div>`
 });
 
+// Фильтр: Прослушано
 FilterRegistry.register({
   id: 'listened',
   getDefaultState: () => 'any',
-  apply: (s, state) => { if (state === 'yes') return !!s.listened; if (state === 'no') return !s.listened; return true; },
+  apply: (s, state) => {
+    if (state === 'yes') return !!s.listened;
+    if (state === 'no') return !s.listened;
+    return true;
+  },
   render: (state, reg) => `
     <div class="filter-section">
       <div class="filter-section-label">🎧 Прослушано</div>
       <div class="filter-chip-group">
-        <button class="filter-chip listened-chip ${state==='any'?'active':''}" data-filter="listened" data-value="any">любое ${reg?'<span class=\'chip-count\'>'+reg.countFor('listened','any')+'</span>':''}</button>
-        <button class="filter-chip listened-chip ${state==='yes'?'active':''}" data-filter="listened" data-value="yes">да ${reg?'<span class=\'chip-count\'>'+reg.countFor('listened','yes')+'</span>':''}</button>
-        <button class="filter-chip listened-chip ${state==='no'?'active':''}" data-filter="listened" data-value="no">нет ${reg?'<span class=\'chip-count\'>'+reg.countFor('listened','no')+'</span>':''}</button>
+        <button class="filter-chip listened-chip ${state==='any'?'active':''}" data-filter="listened" data-value="any">любое<span class="chip-count">${reg ? reg.countFor('listened','any') : ''}</span></button>
+        <button class="filter-chip listened-chip ${state==='yes'?'active':''}" data-filter="listened" data-value="yes">да<span class="chip-count">${reg ? reg.countFor('listened','yes') : ''}</span></button>
+        <button class="filter-chip listened-chip ${state==='no'?'active':''}" data-filter="listened" data-value="no">нет<span class="chip-count">${reg ? reg.countFor('listened','no') : ''}</span></button>
       </div>
     </div>`
 });
 
+// Фильтр: Комментарий
 FilterRegistry.register({
   id: 'comment',
   getDefaultState: () => 'any',
@@ -353,17 +317,21 @@ FilterRegistry.register({
     <div class="filter-section">
       <div class="filter-section-label">💬 Комментарий</div>
       <div class="filter-chip-group">
-        <button class="filter-chip ${state==='any'?'active':''}" data-filter="comment" data-value="any">любое ${reg?'<span class=\'chip-count\'>'+reg.countFor('comment','any')+'</span>':''}</button>
-        <button class="filter-chip ${state==='yes'?'active':''}" data-filter="comment" data-value="yes">да ${reg?'<span class=\'chip-count\'>'+reg.countFor('comment','yes')+'</span>':''}</button>
-        <button class="filter-chip ${state==='no'?'active':''}" data-filter="comment" data-value="no">нет ${reg?'<span class=\'chip-count\'>'+reg.countFor('comment','no')+'</span>':''}</button>
+        <button class="filter-chip ${state==='any'?'active':''}" data-filter="comment" data-value="any">любое<span class="chip-count">${reg ? reg.countFor('comment','any') : ''}</span></button>
+        <button class="filter-chip ${state==='yes'?'active':''}" data-filter="comment" data-value="yes">да<span class="chip-count">${reg ? reg.countFor('comment','yes') : ''}</span></button>
+        <button class="filter-chip ${state==='no'?'active':''}" data-filter="comment" data-value="no">нет<span class="chip-count">${reg ? reg.countFor('comment','no') : ''}</span></button>
       </div>
     </div>`
 });
 
+// Фильтр: Оценка
 FilterRegistry.register({
   id: 'rating',
   getDefaultState: () => ({ min: 0, max: 10 }),
-  apply: (s, state) => { if (!s.rating) return state.min === 0; return s.rating >= state.min && s.rating <= state.max; },
+  apply: (s, state) => {
+    if (!s.rating) return state.min === 0;
+    return s.rating >= state.min && s.rating <= state.max;
+  },
   render: (state) => `
     <div class="filter-section">
       <div class="filter-section-label">⭐ Оценка</div>
@@ -388,7 +356,7 @@ FilterRegistry.register({
     const minLabel = document.getElementById('rmin-label');
     const maxLabel = document.getElementById('rmax-label');
     const MIN = 0, MAX = 10;
-    let st = registry.state.rating; st.anyRating = undefined;
+    let st = registry.state.rating;
 
     function pct(val) { return (val - MIN) / (MAX - MIN) * 100; }
 
@@ -410,7 +378,7 @@ FilterRegistry.register({
         let val = Math.round(MIN + ratio * (MAX - MIN));
         if (isMin) { st.min = Math.min(val, st.max); }
         else { st.max = Math.max(val, st.min); }
-        registry.state.rating = { ...st, anyRating: false };
+        registry.state.rating = { ...st };
         updateUI();
         renderSources();
       }
@@ -439,11 +407,7 @@ document.getElementById('filters-mount').addEventListener('click', e => {
   if (!chip) return;
   const filterId = chip.dataset.filter;
   const value = chip.dataset.value;
-  if (filterId === 'rating') {
-    // слайдер управляет напрямую
-  } else {
-    FilterRegistry.state[filterId] = value;
-  }
+  FilterRegistry.state[filterId] = value;
   FilterRegistry.renderAll();
   renderSources();
 });
@@ -454,8 +418,7 @@ document.getElementById('btn-reset-filters').addEventListener('click', () => {
   renderSources();
 });
 
-// =========================================================================
-
+// CORE
 async function load() {
   const res = await fetch(`${API}/domains`);
   const domains = await res.json();
@@ -465,14 +428,6 @@ async function load() {
   allSources.forEach(s => sourcesById[s.id] = s);
   FilterRegistry.renderAll();
   renderSources();
-  updateStats();
-}
-
-function updateStats() {
-  const total = allSources.length;
-  const done = allSources.filter(s => s.processed).length;
-  const listened = allSources.filter(s => s.listened).length;
-  document.getElementById('stats').innerHTML = `<span>✅ ${done}/${total}</span><span>🎧 ${listened}/${total}</span>`;
 }
 
 function renderSources() {
@@ -483,7 +438,7 @@ function renderSources() {
   if (q) sources = sources.filter(s => s.short_name.toLowerCase().includes(q) || s.citation.toLowerCase().includes(q));
   sources = FilterRegistry.applyAll(sources);
   const countEl = document.getElementById('filter-count');
-  if (countEl) countEl.innerHTML = `Показано: <b>${sources.length}</b> из <b>${allSources.length}</b>`;
+  if (countEl) countEl.textContent = sources.length + ' из ' + allSources.length;
   if (sources.length === 0) { list.innerHTML = ''; empty.style.display = 'block'; return; }
   empty.style.display = 'none';
   list.innerHTML = sources.map(s => renderSource(s)).join('');
@@ -565,7 +520,7 @@ function copyToClipboard(text, btn) {
 async function toggleField(id, field, val) {
   await fetch(`${API}/sources/${id}/${field}`, {method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({[field]:val})});
   const s = sourcesById[id]; if (s) s[field] = val;
-  renderSources(); updateStats();
+  renderSources();
   showToast(val ? 'Отмечено' : 'Отметка снята');
 }
 
@@ -580,7 +535,7 @@ async function deleteSourceById(id) {
   if (!confirm('Удалить источник?')) return;
   await fetch(`${API}/sources/${id}`,{method:'DELETE'});
   allSources = allSources.filter(s=>s.id!==id); delete sourcesById[id];
-  renderSources(); updateStats(); showToast('Источник удалён');
+  renderSources(); showToast('Источник удалён');
 }
 
 function openModal(title, bodyHtml, onSave) {
@@ -630,13 +585,6 @@ const searchInput=document.getElementById('search');
 const searchClear=document.getElementById('search-clear');
 searchInput.addEventListener('input',e=>{currentSearch=e.target.value;searchClear.classList.toggle('visible',currentSearch.length>0);renderSources();});
 searchClear.addEventListener('click',()=>{searchInput.value='';currentSearch='';searchClear.classList.remove('visible');renderSources();searchInput.focus();});
-
-document.getElementById('btn-filters-header').addEventListener('click', () => {
-  const sidebar = document.getElementById('sidebar');
-  const btn = document.getElementById('btn-filters-header');
-  setSidebarOpen(!sidebar.classList.contains('open'));
-  btn.classList.toggle('active', sidebar.classList.contains('open'));
-});
 
 document.getElementById('btn-burger').addEventListener('click',e=>{e.stopPropagation();document.getElementById('burger-menu').classList.toggle('open');});
 document.addEventListener('click',e=>{const menu=document.getElementById('burger-menu');const btn=document.getElementById('btn-burger');if(menu.classList.contains('open')&&!menu.contains(e.target)&&e.target!==btn)menu.classList.remove('open');});
