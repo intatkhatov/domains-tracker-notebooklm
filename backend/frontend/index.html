@@ -332,6 +332,26 @@ FilterRegistry.register({
     </div>`
 });
 
+// Фильтр: Переслушать
+FilterRegistry.register({
+  id: 'relisten',
+  getDefaultState: () => 'any',
+  apply: (s, state) => {
+    if (state === 'yes') return !!s.relisten;
+    if (state === 'no') return !s.relisten;
+    return true;
+  },
+  render: (state, reg) => `
+    <div class="filter-section">
+      <div class="filter-section-label">🔁 Переслушать</div>
+      <div class="filter-chip-group">
+        <button class="filter-chip ${state==='any'?'active':''}" data-filter="relisten" data-value="any">любое<span class="chip-count">${reg ? reg.countFor('relisten','any') : ''}</span></button>
+        <button class="filter-chip ${state==='yes'?'active':''}" data-filter="relisten" data-value="yes">да<span class="chip-count">${reg ? reg.countFor('relisten','yes') : ''}</span></button>
+        <button class="filter-chip ${state==='no'?'active':''}" data-filter="relisten" data-value="no">нет<span class="chip-count">${reg ? reg.countFor('relisten','no') : ''}</span></button>
+      </div>
+    </div>`
+});
+
 // Фильтр: Комментарий
 FilterRegistry.register({
   id: 'comment',
