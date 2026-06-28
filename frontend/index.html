@@ -483,7 +483,7 @@ function renderSource(s) {
   const lostTag = s.original_lost
     ? `<span class="tag lost">оригинал утрачен · ${escHtml(s.original_language)}</span><span class="tag translation">перевод: ${escHtml(s.authoritative_translation_language)}</span>`
     : `<span class="tag">${escHtml(s.original_language)}</span>`;
-  const notebookHtml = s.notebook_url ? `<div class="source-notebook"><a href="${escHtml(s.notebook_url)}" target="_blank">📓 NotebookLM</a></div>` : '';
+  const notebookHtml = s.notebook_url ? `<div class="source-notebook"><a href="${escHtml(s.notebook_url)}" target="_blank">🎙️ Аудиопересказ</a></div>` : '';
   const justAddedClass = s.id === justAddedId ? 'just-added' : '';
   return `
     <div class="source-row ${s.processed?'processed':''} ${justAddedClass}" id="source-row-${s.id}" data-id="${s.id}">
