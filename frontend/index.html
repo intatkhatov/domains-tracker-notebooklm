@@ -511,7 +511,11 @@ function renderSource(s) {
       <div class="source-top">
         <div class="source-flags">
           <label class="flag-line ${s.processed?'on':''}"><span class="flag-icon">✅</span><input type="checkbox" class="toggle-checkbox processed-cb js-toggle" data-field="processed" data-id="${s.id}" ${s.processed?'checked':''}></label>
-          <label class="flag-line ${s.listened?'on':''}"><span class="flag-icon">🎧</span><input type="checkbox" class="toggle-checkbox listened-cb js-toggle" data-field="listened" data-id="${s.id}" ${s.listened?'checked':''}></label>
+          <label class="flag-line ${s.listened?'on':''}"><span class="flag-icon">🎧</span><input type="checkbox" class="toggle-checkbox listened-cb js-toggle" data-field="listened" data-id="${s.id}" ${s.listened?'checked':''}}>
+          </label>
+          <label class="flag-line ${s.relisten?'on':''}">
+            <span class="flag-icon">🔁</span>
+            <input type="checkbox" class="toggle-checkbox relisten-cb js-toggle" data-field="relisten" data-id="${s.id}" ${s.relisten?'checked':''}}></label>
         </div>
         <div class="source-body">
           <div class="source-short">${escHtml(s.short_name)}</div>
