@@ -311,26 +311,6 @@ FilterRegistry.register({
     </div>`
 });
 
-// Фильтр: Комментарий
-FilterRegistry.register({
-  id: 'comment',
-  getDefaultState: () => 'any',
-  apply: (s, state) => {
-    if (state === 'yes') return !!(s.comment && s.comment.trim());
-    if (state === 'no') return !(s.comment && s.comment.trim());
-    return true;
-  },
-  render: (state, reg) => `
-    <div class="filter-section">
-      <div class="filter-section-label">💬 Комментарий</div>
-      <div class="filter-chip-group">
-        <button class="filter-chip ${state==='any'?'active':''}" data-filter="comment" data-value="any">любое<span class="chip-count">${reg ? reg.countFor('comment','any') : ''}</span></button>
-        <button class="filter-chip ${state==='yes'?'active':''}" data-filter="comment" data-value="yes">да<span class="chip-count">${reg ? reg.countFor('comment','yes') : ''}</span></button>
-        <button class="filter-chip ${state==='no'?'active':''}" data-filter="comment" data-value="no">нет<span class="chip-count">${reg ? reg.countFor('comment','no') : ''}</span></button>
-      </div>
-    </div>`
-});
-
 // Фильтр: Аудиопересказ
 FilterRegistry.register({
   id: 'notebook',
@@ -347,6 +327,26 @@ FilterRegistry.register({
         <button class="filter-chip ${state==='any'?'active':''}" data-filter="notebook" data-value="any">любое<span class="chip-count">${reg ? reg.countFor('notebook','any') : ''}</span></button>
         <button class="filter-chip ${state==='yes'?'active':''}" data-filter="notebook" data-value="yes">да<span class="chip-count">${reg ? reg.countFor('notebook','yes') : ''}</span></button>
         <button class="filter-chip ${state==='no'?'active':''}" data-filter="notebook" data-value="no">нет<span class="chip-count">${reg ? reg.countFor('notebook','no') : ''}</span></button>
+      </div>
+    </div>`
+});
+
+// Фильтр: Комментарий
+FilterRegistry.register({
+  id: 'comment',
+  getDefaultState: () => 'any',
+  apply: (s, state) => {
+    if (state === 'yes') return !!(s.comment && s.comment.trim());
+    if (state === 'no') return !(s.comment && s.comment.trim());
+    return true;
+  },
+  render: (state, reg) => `
+    <div class="filter-section">
+      <div class="filter-section-label">💬 Комментарий</div>
+      <div class="filter-chip-group">
+        <button class="filter-chip ${state==='any'?'active':''}" data-filter="comment" data-value="any">любое<span class="chip-count">${reg ? reg.countFor('comment','any') : ''}</span></button>
+        <button class="filter-chip ${state==='yes'?'active':''}" data-filter="comment" data-value="yes">да<span class="chip-count">${reg ? reg.countFor('comment','yes') : ''}</span></button>
+        <button class="filter-chip ${state==='no'?'active':''}" data-filter="comment" data-value="no">нет<span class="chip-count">${reg ? reg.countFor('comment','no') : ''}</span></button>
       </div>
     </div>`
 });
