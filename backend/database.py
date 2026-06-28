@@ -40,6 +40,14 @@ def init_db():
         );
     ''')
 
+    # Миграция: добавляем relisten если нет
+    try:
+        c.execute('ALTER TABLE sources ADD COLUMN relisten INTEGER DEFAULT 0')
+        conn.commit()
+        print('Migration: relisten column added.')
+    except Exception:
+        pass
+
     conn.commit()
 
     # Загружаем данные из JSON если таблицы пустые
