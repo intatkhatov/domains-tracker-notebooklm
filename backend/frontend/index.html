@@ -569,6 +569,7 @@ function copyToClipboard(text, btn) {
 async function toggleField(id, field, val) {
   await fetch(`${API}/sources/${id}/${field}`, {method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({[field]:val})});
   const s = sourcesById[id]; if (s) s[field] = val;
+  FilterRegistry.renderAll();
   renderSources();
   showToast(val ? 'Отмечено' : 'Отметка снята');
 }
