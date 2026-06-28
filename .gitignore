@@ -2,3 +2,7 @@ __pycache__/
 *.pyc
 backend/data/import_temp/
 .DS_Store
+
+# Farm — секретные файлы (не коммитить)
+backend/data/farm.db
+backend/data/.farm_key

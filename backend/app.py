@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 from database import get_db, init_db
+from farm_db import init_farm_db
+from farm_routes import farm_bp
 from similarity import check_duplicates
 from import_module import import_bp
 from datetime import datetime, timezone
@@ -8,8 +10,10 @@ from datetime import datetime, timezone
 app = Flask(__name__, static_folder='/app/frontend', static_url_path='')
 CORS(app)
 app.register_blueprint(import_bp)
+app.register_blueprint(farm_bp)
 
 init_db()
+init_farm_db()
 
 
 @app.route('/')
@@ -20,6 +24,11 @@ def index():
 @app.route('/import.html')
 def import_page():
     return send_from_directory('/app/frontend', 'import.html')
+
+
+@app.route('/farm.html')
+def farm_page():
+    return send_from_directory('/app/frontend', 'farm.html')
 
 
 @app.route('/api/domains', methods=['GET'])
@@ -66,7 +75,6 @@ def add_source():
     conn = get_db()
     c = conn.cursor()
 
-    # Находим максимальный существующий номер (как число) и берём следующий
     c.execute('SELECT source_id FROM sources')
     existing = [r['source_id'] for r in c.fetchall()]
     max_num = 0
@@ -184,6 +192,7 @@ def toggle_relisten(source_id):
     )
     db.commit()
     return jsonify({'ok': True})
+
 
 @app.route('/api/sources/<int:source_id>/rating', methods=['PATCH'])
 def update_rating(source_id):

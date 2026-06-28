@@ -14,6 +14,12 @@ done
 cp "$DB" "$BACKUP_DIR/tracker_1.db"
 echo "Local backup done: tracker_1.db ($(date '+%Y-%m-%d %H:%M:%S'))"
 
+# Шифруем farm.db перед коммитом
+if [ -f "$HOME/projects/domains-tracker/backend/data/farm.db" ]; then
+  docker exec domains_tracker_backend python3 -c "from farm_db import encrypt_farm_db; encrypt_farm_db()"
+  echo "Farm DB зашифрована."
+fi
+
 # Git-бэкап в GitHub
 cd "$PROJECT_DIR" || exit 1
 
