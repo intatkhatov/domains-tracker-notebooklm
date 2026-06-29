@@ -142,6 +142,16 @@
 
   .password-cell.revealed { color: #1a1a1a; }
 
+  .copy-cell {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .copy-cell:hover {
+    text-decoration: underline;
+    color: #1a1a1a;
+  }
+
   .btn-edit, .btn-delete {
     padding: 4px 9px;
     border-radius: 5px;
@@ -502,7 +512,7 @@ function renderTable() {
       <td class="td-month">${escHtml(r.month)}</td>
       <td class="td-year">${r.year ?? ''}</td>
       <td class="td-gender">${escHtml(r.gender)}</td>
-      <td class="td-email">${escHtml(r.email)}</td>
+      <td class="td-email copy-cell" data-copy="${escHtml(r.email)}" title="Нажми чтобы скопировать">${escHtml(r.email)}</td>
       <td class="td-password password-cell" data-pwd="${escHtml(r.password)}" title="Нажми чтобы показать">••••••••</td>
       <td class="td-lost">${r.lost ? '<span class="badge-lost">Да</span>' : '<span class="badge-ok">Нет</span>'}</td>
       <td class="td-reason">${escHtml(r.loss_reason)}</td>
@@ -516,6 +526,13 @@ function renderTable() {
 
 // Показать/скрыть пароль по клику
 document.getElementById('farm-tbody').addEventListener('click', e => {
+  const copyCell = e.target.closest(".copy-cell");
+  if (copyCell) {
+    const text = copyCell.dataset.copy || "";
+    navigator.clipboard.writeText(text).then(() => showToast("Скопировано!"));
+    return;
+  }
+
   const cell = e.target.closest('.password-cell');
   if (cell) {
     if (cell.classList.contains('revealed')) {
@@ -524,6 +541,7 @@ document.getElementById('farm-tbody').addEventListener('click', e => {
     } else {
       cell.textContent = cell.dataset.pwd || '—';
       cell.classList.add('revealed');
+      navigator.clipboard.writeText(cell.dataset.pwd || '').then(() => showToast('Пароль скопирован!'));
     }
     return;
   }
