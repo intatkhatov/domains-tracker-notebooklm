@@ -16,8 +16,12 @@ echo "Local backup done: tracker_1.db ($(date '+%Y-%m-%d %H:%M:%S'))"
 
 # Шифруем farm.db перед коммитом
 if [ -f "$HOME/projects/domains-tracker/backend/data/farm.db" ]; then
-  docker exec domains_tracker_backend python3 -c "from farm_db import encrypt_farm_db; encrypt_farm_db()"
-  echo "Farm DB зашифрована."
+  if docker ps --format '{{.Names}}' | grep -q "^domains_tracker_backend$"; then
+    docker exec domains_tracker_backend python3 -c "from farm_db import encrypt_farm_db; encrypt_farm_db()"
+    echo "Farm DB зашифрована."
+  else
+    echo "Farm DB: контейнер не запущен, шифрование пропущено."
+  fi
 fi
 
 # Git-бэкап в GitHub
