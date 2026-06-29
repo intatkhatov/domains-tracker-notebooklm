@@ -68,7 +68,7 @@
     background: #fff;
     border: 1px solid #e8e8e8;
     border-radius: 10px;
-    overflow: hidden;
+    overflow-x: auto;
   }
 
   table {
@@ -100,16 +100,18 @@
   }
 
   .td-num { width: 48px; color: #888; font-size: 12px; }
-  .td-name { min-width: 120px; font-weight: 500; }
+  .td-name { min-width: 90px; font-weight: 500; }
   .td-day { width: 48px; }
   .td-month { width: 80px; }
   .td-year { width: 64px; }
   .td-gender { width: 100px; }
-  .td-email { min-width: 160px; }
-  .td-password { min-width: 120px; }
+  .td-email { min-width: 130px; }
+  .td-phone { min-width: 110px; }
+  .td-password { min-width: 100px; }
   .td-lost { width: 64px; text-align: center; }
-  .td-reason { min-width: 140px; color: #888; font-size: 12px; }
-  .td-actions { width: 80px; white-space: nowrap; }
+  .td-reason { min-width: 100px; color: #888; font-size: 12px; }
+  .td-actions { width: 70px; white-space: nowrap; position: sticky; right: 0; background: #fff; box-shadow: -2px 0 4px rgba(0,0,0,0.06); }
+  thead .td-actions { background: #1a1a1a; }
 
   .badge-lost {
     display: inline-block;
@@ -373,6 +375,8 @@
           <th class="td-year">Год</th>
           <th class="td-gender">Пол</th>
           <th class="td-email">Эл. почта</th>
+          <th class="td-phone">Тел. подтверждения</th>
+          <th class="td-phone">Тел. в аккаунте</th>
           <th class="td-password">Пароль</th>
           <th class="td-lost">Утрачен</th>
           <th class="td-reason">Причина утраты</th>
@@ -429,6 +433,16 @@
     <div class="form-row">
       <label>Эл. почта</label>
       <input type="email" id="f-email" placeholder="example@mail.com">
+    </div>
+
+    <div class="form-row">
+      <label>Телефон для подтверждения</label>
+      <input type="text" id="f-phone-confirm" placeholder="+7 999 123 45 67">
+    </div>
+
+    <div class="form-row">
+      <label>Телефон в аккаунте</label>
+      <input type="text" id="f-phone-account" placeholder="+7 999 123 45 67">
     </div>
 
     <div class="form-row">
@@ -513,6 +527,8 @@ function renderTable() {
       <td class="td-year">${r.year ?? ''}</td>
       <td class="td-gender">${escHtml(r.gender)}</td>
       <td class="td-email copy-cell" data-copy="${escHtml(r.email)}" title="Нажми чтобы скопировать">${escHtml(r.email)}</td>
+      <td class="td-phone">${r.phone_confirm || "—"}</td>
+      <td class="td-phone">${r.phone_account || "—"}</td>
       <td class="td-password password-cell" data-pwd="${escHtml(r.password)}" title="Нажми чтобы показать">••••••••</td>
       <td class="td-lost">${r.lost ? '<span class="badge-lost">Да</span>' : '<span class="badge-ok">Нет</span>'}</td>
       <td class="td-reason">${escHtml(r.loss_reason)}</td>
@@ -568,7 +584,7 @@ function closeModal() {
 }
 
 function clearForm() {
-  ['f-name','f-email','f-password','f-reason'].forEach(id => document.getElementById(id).value = '');
+  ['f-name','f-email','f-phone-confirm','f-phone-account','f-password','f-reason'].forEach(id => document.getElementById(id).value = '');
   ['f-day','f-year'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('f-month').value = '';
   document.getElementById('f-gender').value = 'Не указан';
@@ -593,6 +609,8 @@ function openEdit(id) {
   document.getElementById('f-year').value = r.year || '';
   document.getElementById('f-gender').value = r.gender || 'Не указан';
   document.getElementById('f-email').value = r.email || '';
+  document.getElementById('f-phone-confirm').value = r.phone_confirm || '';
+  document.getElementById('f-phone-account').value = r.phone_account || '';
   document.getElementById('f-password').value = r.password || '';
   document.getElementById('f-lost').checked = !!r.lost;
   document.getElementById('f-reason').value = r.loss_reason || '';
@@ -612,6 +630,8 @@ document.getElementById('btn-save').addEventListener('click', async () => {
     year: parseInt(document.getElementById('f-year').value) || null,
     gender: document.getElementById('f-gender').value,
     email: document.getElementById('f-email').value.trim(),
+    phone_confirm: document.getElementById('f-phone-confirm').value.trim(),
+    phone_account: document.getElementById('f-phone-account').value.trim(),
     password: document.getElementById('f-password').value,
     lost: document.getElementById('f-lost').checked,
     loss_reason: document.getElementById('f-reason').value.trim()

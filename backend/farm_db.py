@@ -76,6 +76,8 @@ def init_farm_db():
             year INTEGER,
             gender TEXT DEFAULT 'Не указан',
             email TEXT,
+            phone_confirm TEXT,
+            phone_account TEXT,
             password TEXT,
             lost INTEGER DEFAULT 0,
             loss_reason TEXT

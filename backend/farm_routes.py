@@ -26,8 +26,8 @@ def add_farm():
         number = (row[0] or 0) + 1
 
     c.execute('''
-        INSERT INTO farm (number, name, day, month, year, gender, email, password, lost, loss_reason)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO farm (number, name, day, month, year, gender, email, phone_confirm, phone_account, password, lost, loss_reason)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', (
         number,
         data.get('name', ''),
@@ -36,6 +36,8 @@ def add_farm():
         data.get('year'),
         data.get('gender', 'Не указан'),
         data.get('email', ''),
+        data.get('phone_confirm', ''),
+        data.get('phone_account', ''),
         data.get('password', ''),
         1 if data.get('lost') else 0,
         data.get('loss_reason', '')
@@ -53,7 +55,7 @@ def update_farm(row_id):
     conn.execute('''
         UPDATE farm SET
             number=?, name=?, day=?, month=?, year=?,
-            gender=?, email=?, password=?, lost=?, loss_reason=?
+            gender=?, email=?, phone_confirm=?, phone_account=?, password=?, lost=?, loss_reason=?
         WHERE id=?
     ''', (
         data.get('number'),
@@ -63,6 +65,8 @@ def update_farm(row_id):
         data.get('year'),
         data.get('gender', 'Не указан'),
         data.get('email', ''),
+        data.get('phone_confirm', ''),
+        data.get('phone_account', ''),
         data.get('password', ''),
         1 if data.get('lost') else 0,
         data.get('loss_reason', ''),
