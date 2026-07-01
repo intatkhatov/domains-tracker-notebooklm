@@ -144,6 +144,30 @@
   .dup-match-name { font-weight: 600; color: #1a1a1a; }
   .dup-match-citation { color: #777; font-size: 11px; margin-top: 3px; line-height: 1.4; }
 </style>
+<style>
+header { transition: transform 0.25s ease; }
+</style>
+
+<script>
+(function() {
+  var lastY = 0;
+  var header = null;
+  window.addEventListener('DOMContentLoaded', function() {
+    header = document.querySelector('header');
+  });
+  window.addEventListener('scroll', function() {
+    if (!header) header = document.querySelector('header');
+    var y = window.scrollY;
+    if (y > lastY && y > 60) {
+      header.style.transform = 'translateY(-100%)';
+    } else {
+      header.style.transform = 'translateY(0)';
+    }
+    lastY = y;
+  }, { passive: true });
+})();
+</script>
+
 </head>
 <body>
 
