@@ -105,7 +105,7 @@
   .td-month { width: 80px; }
   .td-year { width: 64px; }
   .td-gender { width: 100px; }
-  .td-email { min-width: 130px; }
+  .td-email { min-width: 130px; font-family: 'SF Mono', Menlo, monospace; font-size: 12px; }
   .td-phone { min-width: 110px; }
   .td-password { min-width: 100px; }
   .td-lost { width: 64px; text-align: center; }
@@ -140,6 +140,12 @@
     color: #aaa;
     cursor: pointer;
     user-select: none;
+    min-width: 120px;
+    width: 120px;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .password-cell.revealed { color: #1a1a1a; }
@@ -150,8 +156,8 @@
   }
 
   .copy-cell:hover {
-    text-decoration: underline;
-    color: #1a1a1a;
+    text-decoration: none;
+    opacity: 1;
   }
 
   .btn-edit, .btn-delete {
@@ -202,7 +208,22 @@
     font-size: 15px;
     font-weight: 700;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
+
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 0 0 10px;
+  }
+
+  .modal-close:hover { color: #1a1a1a; }
 
   .form-row {
     margin-bottom: 14px;
@@ -392,7 +413,7 @@
 <!-- Модалка добавления/редактирования -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
-    <div class="modal-title" id="modal-title">Добавить запись</div>
+    <div class="modal-title"><span id="modal-title">Добавить запись</span><button class="modal-close" id="btn-modal-close">✕</button></div>
 
     <div class="form-row">
       <label>Имя</label>
@@ -526,7 +547,7 @@ function renderTable() {
       <td class="td-month">${escHtml(r.month)}</td>
       <td class="td-year">${r.year ?? ''}</td>
       <td class="td-gender">${escHtml(r.gender)}</td>
-      <td class="td-email copy-cell" data-copy="${escHtml(r.email)}" title="Нажми чтобы скопировать">${escHtml(r.email)}</td>
+      <td class="td-email password-cell" data-pwd="${escHtml(r.email)}" data-copy="${escHtml(r.email)}" title="Нажми чтобы показать и скопировать">••••••••</td>
       <td class="td-phone">${r.phone_confirm || "—"}</td>
       <td class="td-phone">${r.phone_account || "—"}</td>
       <td class="td-password password-cell" data-pwd="${escHtml(r.password)}" title="Нажми чтобы показать">••••••••</td>
@@ -557,7 +578,7 @@ document.getElementById('farm-tbody').addEventListener('click', e => {
     } else {
       cell.textContent = cell.dataset.pwd || '—';
       cell.classList.add('revealed');
-      navigator.clipboard.writeText(cell.dataset.pwd || '').then(() => showToast('Пароль скопирован!'));
+      navigator.clipboard.writeText(cell.dataset.pwd || '').then(() => showToast('Скопировано!'));
     }
     return;
   }
@@ -618,12 +639,13 @@ function openEdit(id) {
 }
 
 document.getElementById('btn-cancel').addEventListener('click', closeModal);
-document.getElementById('modal-overlay').addEventListener('click', e => {
-  if (e.target === document.getElementById('modal-overlay')) closeModal();
-});
+document.getElementById('btn-modal-close').addEventListener('click', closeModal);
+// закрытие по клику вне модалки отключено
 
 document.getElementById('btn-save').addEventListener('click', async () => {
+  const currentNumber = editId ? (rows.find(x => x.id === editId) || {}).number : null;
   const payload = {
+    number: currentNumber,
     name: document.getElementById('f-name').value.trim(),
     day: parseInt(document.getElementById('f-day').value) || null,
     month: document.getElementById('f-month').value,
