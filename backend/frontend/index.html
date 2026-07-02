@@ -56,6 +56,7 @@
   .filter-chip.active { background: #555; color: #fff; border-color: #555; }
   .filter-chip.active.processed-chip { background: #2e7d32; color: #fff; border-color: #2e7d32; }
   .filter-chip.active.listened-chip { background: #1565c0; color: #fff; border-color: #1565c0; }
+  .filter-chip.active.relisten-chip { background: #c62828; color: #fff; border-color: #c62828; }
   .chip-count { font-size: 10px; opacity: 0.65; margin-left: 3px; }
   .rating-filter-display { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: #555; margin-bottom: 10px; font-weight: 600; }
   .range-slider-wrap { position: relative; height: 28px; margin: 4px 0; cursor: pointer; }
@@ -526,6 +527,26 @@ FilterRegistry.register({
     </div>`
 });
 
+// Фильтр: Переслушать
+FilterRegistry.register({
+  id: 'relisten',
+  getDefaultState: () => 'any',
+  apply: (s, state) => {
+    if (state === 'yes') return !!s.relisten;
+    if (state === 'no') return !s.relisten;
+    return true;
+  },
+  render: (state, reg) => `
+    <div class="filter-section">
+      <div class="filter-section-label">🔁 Переслушать</div>
+      <div class="filter-chip-group">
+        <button class="filter-chip relisten-chip ${state==='any'?'active':''}" data-filter="relisten" data-value="any">любое<span class="chip-count">${reg ? reg.countFor('relisten','any') : ''}</span></button>
+        <button class="filter-chip relisten-chip ${state==='yes'?'active':''}" data-filter="relisten" data-value="yes">да<span class="chip-count">${reg ? reg.countFor('relisten','yes') : ''}</span></button>
+        <button class="filter-chip relisten-chip ${state==='no'?'active':''}" data-filter="relisten" data-value="no">нет<span class="chip-count">${reg ? reg.countFor('relisten','no') : ''}</span></button>
+      </div>
+    </div>`
+});
+
 // Фильтр: Аудиопересказ
 FilterRegistry.register({
   id: 'notebook',
@@ -542,26 +563,6 @@ FilterRegistry.register({
         <button class="filter-chip ${state==='any'?'active':''}" data-filter="notebook" data-value="any">любое<span class="chip-count">${reg ? reg.countFor('notebook','any') : ''}</span></button>
         <button class="filter-chip ${state==='yes'?'active':''}" data-filter="notebook" data-value="yes">да<span class="chip-count">${reg ? reg.countFor('notebook','yes') : ''}</span></button>
         <button class="filter-chip ${state==='no'?'active':''}" data-filter="notebook" data-value="no">нет<span class="chip-count">${reg ? reg.countFor('notebook','no') : ''}</span></button>
-      </div>
-    </div>`
-});
-
-// Фильтр: Переслушать
-FilterRegistry.register({
-  id: 'relisten',
-  getDefaultState: () => 'any',
-  apply: (s, state) => {
-    if (state === 'yes') return !!s.relisten;
-    if (state === 'no') return !s.relisten;
-    return true;
-  },
-  render: (state, reg) => `
-    <div class="filter-section">
-      <div class="filter-section-label">🔁 Переслушать</div>
-      <div class="filter-chip-group">
-        <button class="filter-chip ${state==='any'?'active':''}" data-filter="relisten" data-value="any">любое<span class="chip-count">${reg ? reg.countFor('relisten','any') : ''}</span></button>
-        <button class="filter-chip ${state==='yes'?'active':''}" data-filter="relisten" data-value="yes">да<span class="chip-count">${reg ? reg.countFor('relisten','yes') : ''}</span></button>
-        <button class="filter-chip ${state==='no'?'active':''}" data-filter="relisten" data-value="no">нет<span class="chip-count">${reg ? reg.countFor('relisten','no') : ''}</span></button>
       </div>
     </div>`
 });
