@@ -6,3 +6,4 @@ backend/data/import_temp/
 # Farm — секретные файлы (не коммитить)
 backend/data/farm.db
 backend/data/.farm_key
+audio/
