@@ -31,6 +31,11 @@ def farm_page():
     return send_from_directory('/app/frontend', 'farm.html')
 
 
+@app.route('/convert.html')
+def convert_page():
+    return send_from_directory('/app/frontend', 'convert.html')
+
+
 @app.route('/api/domains', methods=['GET'])
 def get_domains():
     conn = get_db()
