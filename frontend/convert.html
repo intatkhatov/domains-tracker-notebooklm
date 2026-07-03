@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Конвертация — Domains Tracker</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f0; color: #1a1a1a; font-size: 15px; line-height: 1.6; padding: 48px 16px; }
+  .page { max-width: 680px; margin: 0 auto; }
+  header { background: #1a1a1a; color: #fff; padding: 12px 20px; position: sticky; top: 0; z-index: 100; margin: -48px -16px 40px; }
+  .header-inner { max-width: 680px; margin: 0 auto; display: flex; align-items: center; gap: 14px; }
+  .back-link { color: #bbb; text-decoration: none; font-size: 12.5px; padding: 6px 12px; border: 1px solid #3a3a3a; border-radius: 6px; }
+  .back-link:hover { color: #fff; border-color: #555; }
+  header h1 { font-size: 14px; font-weight: 600; }
+  .step-block { background: #fff; border: 1px solid #e8e8e8; border-radius: 10px; padding: 18px 20px; margin-bottom: 16px; }
+  .step-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+  .step-text { font-size: 13.5px; color: #555; margin-bottom: 10px; }
+  .step-text:last-child { margin-bottom: 0; }
+  .step-text b { color: #1a1a1a; }
+  .cmd-block { background: #1a1a1a; border-radius: 8px; overflow: hidden; margin-top: 10px; }
+  .cmd-line { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; gap: 16px; }
+  .cmd-text { font-family: 'SF Mono', 'Menlo', 'Monaco', monospace; font-size: 12.5px; color: #e8e8e8; flex: 1; word-break: break-all; }
+  .btn-copy { flex-shrink: 0; padding: 5px 11px; background: #2a2a2a; border: 1px solid #3a3a3a; border-radius: 5px; color: #aaa; font-size: 12px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+  .btn-copy:hover { background: #333; color: #fff; border-color: #555; }
+  .btn-copy.copied { background: #1a3a1a; color: #4caf50; border-color: #2e7d32; }
+  .note { font-size: 12.5px; color: #888; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="back-link">← Назад</a>
+    <h1>Конвертация m4a → mp3</h1>
+  </div>
+</header>
+
+<div class="page">
+
+  <div class="step-block">
+    <div class="step-title">1. Положи m4a-файлы в папку</div>
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-text">~/projects/domains-tracker/audio/m4a/</span>
+        <button class="btn-copy" data-text="~/projects/domains-tracker/audio/m4a/">Копировать</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-title">2. Запусти конвертацию</div>
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-text">~/projects/domains-tracker/convert_m4a_to_mp3.sh</span>
+        <button class="btn-copy" data-text="~/projects/domains-tracker/convert_m4a_to_mp3.sh">Копировать</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-title">3. Забери mp3-файлы</div>
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-text">~/projects/domains-tracker/audio/mp3/</span>
+        <button class="btn-copy" data-text="~/projects/domains-tracker/audio/mp3/">Копировать</button>
+      </div>
+    </div>
+    <p class="note">Имена файлов сохраняются. Качество максимальное.</p>
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('.btn-copy').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const text = btn.getAttribute('data-text');
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = '✓ Скопировано';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1800);
+    });
+  });
+});
+</script>
+</body>
+</html>
