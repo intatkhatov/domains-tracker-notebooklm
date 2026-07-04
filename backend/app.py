@@ -3,6 +3,7 @@ from flask_cors import CORS
 from database import get_db, init_db
 from farm_db import init_farm_db
 from farm_routes import farm_bp
+from links_routes import links_bp, init_links_db
 from similarity import check_duplicates
 from import_module import import_bp
 from datetime import datetime, timezone
@@ -11,9 +12,11 @@ app = Flask(__name__, static_folder='/app/frontend', static_url_path='')
 CORS(app)
 app.register_blueprint(import_bp)
 app.register_blueprint(farm_bp)
+app.register_blueprint(links_bp)
 
 init_db()
 init_farm_db()
+init_links_db()
 
 
 @app.route('/')
@@ -34,6 +37,11 @@ def farm_page():
 @app.route('/convert.html')
 def convert_page():
     return send_from_directory('/app/frontend', 'convert.html')
+
+
+@app.route('/links.html')
+def links_page():
+    return send_from_directory('/app/frontend', 'links.html')
 
 
 @app.route('/api/domains', methods=['GET'])
