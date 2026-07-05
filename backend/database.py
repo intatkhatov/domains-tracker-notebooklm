@@ -40,13 +40,14 @@ def init_db():
         );
     ''')
 
-    # Миграция: добавляем relisten если нет
-    try:
-        c.execute('ALTER TABLE sources ADD COLUMN relisten INTEGER DEFAULT 0')
-        conn.commit()
-        print('Migration: relisten column added.')
-    except Exception:
-        pass
+    # Миграции
+    for col, default in [('relisten', 0), ('rating', 'NULL'), ('comment', 'NULL'), ('listened', 0), ('spotify', 0), ('mave', 0)]:
+        try:
+            c.execute(f'ALTER TABLE sources ADD COLUMN {col} {"INTEGER DEFAULT " + str(default) if default != "NULL" else "TEXT"}')
+            conn.commit()
+            print(f'Migration: {col} column added.')
+        except Exception:
+            pass
 
     conn.commit()
 

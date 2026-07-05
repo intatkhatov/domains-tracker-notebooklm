@@ -141,7 +141,9 @@ def update_source(source_id):
             notebook_url=?,
             processed=?,
             listened=?,
-            relisten=?
+            relisten=?,
+            spotify=?,
+            mave=?
         WHERE id=?
     ''', (
         data['short_name'],
@@ -153,6 +155,8 @@ def update_source(source_id):
         1 if data.get('processed') else 0,
         1 if data.get('listened') else 0,
         1 if data.get('relisten') else 0,
+        1 if data.get('spotify') else 0,
+        1 if data.get('mave') else 0,
         source_id
     ))
     conn.commit()
@@ -193,6 +197,24 @@ def toggle_listened(source_id):
     conn.commit()
     conn.close()
     return jsonify({'status': 'ok'})
+
+
+@app.route('/api/sources/<int:source_id>/spotify', methods=['PATCH'])
+def toggle_spotify(source_id):
+    data = request.get_json()
+    db = get_db()
+    db.execute('UPDATE sources SET spotify=? WHERE id=?', (1 if data.get('spotify') else 0, source_id))
+    db.commit()
+    return jsonify({'ok': True})
+
+
+@app.route('/api/sources/<int:source_id>/mave', methods=['PATCH'])
+def toggle_mave(source_id):
+    data = request.get_json()
+    db = get_db()
+    db.execute('UPDATE sources SET mave=? WHERE id=?', (1 if data.get('mave') else 0, source_id))
+    db.commit()
+    return jsonify({'ok': True})
 
 
 @app.route('/api/sources/<int:source_id>/relisten', methods=['PATCH'])
