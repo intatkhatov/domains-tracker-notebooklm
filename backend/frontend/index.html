@@ -110,12 +110,9 @@
   .filter-chip { padding: 5px 10px; border: 1px solid var(--border-chip); border-radius: 6px; background: var(--bg-chip); cursor: pointer; font-size: 11.5px; color: var(--text-muted); transition: all 0.15s; user-select: none; white-space: nowrap; }
   .filter-chip:hover { background: #f0f0f0; }
   .filter-chip.active { background: #555; color: #fff; border-color: #555; }
-  .filter-chip.active.processed-chip { background: #2e7d32; color: #fff; border-color: #2e7d32; }
-  .filter-chip.active.listened-chip { background: #1565c0; color: #fff; border-color: #1565c0; }
-  .filter-chip.active.relisten-chip { background: #c62828; color: #fff; border-color: #c62828; }
   .chip-count { font-size: 10px; opacity: 0.65; margin-left: 3px; }
   .rating-filter-display { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: #555; margin-bottom: 10px; font-weight: 600; }
-  .range-slider-wrap { position: relative; height: 28px; margin: 4px 10px; cursor: pointer; }
+  .range-slider-wrap { position: relative; height: 28px; margin: 4px 15px; cursor: pointer; }
   .range-slider-track { position: absolute; top: 50%; left: 0; right: 0; height: 4px; background: #e0e0e0; border-radius: 2px; transform: translateY(-50%); }
   .range-slider-fill { position: absolute; top: 50%; height: 4px; background: #1565c0; border-radius: 2px; transform: translateY(-50%); }
   .range-thumb { position: absolute; top: 50%; width: 16px; height: 16px; background: #fff; border: 2px solid #1565c0; border-radius: 50%; transform: translate(-50%, -50%); cursor: grab; z-index: 2; box-shadow: 0 1px 4px rgba(0,0,0,0.15); }
@@ -134,11 +131,7 @@
   .flag-icon { font-size: 13px; opacity: 0.35; }
   .flag-line.on .flag-icon { opacity: 1; }
   .toggle-checkbox { width: 14px; height: 14px; cursor: pointer; }
-  .toggle-checkbox.processed-cb { accent-color: #2e7d32; }
-  .toggle-checkbox.listened-cb { accent-color: #1565c0; }
-  .toggle-checkbox.relisten-cb { accent-color: #e65100; }
-  .toggle-checkbox.spotify-cb { accent-color: #1db954; }
-  .toggle-checkbox.mave-cb { accent-color: #e65100; }
+  .toggle-checkbox { accent-color: #888; }
   .source-body { flex: 1; min-width: 0; }
   .source-short { font-weight: 600; font-size: 13px; color: var(--text); margin-bottom: 2px; }
   .source-row.processed .source-short { color: #2e7d32; }
@@ -699,7 +692,7 @@ FilterRegistry.register({
         <div class="range-thumb" id="range-thumb-min"></div>
         <div class="range-thumb" id="range-thumb-max"></div>
       </div>
-      <div class="slider-labels"><span>0</span><span>10</span></div>
+
     </div>`,
   afterRender: (registry) => {
     const wrap = document.getElementById('range-slider-wrap');
