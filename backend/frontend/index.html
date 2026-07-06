@@ -84,7 +84,7 @@
 
   .layout { display: flex; justify-content: center; align-items: flex-start; padding: 20px 16px 40px; margin-top: 54px; }
 
-  .sidebar { display: none; position: fixed; width: 280px; z-index: 500; cursor: default; user-select: none; }
+  .sidebar { display: none; position: fixed; width: 280px; z-index: 190; cursor: default; user-select: none; }
   .sidebar.open { display: block; }
   .sidebar-card { width: 280px; background: var(--bg-sidebar); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; max-height: calc(100vh - 80px); }
   .sidebar-filters-scroll { overflow-y: auto; overflow-x: hidden; flex: 1; padding-right: 4px; }
@@ -98,7 +98,7 @@
   .btn-sidebar-close, .btn-sidebar-min { width: 20px; height: 20px; border: none; background: var(--bg-hover); border-radius: 50%; color: #888; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .btn-sidebar-close:hover { background: #ffebee; color: #c62828; }
   .btn-sidebar-min:hover { background: #e0e0e0; color: #1a1a1a; }
-  .sidebar-bubble { display: none; position: fixed; width: 50px; height: 50px; border-radius: 50%; background: #1a1a1a; box-shadow: 0 4px 16px rgba(0,0,0,0.25); z-index: 500; cursor: pointer; align-items: center; justify-content: center; color: #fff; font-size: 18px; }
+  .sidebar-bubble { display: none; position: fixed; width: 50px; height: 50px; border-radius: 50%; background: #1a1a1a; box-shadow: 0 4px 16px rgba(0,0,0,0.25); z-index: 190; cursor: pointer; align-items: center; justify-content: center; color: #fff; font-size: 18px; }
   .sidebar-bubble.open { display: flex; }
   .sidebar-bubble-close { position: absolute; top: -4px; right: -4px; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 1px solid #ddd; color: #888; font-size: 9px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(0,0,0,0.15); }
   .sidebar-bubble-close:hover { background: #ffebee; color: #c62828; }
@@ -197,7 +197,7 @@
   .btn-manage.danger:hover { background: #ffebee; color: #c62828; border-color: #ffcdd2; }
   .task-count { display: inline-block; margin-left: 4px; background: #555; color: #fff; border-radius: 8px; font-size: 10px; padding: 0 5px; min-width: 16px; text-align: center; }
   .task-count:empty { display: none; }
-  .tasks-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 250; align-items: center; justify-content: center; }
+  .tasks-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 250; align-items: flex-start; justify-content: center; padding-top: 60px; }
   .tasks-modal-overlay.open { display: flex; }
   .tasks-modal { background: #fff; border-radius: 10px; padding: 24px; width: 100%; max-width: 560px; max-height: 80vh; display: flex; flex-direction: column; box-shadow: 0 8px 40px rgba(0,0,0,0.18); }
   .tasks-modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-shrink: 0; }
@@ -706,6 +706,26 @@ FilterRegistry.register({
     </div>`
 });
 
+// Фильтр: Задачи
+FilterRegistry.register({
+  id: 'tasks',
+  getDefaultState: () => 'any',
+  apply: (s, state) => {
+    if (state === 'yes') return !!(taskCounts[String(s.id)] > 0);
+    if (state === 'no') return !(taskCounts[String(s.id)] > 0);
+    return true;
+  },
+  render: (state, reg) => `
+    <div class="filter-section">
+      <div class="filter-section-label">☑ Задачи</div>
+      <div class="filter-chip-group">
+        <button class="filter-chip ${state==='any'?'active':''}" data-filter="tasks" data-value="any">любое<span class="chip-count">${reg ? reg.countFor('tasks','any') : ''}</span></button>
+        <button class="filter-chip ${state==='yes'?'active':''}" data-filter="tasks" data-value="yes">да<span class="chip-count">${reg ? reg.countFor('tasks','yes') : ''}</span></button>
+        <button class="filter-chip ${state==='no'?'active':''}" data-filter="tasks" data-value="no">нет<span class="chip-count">${reg ? reg.countFor('tasks','no') : ''}</span></button>
+      </div>
+    </div>`
+});
+
 // Фильтр: Комментарий
 FilterRegistry.register({
   id: 'comment',
@@ -851,6 +871,7 @@ function renderSources() {
     if (el) { el.scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(()=>el.classList.remove('just-added'),2500); }
     justAddedId = null;
   }
+  updateTaskCountBadges();
 }
 
 function escHtml(str) {
@@ -905,8 +926,8 @@ function renderSource(s) {
             <button class="btn-copy js-copy" data-id="${s.id}" data-kind="short_name">ID</button>
             <button class="btn-copy js-copy" data-id="${s.id}" data-kind="prompt">Промт</button>
           </div>
-          <div style="display:flex;justify-content:flex-end">
-            <button class="btn-manage js-tasks" data-id="${s.id}">☑ Задачи<span class="task-count" id="task-count-${s.id}"></span></button>
+          <div>
+            <button class="btn-manage js-tasks" data-id="${s.id}" style="margin-left:14px">☑ Задачи<span class="task-count" id="task-count-${s.id}"></span></button>
           </div>
         </div>
 
@@ -1103,6 +1124,8 @@ async function loadTaskCounts() {
   try {
     const res = await fetch(`${API}/sources/tasks/counts`);
     taskCounts = await res.json();
+    FilterRegistry.renderAll();
+    renderSources();
     updateTaskCountBadges();
   } catch(e) {}
 }
@@ -1193,8 +1216,7 @@ document.getElementById('tasks-tbody').addEventListener('click', async e => {
   if (delBtn) {
     const tid = parseInt(delBtn.dataset.taskId);
     await fetch(`${API}/tasks/${tid}`, {method:'DELETE'});
-    taskCounts[currentTaskSourceId] = Math.max(0, (taskCounts[currentTaskSourceId] || 1) - 1);
-    updateTaskCountBadges();
+    await loadTaskCounts();
     await reloadTasks();
     return;
   }
@@ -1229,7 +1251,7 @@ document.getElementById('btn-task-add').addEventListener('click', () => {
     if (!text) return;
     await fetch(`${API}/sources/${currentTaskSourceId}/tasks`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text})});
     taskCounts[currentTaskSourceId] = (taskCounts[currentTaskSourceId] || 0) + 1;
-    updateTaskCountBadges();
+    await loadTaskCounts();
     await reloadTasks();
   });
 
@@ -1239,7 +1261,7 @@ document.getElementById('btn-task-add').addEventListener('click', () => {
       if (!text) return;
       await fetch(`${API}/sources/${currentTaskSourceId}/tasks`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text})});
       taskCounts[currentTaskSourceId] = (taskCounts[currentTaskSourceId] || 0) + 1;
-      updateTaskCountBadges();
+      await loadTaskCounts();
       await reloadTasks();
     }
     if (e.key === 'Escape') { newRow.remove(); }
