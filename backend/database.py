@@ -82,4 +82,20 @@ def init_db():
     else:
         print('Database already exists, skipping import.')
 
+    # Миграция: таблица tasks
+    try:
+        c.execute('''
+            CREATE TABLE IF NOT EXISTS tasks (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                source_id INTEGER NOT NULL,
+                text TEXT NOT NULL,
+                done INTEGER DEFAULT 0,
+                created_at TEXT,
+                FOREIGN KEY (source_id) REFERENCES sources(id)
+            )
+        ''')
+        conn.commit()
+    except Exception:
+        pass
+
     conn.close()

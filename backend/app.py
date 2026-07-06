@@ -4,6 +4,7 @@ from database import get_db, init_db
 from farm_db import init_farm_db
 from farm_routes import farm_bp
 from links_routes import links_bp, init_links_db
+from tasks_routes import tasks_bp
 from similarity import check_duplicates
 from import_module import import_bp
 from datetime import datetime, timezone
@@ -13,6 +14,7 @@ CORS(app)
 app.register_blueprint(import_bp)
 app.register_blueprint(farm_bp)
 app.register_blueprint(links_bp)
+app.register_blueprint(tasks_bp)
 
 init_db()
 init_farm_db()

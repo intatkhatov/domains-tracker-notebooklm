@@ -146,6 +146,7 @@
   .source-notebook a:hover { text-decoration: underline; }
   .source-actions { display: flex; flex-direction: row; gap: 4px; flex-wrap: wrap; margin-top: 4px; flex-shrink: 0; width: 220px; justify-content: flex-end; }
   .source-actions .btn-copy { width: 66px; text-align: center; }
+  .source-tasks-row { display: flex; justify-content: flex-end; width: 220px; flex-shrink: 0; margin-top: 4px; }
   .btn-copy, .btn-icon { padding: 5px 9px; border: 1px solid #e0e0e0; border-radius: 4px; background: var(--bg-chip); cursor: pointer; font-size: 11px; color: var(--text-muted); white-space: nowrap; text-align: center; }
   .btn-copy:hover { background: #e8f5e9; border-color: #a5d6a7; color: #2e7d32; }
   .btn-copy.copied { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
@@ -194,6 +195,35 @@
   .btn-manage { padding: 4px 8px; font-size: 11px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fafafa; cursor: pointer; white-space: nowrap; color: #555; }
   .btn-manage:hover { background: #f0f0f0; }
   .btn-manage.danger:hover { background: #ffebee; color: #c62828; border-color: #ffcdd2; }
+  .task-count { display: inline-block; margin-left: 4px; background: #555; color: #fff; border-radius: 8px; font-size: 10px; padding: 0 5px; min-width: 16px; text-align: center; }
+  .task-count:empty { display: none; }
+  .tasks-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 250; align-items: center; justify-content: center; }
+  .tasks-modal-overlay.open { display: flex; }
+  .tasks-modal { background: #fff; border-radius: 10px; padding: 24px; width: 100%; max-width: 560px; max-height: 80vh; display: flex; flex-direction: column; box-shadow: 0 8px 40px rgba(0,0,0,0.18); }
+  .tasks-modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-shrink: 0; }
+  .tasks-modal-title { font-size: 15px; font-weight: 700; }
+  .tasks-modal-close { background: none; border: none; font-size: 20px; color: #aaa; cursor: pointer; }
+  .tasks-modal-close:hover { color: #1a1a1a; }
+  .tasks-table-wrap { overflow-y: auto; flex: 1; margin-bottom: 14px; }
+  .tasks-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .tasks-table th { text-align: left; padding: 8px 10px; background: #f5f5f5; font-size: 12px; color: #666; border-bottom: 1px solid #e8e8e8; }
+  .tasks-table td { padding: 8px 10px; border-bottom: 1px solid #f5f5f5; vertical-align: middle; }
+  .tasks-table tr:last-child td { border-bottom: none; }
+  .td-task-num { width: 36px; color: #aaa; font-size: 12px; }
+  .td-task-text { }
+  .td-task-done { width: 80px; text-align: center; }
+  .td-task-actions { width: 60px; white-space: nowrap; }
+  .task-text-input { width: 100%; border: 1px solid #ddd; border-radius: 4px; padding: 4px 8px; font-size: 13px; font-family: inherit; }
+  .task-text-input:focus { outline: none; border-color: #1a1a1a; }
+  .tasks-modal-footer { display: flex; justify-content: flex-start; flex-shrink: 0; }
+  .btn-task-add { padding: 7px 16px; background: #1a1a1a; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; }
+  .btn-task-add:hover { background: #333; }
+  .btn-task-save { padding: 3px 8px; border: 1px solid #ddd; border-radius: 4px; background: #fff; cursor: pointer; font-size: 11.5px; color: #2e7d32; }
+  .btn-task-save:hover { background: #e8f5e9; }
+  .btn-task-edit { padding: 3px 8px; border: 1px solid #ddd; border-radius: 4px; background: #fff; cursor: pointer; font-size: 11.5px; color: #555; }
+  .btn-task-edit:hover { background: #f0f0f0; }
+  .btn-task-delete { padding: 3px 8px; border: 1px solid #ddd; border-radius: 4px; background: #fff; cursor: pointer; font-size: 11.5px; color: #c62828; }
+  .btn-task-delete:hover { background: #ffebee; }
   .dup-warning { display: none; background: #fff8e1; border: 1px solid #ffca28; border-radius: 8px; padding: 12px 14px; margin-top: 10px; margin-bottom: 14px; font-size: 12.5px; }
   .dup-warning.visible { display: block; }
   .dup-warning-title { font-weight: 700; color: #7a5b00; margin-bottom: 8px; }
@@ -282,6 +312,31 @@ header { transition: transform 0.25s ease; }
   <div class="content">
     <div id="sources-list"></div>
     <div class="empty" id="empty" style="display:none">Ничего не найдено</div>
+  </div>
+</div>
+
+<div class="tasks-modal-overlay" id="tasks-modal-overlay">
+  <div class="tasks-modal">
+    <div class="tasks-modal-header">
+      <div class="tasks-modal-title" id="tasks-modal-title">Задачи</div>
+      <button class="tasks-modal-close" id="btn-tasks-modal-close">✕</button>
+    </div>
+    <div class="tasks-table-wrap">
+      <table class="tasks-table">
+        <thead>
+          <tr>
+            <th class="td-task-num">№</th>
+            <th class="td-task-text">Задача</th>
+            <th class="td-task-done">Выполнено</th>
+            <th class="td-task-actions"></th>
+          </tr>
+        </thead>
+        <tbody id="tasks-tbody"></tbody>
+      </table>
+    </div>
+    <div class="tasks-modal-footer">
+      <button class="btn-task-add" id="btn-task-add">+ Добавить</button>
+    </div>
   </div>
 </div>
 
@@ -844,11 +899,17 @@ function renderSource(s) {
           <div class="source-date">${formatDate(s.created_at)}</div>
           <div class="rating-row">${renderRatingButtons(s)}</div>
         </div>
-        <div class="source-actions">
-          <button class="btn-copy js-copy" data-id="${s.id}" data-kind="citation">Источник</button>
-          <button class="btn-copy js-copy" data-id="${s.id}" data-kind="short_name">ID</button>
-          <button class="btn-copy js-copy" data-id="${s.id}" data-kind="prompt">Промт</button>
+        <div style="display:flex;flex-direction:column;gap:4px;flex-shrink:0">
+          <div class="source-actions">
+            <button class="btn-copy js-copy" data-id="${s.id}" data-kind="citation">Источник</button>
+            <button class="btn-copy js-copy" data-id="${s.id}" data-kind="short_name">ID</button>
+            <button class="btn-copy js-copy" data-id="${s.id}" data-kind="prompt">Промт</button>
+          </div>
+          <div style="display:flex;justify-content:flex-end">
+            <button class="btn-manage js-tasks" data-id="${s.id}">☑ Задачи<span class="task-count" id="task-count-${s.id}"></span></button>
+          </div>
         </div>
+
       </div>
       <div class="source-bottom-row" id="bottom-row-${s.id}">
         <div class="comment-zone-wrap">${renderCommentZone(s)}</div>
@@ -948,6 +1009,7 @@ document.getElementById('sources-list').addEventListener('click',e=>{
   const copyBtn=e.target.closest('.js-copy');
   if(copyBtn){const id=parseInt(copyBtn.dataset.id);const kind=copyBtn.dataset.kind;const s=sourcesById[id];let text='';if(kind==='citation')text=s.citation;else if(kind==='short_name')text=s.short_name;else if(kind==='prompt')text=PROMPT_TEXT;copyToClipboard(text,copyBtn);return;}
   const editBtn=e.target.closest('.js-edit');if(editBtn){openEditSourceById(parseInt(editBtn.dataset.id));return;}
+  const tasksBtn=e.target.closest('.js-tasks');if(tasksBtn){openTasksModal(parseInt(tasksBtn.dataset.id));return;}
   const notebookBtn=e.target.closest('.js-notebook');if(notebookBtn){openNotebookPrompt(parseInt(notebookBtn.dataset.id));return;}
   const deleteBtn=e.target.closest('.js-delete');if(deleteBtn){deleteSourceById(parseInt(deleteBtn.dataset.id));return;}
 });
@@ -1031,6 +1093,160 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () 
 });
 
 initTheme();
+
+// ЗАДАЧИ
+let currentTaskSourceId = null;
+let currentTasks = [];
+let taskCounts = {};
+
+async function loadTaskCounts() {
+  try {
+    const res = await fetch(`${API}/sources/tasks/counts`);
+    taskCounts = await res.json();
+    updateTaskCountBadges();
+  } catch(e) {}
+}
+
+function updateTaskCountBadges() {
+  Object.entries(taskCounts).forEach(([sid, cnt]) => {
+    const el = document.getElementById(`task-count-${sid}`);
+    if (el) el.textContent = cnt > 0 ? cnt : '';
+  });
+}
+
+async function openTasksModal(sourceId) {
+  currentTaskSourceId = sourceId;
+  const s = sourcesById[sourceId];
+  document.getElementById('tasks-modal-title').textContent = `Задачи — ${s ? s.short_name : ''}`;
+  document.getElementById('tasks-modal-overlay').classList.add('open');
+  await reloadTasks();
+}
+
+function closeTasksModal() {
+  document.getElementById('tasks-modal-overlay').classList.remove('open');
+  currentTaskSourceId = null;
+  currentTasks = [];
+}
+
+async function reloadTasks() {
+  if (!currentTaskSourceId) return;
+  const res = await fetch(`${API}/sources/${currentTaskSourceId}/tasks`);
+  currentTasks = await res.json();
+  renderTasks();
+}
+
+function renderTasks() {
+  const tbody = document.getElementById('tasks-tbody');
+  if (currentTasks.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#aaa;padding:20px">Нет задач</td></tr>';
+    return;
+  }
+  tbody.innerHTML = currentTasks.map((t, i) => `
+    <tr id="task-row-${t.id}">
+      <td class="td-task-num">${i + 1}</td>
+      <td class="td-task-text" id="task-text-cell-${t.id}"><span style="text-decoration:${t.done?'line-through':'none'};color:${t.done?'#aaa':'inherit'}">${escHtml(t.text)}</span></td>
+      <td class="td-task-done"><input type="checkbox" ${t.done?'checked':''} data-task-id="${t.id}" class="js-task-done" style="width:16px;height:16px;cursor:pointer;accent-color:#888"></td>
+      <td class="td-task-actions">
+        <button class="btn-task-edit" data-task-id="${t.id}">✎</button>
+        <button class="btn-task-delete" data-task-id="${t.id}">✕</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function startEditTask(taskId) {
+  const t = currentTasks.find(x => x.id === taskId);
+  if (!t) return;
+  const cell = document.getElementById(`task-text-cell-${taskId}`);
+  cell.innerHTML = `<input type="text" class="task-text-input" id="task-edit-input-${taskId}" value="${escHtml(t.text)}">`;
+  const row = document.getElementById(`task-row-${taskId}`);
+  row.querySelector('.btn-task-edit').outerHTML = `<button class="btn-task-save" data-task-id="${taskId}">✓</button>`;
+  document.getElementById(`task-edit-input-${taskId}`).focus();
+}
+
+document.getElementById('tasks-tbody').addEventListener('click', async e => {
+  const doneChk = e.target.closest('.js-task-done');
+  if (doneChk) {
+    const tid = parseInt(doneChk.dataset.taskId);
+    await fetch(`${API}/tasks/${tid}/done`, {method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({done: doneChk.checked})});
+    const t = currentTasks.find(x => x.id === tid);
+    if (t) t.done = doneChk.checked ? 1 : 0;
+    renderTasks();
+    return;
+  }
+  const editBtn = e.target.closest('.btn-task-edit');
+  if (editBtn) { startEditTask(parseInt(editBtn.dataset.taskId)); return; }
+
+  const saveBtn = e.target.closest('.btn-task-save');
+  if (saveBtn) {
+    const tid = parseInt(saveBtn.dataset.taskId);
+    const input = document.getElementById(`task-edit-input-${tid}`);
+    const text = input ? input.value.trim() : '';
+    if (!text) return;
+    const t = currentTasks.find(x => x.id === tid);
+    await fetch(`${API}/tasks/${tid}`, {method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({text, done: t ? t.done : 0})});
+    await reloadTasks();
+    return;
+  }
+
+  const delBtn = e.target.closest('.btn-task-delete');
+  if (delBtn) {
+    const tid = parseInt(delBtn.dataset.taskId);
+    await fetch(`${API}/tasks/${tid}`, {method:'DELETE'});
+    taskCounts[currentTaskSourceId] = Math.max(0, (taskCounts[currentTaskSourceId] || 1) - 1);
+    updateTaskCountBadges();
+    await reloadTasks();
+    return;
+  }
+});
+
+document.getElementById('btn-task-add').addEventListener('click', () => {
+  if (!currentTaskSourceId) return;
+  const tbody = document.getElementById('tasks-tbody');
+  // Если уже есть незаконченная строка ввода — фокус на неё
+  const existing = document.getElementById('task-new-input');
+  if (existing) { existing.focus(); return; }
+  const newRow = document.createElement('tr');
+  newRow.id = 'task-new-row';
+  newRow.innerHTML = `
+    <td class="td-task-num">—</td>
+    <td class="td-task-text" colspan="2"><input type="text" class="task-text-input" id="task-new-input" placeholder="Текст задачи…"></td>
+    <td class="td-task-actions">
+      <button class="btn-task-save" id="btn-task-new-save">✓</button>
+      <button class="btn-task-delete" id="btn-task-new-cancel">✕</button>
+    </td>
+  `;
+  tbody.appendChild(newRow);
+  const input = document.getElementById('task-new-input');
+  input.focus();
+
+  document.getElementById('btn-task-new-cancel').addEventListener('click', () => {
+    newRow.remove();
+  });
+
+  document.getElementById('btn-task-new-save').addEventListener('click', async () => {
+    const text = input.value.trim();
+    if (!text) return;
+    await fetch(`${API}/sources/${currentTaskSourceId}/tasks`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text})});
+    taskCounts[currentTaskSourceId] = (taskCounts[currentTaskSourceId] || 0) + 1;
+    updateTaskCountBadges();
+    await reloadTasks();
+  });
+
+  input.addEventListener('keydown', async e => {
+    if (e.key === 'Enter') {
+      const text = input.value.trim();
+      if (!text) return;
+      await fetch(`${API}/sources/${currentTaskSourceId}/tasks`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text})});
+      taskCounts[currentTaskSourceId] = (taskCounts[currentTaskSourceId] || 0) + 1;
+      updateTaskCountBadges();
+      await reloadTasks();
+    }
+    if (e.key === 'Escape') { newRow.remove(); }
+  });
+});
+
+document.getElementById('btn-tasks-modal-close').addEventListener('click', closeTasksModal);
 // СКРОЛЛ
 window.addEventListener('scroll', function() {
   localStorage.setItem('dt_scroll', window.scrollY);
@@ -1051,7 +1267,7 @@ if (savedSearch) {
   if (si) si.value = savedSearch;
   if (sc) sc.classList.add('visible');
 }
-load().then(() => restoreScroll());
+load().then(() => { restoreScroll(); loadTaskCounts(); });
 </script>
 </body>
 </html>
