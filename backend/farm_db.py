@@ -80,7 +80,8 @@ def init_farm_db():
             phone_account TEXT,
             password TEXT,
             lost INTEGER DEFAULT 0,
-            loss_reason TEXT
+            loss_reason TEXT,
+            limit_started_at TEXT
         );
     ''')
     conn.commit()

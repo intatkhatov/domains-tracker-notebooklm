@@ -77,6 +77,30 @@ def update_farm(row_id):
     return jsonify({'status': 'ok'})
 
 
+@farm_bp.route('/api/farm/<int:row_id>/limit', methods=['PATCH'])
+def set_limit(row_id):
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).isoformat()
+    conn = get_farm_db()
+    row = conn.execute('SELECT limit_started_at FROM farm WHERE id=?', (row_id,)).fetchone()
+    if row and row['limit_started_at']:
+        conn.close()
+        return jsonify({'status': 'already_set', 'limit_started_at': row['limit_started_at']})
+    conn.execute('UPDATE farm SET limit_started_at=? WHERE id=?', (now, row_id))
+    conn.commit()
+    conn.close()
+    return jsonify({'status': 'ok', 'limit_started_at': now})
+
+
+@farm_bp.route('/api/farm/<int:row_id>/limit/reset', methods=['PATCH'])
+def reset_limit(row_id):
+    conn = get_farm_db()
+    conn.execute('UPDATE farm SET limit_started_at=NULL WHERE id=?', (row_id,))
+    conn.commit()
+    conn.close()
+    return jsonify({'status': 'ok'})
+
+
 @farm_bp.route('/api/farm/<int:row_id>', methods=['DELETE'])
 def delete_farm(row_id):
     conn = get_farm_db()

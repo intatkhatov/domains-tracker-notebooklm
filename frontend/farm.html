@@ -68,7 +68,7 @@
     background: #fff;
     border: 1px solid #e8e8e8;
     border-radius: 10px;
-    overflow: hidden;
+    overflow-x: auto;
   }
 
   table {
@@ -100,16 +100,18 @@
   }
 
   .td-num { width: 48px; color: #888; font-size: 12px; }
-  .td-name { min-width: 120px; font-weight: 500; }
+  .td-name { min-width: 90px; font-weight: 500; }
   .td-day { width: 48px; }
   .td-month { width: 80px; }
   .td-year { width: 64px; }
   .td-gender { width: 100px; }
-  .td-email { min-width: 160px; }
-  .td-password { min-width: 120px; }
+  .td-email { min-width: 130px; font-family: 'SF Mono', Menlo, monospace; font-size: 12px; }
+  .td-phone { min-width: 110px; }
+  .td-password { min-width: 100px; }
   .td-lost { width: 64px; text-align: center; }
-  .td-reason { min-width: 140px; color: #888; font-size: 12px; }
-  .td-actions { width: 80px; white-space: nowrap; }
+  .td-reason { min-width: 100px; color: #888; font-size: 12px; }
+  .td-actions { width: 70px; white-space: nowrap; position: sticky; right: 0; background: #fff; box-shadow: -2px 0 4px rgba(0,0,0,0.06); }
+  thead .td-actions { background: #1a1a1a; }
 
   .badge-lost {
     display: inline-block;
@@ -131,6 +133,36 @@
     border-radius: 4px;
   }
 
+  .row-green { background: #f0fff4; }
+  .row-red { background: #fff5f5; }
+
+  .td-limit { min-width: 180px; width: 180px; font-size: 12px; }
+
+  .btn-limit {
+    padding: 4px 9px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    font-size: 11.5px;
+    color: #c62828;
+  }
+  .btn-limit:hover { background: #ffebee; }
+
+  .limit-info { font-size: 11.5px; color: #555; line-height: 1.5; }
+  .limit-days { font-weight: 700; color: #c62828; }
+  .limit-date { color: #888; }
+  .limit-done { color: #2e7d32; font-weight: 700; }
+
+  .limit-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 300; align-items: center; justify-content: center; }
+  .limit-modal-overlay.open { display: flex; }
+  .limit-modal { background: #fff; border-radius: 10px; padding: 24px; width: 100%; max-width: 400px; box-shadow: 0 8px 40px rgba(0,0,0,0.18); }
+  .limit-modal-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+  .limit-modal-text { font-size: 13.5px; color: #555; margin-bottom: 20px; line-height: 1.6; }
+  .limit-modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+  .btn-limit-reset { padding: 8px 18px; background: #c62828; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; }
+  .btn-limit-reset:hover { background: #b71c1c; }
+
   .password-cell {
     font-family: 'SF Mono', Menlo, monospace;
     font-size: 12px;
@@ -138,9 +170,25 @@
     color: #aaa;
     cursor: pointer;
     user-select: none;
+    min-width: 120px;
+    width: 120px;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .password-cell.revealed { color: #1a1a1a; }
+
+  .copy-cell {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .copy-cell:hover {
+    text-decoration: none;
+    opacity: 1;
+  }
 
   .btn-edit, .btn-delete {
     padding: 4px 9px;
@@ -190,7 +238,22 @@
     font-size: 15px;
     font-weight: 700;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
+
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 0 0 10px;
+  }
+
+  .modal-close:hover { color: #1a1a1a; }
 
   .form-row {
     margin-bottom: 14px;
@@ -363,9 +426,12 @@
           <th class="td-year">Год</th>
           <th class="td-gender">Пол</th>
           <th class="td-email">Эл. почта</th>
+          <th class="td-phone">Тел. подтверждения</th>
+          <th class="td-phone">Тел. в аккаунте</th>
           <th class="td-password">Пароль</th>
           <th class="td-lost">Утрачен</th>
           <th class="td-reason">Причина утраты</th>
+          <th class="td-limit">Лимит</th>
           <th class="td-actions">Действия</th>
         </tr>
       </thead>
@@ -378,7 +444,7 @@
 <!-- Модалка добавления/редактирования -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
-    <div class="modal-title" id="modal-title">Добавить запись</div>
+    <div class="modal-title"><span id="modal-title">Добавить запись</span><button class="modal-close" id="btn-modal-close">✕</button></div>
 
     <div class="form-row">
       <label>Имя</label>
@@ -422,6 +488,16 @@
     </div>
 
     <div class="form-row">
+      <label>Телефон для подтверждения</label>
+      <input type="text" id="f-phone-confirm" placeholder="+7 999 123 45 67">
+    </div>
+
+    <div class="form-row">
+      <label>Телефон в аккаунте</label>
+      <input type="text" id="f-phone-account" placeholder="+7 999 123 45 67">
+    </div>
+
+    <div class="form-row">
       <label>Пароль</label>
       <input type="text" id="f-password" placeholder="Пароль">
     </div>
@@ -450,6 +526,17 @@
     <div class="confirm-actions">
       <button class="btn-cancel" id="btn-confirm-cancel">Отмена</button>
       <button class="btn-confirm-delete" id="btn-confirm-delete">Удалить</button>
+    </div>
+  </div>
+</div>
+
+<div class="limit-modal-overlay" id="limit-modal-overlay">
+  <div class="limit-modal">
+    <div class="limit-modal-title">⚠️ Лимит уже активен</div>
+    <div class="limit-modal-text" id="limit-modal-text"></div>
+    <div class="limit-modal-actions">
+      <button class="btn-cancel" id="btn-limit-modal-cancel">Закрыть</button>
+      <button class="btn-limit-reset" id="btn-limit-modal-reset">Сбросить лимит</button>
     </div>
   </div>
 </div>
@@ -494,28 +581,65 @@ function renderTable() {
   }
 
   empty.style.display = 'none';
-  tbody.innerHTML = rows.map(r => `
-    <tr>
+  const LIMIT_DAYS = 35;
+
+  function getLimitInfo(limitStartedAt) {
+    if (!limitStartedAt) return null;
+    const start = new Date(limitStartedAt);
+    const resetDate = new Date(start.getTime() + LIMIT_DAYS * 24 * 60 * 60 * 1000);
+    const now = new Date();
+    const daysLeft = Math.ceil((resetDate - now) / (24 * 60 * 60 * 1000));
+    return { daysLeft, resetDate, done: daysLeft <= 0 };
+  }
+
+  function formatLimitDate(date) {
+    return date.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  }
+
+  tbody.innerHTML = rows.map(r => {
+    const info = getLimitInfo(r.limit_started_at);
+    const rowClass = !r.limit_started_at || (info && info.done) ? 'row-green' : 'row-red';
+    let limitCell = '';
+    if (!r.limit_started_at || (info && info.done)) {
+      limitCell = `<button class="btn-limit" data-id="${r.id}">Лимит</button>`;
+    } else {
+      limitCell = `<div class="limit-info">
+        <span class="limit-days">${info.daysLeft} дн.</span><br>
+        <span class="limit-date">до ${formatLimitDate(info.resetDate)}</span><br>
+        <button class="btn-limit" data-id="${r.id}" style="margin-top:4px">⚠ Лимит</button>
+      </div>`;
+    }
+    return `<tr class="${rowClass}">
       <td class="td-num">${escHtml(String(r.number ?? ''))}</td>
       <td class="td-name">${escHtml(r.name)}</td>
       <td class="td-day">${r.day ?? ''}</td>
       <td class="td-month">${escHtml(r.month)}</td>
       <td class="td-year">${r.year ?? ''}</td>
       <td class="td-gender">${escHtml(r.gender)}</td>
-      <td class="td-email">${escHtml(r.email)}</td>
+      <td class="td-email password-cell" data-pwd="${escHtml(r.email)}" data-copy="${escHtml(r.email)}" title="Нажми чтобы показать и скопировать">••••••••</td>
+      <td class="td-phone">${r.phone_confirm || "—"}</td>
+      <td class="td-phone">${r.phone_account || "—"}</td>
       <td class="td-password password-cell" data-pwd="${escHtml(r.password)}" title="Нажми чтобы показать">••••••••</td>
       <td class="td-lost">${r.lost ? '<span class="badge-lost">Да</span>' : '<span class="badge-ok">Нет</span>'}</td>
       <td class="td-reason">${escHtml(r.loss_reason)}</td>
+      <td class="td-limit">${limitCell}</td>
       <td class="td-actions">
         <button class="btn-edit" data-id="${r.id}">✏️</button>
         <button class="btn-delete" data-id="${r.id}">🗑</button>
       </td>
-    </tr>
-  `).join('');
+    </tr>`;
+  }).join('');
 }
 
 // Показать/скрыть пароль по клику
 document.getElementById('farm-tbody').addEventListener('click', e => {
+  const copyCell = e.target.closest(".copy-cell");
+  if (copyCell) {
+    const text = copyCell.dataset.copy || "";
+    navigator.clipboard.writeText(text).then(() => showToast("Скопировано!"));
+    return;
+  }
+
   const cell = e.target.closest('.password-cell');
   if (cell) {
     if (cell.classList.contains('revealed')) {
@@ -524,6 +648,7 @@ document.getElementById('farm-tbody').addEventListener('click', e => {
     } else {
       cell.textContent = cell.dataset.pwd || '—';
       cell.classList.add('revealed');
+      navigator.clipboard.writeText(cell.dataset.pwd || '').then(() => showToast('Скопировано!'));
     }
     return;
   }
@@ -550,7 +675,7 @@ function closeModal() {
 }
 
 function clearForm() {
-  ['f-name','f-email','f-password','f-reason'].forEach(id => document.getElementById(id).value = '');
+  ['f-name','f-email','f-phone-confirm','f-phone-account','f-password','f-reason'].forEach(id => document.getElementById(id).value = '');
   ['f-day','f-year'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('f-month').value = '';
   document.getElementById('f-gender').value = 'Не указан';
@@ -575,6 +700,8 @@ function openEdit(id) {
   document.getElementById('f-year').value = r.year || '';
   document.getElementById('f-gender').value = r.gender || 'Не указан';
   document.getElementById('f-email').value = r.email || '';
+  document.getElementById('f-phone-confirm').value = r.phone_confirm || '';
+  document.getElementById('f-phone-account').value = r.phone_account || '';
   document.getElementById('f-password').value = r.password || '';
   document.getElementById('f-lost').checked = !!r.lost;
   document.getElementById('f-reason').value = r.loss_reason || '';
@@ -582,18 +709,21 @@ function openEdit(id) {
 }
 
 document.getElementById('btn-cancel').addEventListener('click', closeModal);
-document.getElementById('modal-overlay').addEventListener('click', e => {
-  if (e.target === document.getElementById('modal-overlay')) closeModal();
-});
+document.getElementById('btn-modal-close').addEventListener('click', closeModal);
+// закрытие по клику вне модалки отключено
 
 document.getElementById('btn-save').addEventListener('click', async () => {
+  const currentNumber = editId ? (rows.find(x => x.id === editId) || {}).number : null;
   const payload = {
+    number: currentNumber,
     name: document.getElementById('f-name').value.trim(),
     day: parseInt(document.getElementById('f-day').value) || null,
     month: document.getElementById('f-month').value,
     year: parseInt(document.getElementById('f-year').value) || null,
     gender: document.getElementById('f-gender').value,
     email: document.getElementById('f-email').value.trim(),
+    phone_confirm: document.getElementById('f-phone-confirm').value.trim(),
+    phone_account: document.getElementById('f-phone-account').value.trim(),
     password: document.getElementById('f-password').value,
     lost: document.getElementById('f-lost').checked,
     loss_reason: document.getElementById('f-reason').value.trim()
@@ -616,7 +746,25 @@ document.getElementById('btn-save').addEventListener('click', async () => {
       showToast('Запись добавлена');
     }
     closeModal();
-    loadRows();
+
+  }
+});
+
+document.getElementById('btn-limit-modal-cancel').addEventListener('click', () => {
+  document.getElementById('limit-modal-overlay').classList.remove('open');
+  limitModalRowId = null;
+});
+
+document.getElementById('btn-limit-modal-reset').addEventListener('click', async () => {
+  if (!limitModalRowId) return;
+  await fetch(`http://localhost:5051/api/farm/${limitModalRowId}/limit/reset`, { method: 'PATCH' });
+  document.getElementById('limit-modal-overlay').classList.remove('open');
+  limitModalRowId = null;
+  showToast('Лимит сброшен');
+  loadRows();
+});
+
+loadRows();
   } catch(e) {
     showToast('Ошибка сохранения');
   }
@@ -643,6 +791,44 @@ document.getElementById('btn-confirm-delete').addEventListener('click', async ()
   } catch(e) {
     showToast('Ошибка удаления');
   }
+});
+
+// ЛИМИТ
+let limitModalRowId = null;
+document.getElementById('farm-tbody').addEventListener('click', async e => {
+  const limitBtn = e.target.closest('.btn-limit');
+  if (!limitBtn) return;
+  const id = parseInt(limitBtn.dataset.id);
+  const r = rows.find(x => x.id === id);
+  if (!r) return;
+  const res = await fetch(`http://localhost:5051/api/farm/${id}/limit`, { method: 'PATCH' });
+  const data = await res.json();
+  if (data.status === 'already_set') {
+    limitModalRowId = id;
+    const start = new Date(data.limit_started_at);
+    const resetDate = new Date(start.getTime() + 35 * 24 * 60 * 60 * 1000);
+    const daysLeft = Math.ceil((resetDate - new Date()) / (24 * 60 * 60 * 1000));
+    document.getElementById('limit-modal-text').innerHTML =
+      `Лимит был активирован <b>${start.toLocaleDateString('ru-RU')}</b>.<br>` +
+      `Сброс произойдёт <b>${resetDate.toLocaleDateString('ru-RU')}</b> — через <b>${daysLeft} дн.</b><br><br>` +
+      `Нажми «Сбросить лимит» чтобы начать отсчёт заново.`;
+    document.getElementById('limit-modal-overlay').classList.add('open');
+  } else {
+    showToast('Лимит активирован');
+    loadRows();
+  }
+});
+document.getElementById('btn-limit-modal-cancel').addEventListener('click', () => {
+  document.getElementById('limit-modal-overlay').classList.remove('open');
+  limitModalRowId = null;
+});
+document.getElementById('btn-limit-modal-reset').addEventListener('click', async () => {
+  if (!limitModalRowId) return;
+  await fetch(`http://localhost:5051/api/farm/${limitModalRowId}/limit/reset`, { method: 'PATCH' });
+  document.getElementById('limit-modal-overlay').classList.remove('open');
+  limitModalRowId = null;
+  showToast('Лимит сброшен');
+  loadRows();
 });
 
 loadRows();
