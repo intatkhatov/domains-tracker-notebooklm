@@ -124,6 +124,9 @@ def add_source():
         now
     ))
     new_id = c.lastrowid
+    now = datetime.now(timezone.utc).isoformat()
+    c.execute('INSERT INTO tasks (source_id, text, done, created_at) VALUES (?, ?, 0, ?)', (new_id, 'Аудио на тайском', now))
+    c.execute('INSERT INTO tasks (source_id, text, done, created_at) VALUES (?, ?, 0, ?)', (new_id, 'Опубликован на тайском', now))
     conn.commit()
     conn.close()
     return jsonify({'status': 'ok', 'id': new_id})

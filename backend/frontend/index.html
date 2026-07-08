@@ -998,7 +998,7 @@ function openAddSource() {
     const data = await res.json();
     closeModal(); FilterRegistry.resetAll(); FilterRegistry.renderAll();
     currentSearch=''; localStorage.removeItem('dt_search'); document.getElementById('search').value='';
-    justAddedId=data.id; await load(); showToast('Источник добавлен');
+    justAddedId=data.id; await load(); await loadTaskCounts(); showToast('Источник добавлен');
   });
 }
 

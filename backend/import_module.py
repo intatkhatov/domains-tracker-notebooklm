@@ -131,6 +131,9 @@ def confirm_import():
             item['notebook_url'],
             now
         ))
+        new_id = c.lastrowid
+        c.execute('INSERT INTO tasks (source_id, text, done, created_at) VALUES (?, ?, 0, ?)', (new_id, 'Аудио на тайском', now))
+        c.execute('INSERT INTO tasks (source_id, text, done, created_at) VALUES (?, ?, 0, ?)', (new_id, 'Опубликован на тайском', now))
         imported_count += 1
 
     conn.commit()
