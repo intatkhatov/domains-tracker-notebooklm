@@ -545,6 +545,7 @@
 
 <script>
 const API = 'http://localhost:5051/api/farm';
+let limitModalRowId = null;
 let rows = [];
 let editId = null;
 let deleteId = null;
@@ -746,25 +747,7 @@ document.getElementById('btn-save').addEventListener('click', async () => {
       showToast('Запись добавлена');
     }
     closeModal();
-
-  }
-});
-
-document.getElementById('btn-limit-modal-cancel').addEventListener('click', () => {
-  document.getElementById('limit-modal-overlay').classList.remove('open');
-  limitModalRowId = null;
-});
-
-document.getElementById('btn-limit-modal-reset').addEventListener('click', async () => {
-  if (!limitModalRowId) return;
-  await fetch(`http://localhost:5051/api/farm/${limitModalRowId}/limit/reset`, { method: 'PATCH' });
-  document.getElementById('limit-modal-overlay').classList.remove('open');
-  limitModalRowId = null;
-  showToast('Лимит сброшен');
-  loadRows();
-});
-
-loadRows();
+    loadRows();
   } catch(e) {
     showToast('Ошибка сохранения');
   }
@@ -794,7 +777,6 @@ document.getElementById('btn-confirm-delete').addEventListener('click', async ()
 });
 
 // ЛИМИТ
-let limitModalRowId = null;
 document.getElementById('farm-tbody').addEventListener('click', async e => {
   const limitBtn = e.target.closest('.btn-limit');
   if (!limitBtn) return;
