@@ -9,7 +9,7 @@ tasks_bp = Blueprint('tasks', __name__)
 def get_tasks(source_id):
     conn = get_db()
     rows = conn.execute(
-        'SELECT * FROM tasks WHERE source_id=? ORDER BY id',
+        'SELECT * FROM tasks WHERE source_id=? ORDER BY position, id',
         (source_id,)
     ).fetchall()
     conn.close()
@@ -53,6 +53,18 @@ def toggle_task_done(task_id):
         'UPDATE tasks SET done=? WHERE id=?',
         (1 if data.get('done') else 0, task_id)
     )
+    conn.commit()
+    conn.close()
+    return jsonify({'status': 'ok'})
+
+
+@tasks_bp.route('/api/tasks/reorder', methods=['POST'])
+def reorder_tasks():
+    data = request.json
+    order = data.get('order', [])
+    conn = get_db()
+    for i, task_id in enumerate(order):
+        conn.execute('UPDATE tasks SET position=? WHERE id=?', (i, task_id))
     conn.commit()
     conn.close()
     return jsonify({'status': 'ok'})

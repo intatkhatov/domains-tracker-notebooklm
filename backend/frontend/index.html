@@ -208,6 +208,11 @@
   .tasks-table-wrap { overflow-y: auto; flex: 1; margin-bottom: 14px; }
   .tasks-table { width: 100%; border-collapse: collapse; font-size: 13px; }
   .tasks-table th { text-align: left; padding: 8px 10px; background: #f5f5f5; font-size: 12px; color: #666; border-bottom: 1px solid #e8e8e8; }
+  .td-task-drag { width: 20px; cursor: grab; color: #ccc; text-align: center; }
+  .td-task-drag:active { cursor: grabbing; }
+  .td-task-drag * { pointer-events: none; }
+  tr.task-dragging { opacity: 0.4; }
+  tr.task-drag-over { border-top: 2px solid #1a1a1a; }
   .tasks-table td { padding: 8px 10px; border-bottom: 1px solid #f5f5f5; vertical-align: middle; }
   .tasks-table tr:last-child td { border-bottom: none; }
   .td-task-num { width: 36px; color: #aaa; font-size: 12px; }
@@ -327,6 +332,7 @@ header { transition: transform 0.25s ease; }
       <table class="tasks-table">
         <thead>
           <tr>
+            <th class="td-task-drag"></th>
             <th class="td-task-num">№</th>
             <th class="td-task-text">Задача</th>
             <th class="td-task-done">Выполнено</th>
@@ -1167,7 +1173,8 @@ function renderTasks() {
     return;
   }
   tbody.innerHTML = currentTasks.map((t, i) => `
-    <tr id="task-row-${t.id}">
+    <tr id="task-row-${t.id}" data-task-id="${t.id}">
+      <td class="td-task-drag"><svg width="14" height="6" viewBox="0 0 14 6" fill="currentColor"><rect x="0" y="0" width="14" height="2" rx="1"/><rect x="0" y="4" width="14" height="2" rx="1"/></svg></td>
       <td class="td-task-num">${i + 1}</td>
       <td class="td-task-text" id="task-text-cell-${t.id}"><span style="text-decoration:${t.done?'line-through':'none'};color:${t.done?'#aaa':'inherit'}">${escHtml(t.text)}</span></td>
       <td class="td-task-done"><input type="checkbox" ${t.done?'checked':''} data-task-id="${t.id}" class="js-task-done" style="width:16px;height:16px;cursor:pointer;accent-color:#888"></td>
@@ -1177,6 +1184,68 @@ function renderTasks() {
       </td>
     </tr>
   `).join('');
+}
+
+let dragSrcTaskId = null;
+let dragSrcRow = null;
+let dragPlaceholder = null;
+
+function initTaskDragAndDrop() {
+  const tbody = document.getElementById('tasks-tbody');
+
+  tbody.querySelectorAll('tr[data-task-id]').forEach(row => {
+    const handle = row.querySelector('.td-task-drag');
+    if (!handle) return;
+
+    handle.addEventListener('pointerdown', e => {
+      e.preventDefault();
+      dragSrcTaskId = parseInt(row.dataset.taskId);
+      dragSrcRow = row;
+      row.classList.add('task-dragging');
+
+      function onMouseMove(e) {
+        const rows = [...tbody.querySelectorAll('tr[data-task-id]:not(.task-dragging)')];
+        let target = null;
+        for (const r of rows) {
+          const rect = r.getBoundingClientRect();
+          if (e.clientY < rect.top + rect.height / 2) { target = r; break; }
+        }
+        tbody.querySelectorAll('tr').forEach(r => r.classList.remove('task-drag-over'));
+        if (target) target.classList.add('task-drag-over');
+      }
+
+      async function onMouseUp(e) {
+        document.removeEventListener('pointermove', onMouseMove);
+        document.removeEventListener('pointerup', onMouseUp);
+        row.classList.remove('task-dragging');
+        const overRow = tbody.querySelector('tr.task-drag-over');
+        tbody.querySelectorAll('tr').forEach(r => r.classList.remove('task-drag-over'));
+
+        if (!overRow || !dragSrcTaskId) { dragSrcTaskId = null; dragSrcRow = null; return; }
+        const toId = parseInt(overRow.dataset.taskId);
+        if (dragSrcTaskId === toId) { dragSrcTaskId = null; dragSrcRow = null; return; }
+
+        const allRows = [...tbody.querySelectorAll('tr[data-task-id]')];
+        const order = allRows.map(r => parseInt(r.dataset.taskId));
+        const fromIdx = order.indexOf(dragSrcTaskId);
+        const toIdx = order.indexOf(toId);
+        order.splice(fromIdx, 1);
+        order.splice(toIdx, 0, dragSrcTaskId);
+        dragSrcTaskId = null;
+        dragSrcRow = null;
+
+        await fetch(`${API}/tasks/reorder`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ order })
+        });
+        await reloadTasks();
+      }
+
+      document.addEventListener('pointermove', onMouseMove);
+      document.addEventListener('pointerup', onMouseUp);
+    });
+  });
 }
 
 function startEditTask(taskId) {
