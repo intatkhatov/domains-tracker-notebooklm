@@ -28,7 +28,7 @@ def init_links_db():
 @links_bp.route('/api/links', methods=['GET'])
 def get_links():
     conn = get_links_db()
-    rows = conn.execute('SELECT * FROM links ORDER BY id').fetchall()
+    rows = conn.execute('SELECT * FROM links ORDER BY position, id').fetchall()
     conn.close()
     return jsonify([dict(r) for r in rows])
 
@@ -50,6 +50,18 @@ def update_link(row_id):
     data = request.json
     conn = get_links_db()
     conn.execute('UPDATE links SET name=?, url=? WHERE id=?', (data.get('name', ''), data.get('url', ''), row_id))
+    conn.commit()
+    conn.close()
+    return jsonify({'status': 'ok'})
+
+
+@links_bp.route('/api/links/reorder', methods=['POST'])
+def reorder_links():
+    data = request.json
+    order = data.get('order', [])
+    conn = get_links_db()
+    for i, row_id in enumerate(order):
+        conn.execute('UPDATE links SET position=? WHERE id=?', (i, row_id))
     conn.commit()
     conn.close()
     return jsonify({'status': 'ok'})

@@ -41,6 +41,10 @@
   .btn-delete:hover { background: #ffebee; color: #c62828; border-color: #ffcdd2; }
 
   .empty-state { text-align: center; color: #aaa; padding: 60px; font-size: 13px; }
+  .td-drag { width: 28px; cursor: grab; color: #ccc; font-size: 16px; user-select: none; }
+  .td-drag:active { cursor: grabbing; }
+  tr.dragging { opacity: 0.4; }
+  tr.drag-over { border-top: 2px solid #1a1a1a; }
 
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 200; align-items: center; justify-content: center; }
   .modal-overlay.open { display: flex; }
@@ -85,6 +89,7 @@
     <table id="links-table">
       <thead>
         <tr>
+          <th class="td-drag"></th>
           <th class="td-num">№</th>
           <th class="td-name">Название</th>
           <th class="td-url">URL</th>
@@ -152,6 +157,7 @@ async function loadRows() {
     const res = await fetch(API);
     rows = await res.json();
     renderTable();
+  initDragAndDrop();
   } catch(e) { showToast('Ошибка загрузки'); }
 }
 
@@ -161,7 +167,8 @@ function renderTable() {
   if (rows.length === 0) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
   empty.style.display = 'none';
   tbody.innerHTML = rows.map((r, i) => `
-    <tr>
+    <tr draggable="true" data-id="${r.id}">
+      <td class="td-drag">⠿</td>
       <td class="td-num">${i + 1}</td>
       <td class="td-name">${escHtml(r.name)}</td>
       <td class="td-url"><a class="url-cell" href="${escHtml(r.url)}" target="_blank" title="${escHtml(r.url)}">${escHtml(r.url)}</a></td>
@@ -235,6 +242,50 @@ document.getElementById('btn-confirm-delete').addEventListener('click', async ()
     loadRows();
   } catch(e) { showToast('Ошибка удаления'); }
 });
+
+// DRAG AND DROP
+let dragSrcId = null;
+
+function initDragAndDrop() {
+  const tbody = document.getElementById('links-tbody');
+  tbody.querySelectorAll('tr[draggable]').forEach(row => {
+    row.addEventListener('dragstart', e => {
+      dragSrcId = parseInt(row.dataset.id);
+      row.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    row.addEventListener('dragend', () => {
+      row.classList.remove('dragging');
+      tbody.querySelectorAll('tr').forEach(r => r.classList.remove('drag-over'));
+    });
+    row.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      tbody.querySelectorAll('tr').forEach(r => r.classList.remove('drag-over'));
+      row.classList.add('drag-over');
+    });
+    row.addEventListener('drop', async e => {
+      e.preventDefault();
+      row.classList.remove('drag-over');
+      if (dragSrcId === parseInt(row.dataset.id)) return;
+
+      // Новый порядок
+      const allRows = [...tbody.querySelectorAll('tr[data-id]')];
+      const order = allRows.map(r => parseInt(r.dataset.id));
+      const fromIdx = order.indexOf(dragSrcId);
+      const toIdx = order.indexOf(parseInt(row.dataset.id));
+      order.splice(fromIdx, 1);
+      order.splice(toIdx, 0, dragSrcId);
+
+      await fetch('http://localhost:5051/api/links/reorder', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ order })
+      });
+      loadRows();
+    });
+  });
+}
 
 loadRows();
 </script>

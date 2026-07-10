@@ -91,8 +91,9 @@
   .sidebar-filters-scroll::-webkit-scrollbar { width: 4px; }
   .sidebar-filters-scroll::-webkit-scrollbar-track { background: transparent; }
   .sidebar-filters-scroll::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
-  .sidebar-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; cursor: grab; }
+  .sidebar-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; cursor: grab; position: relative; }
   .sidebar-header-row:active { cursor: grabbing; }
+  .sidebar-drag-dots { position: absolute; left: 50%; transform: translateX(-50%); color: #ccc; font-size: 18px; line-height: 1; pointer-events: none; letter-spacing: 2px; top: -2px; }
   .sidebar-title { font-size: 11px; color: #888; flex: 1; }
   .sidebar-btn-group { display: flex; gap: 6px; }
   .btn-sidebar-close, .btn-sidebar-min { width: 20px; height: 20px; border: none; background: var(--bg-hover); border-radius: 50%; color: #888; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -294,6 +295,7 @@ header { transition: transform 0.25s ease; }
     <div class="sidebar-card">
       <div class="sidebar-header-row" id="sidebar-drag-handle">
         <div class="sidebar-title"><span id="filter-count"></span></div>
+        <div class="sidebar-drag-dots"><svg width="20" height="6" viewBox="0 0 20 6" fill="currentColor"><rect x="0" y="0" width="20" height="2" rx="1"/><rect x="0" y="4" width="20" height="2" rx="1"/></svg></div>
         <div class="sidebar-btn-group">
           <button class="btn-sidebar-min" id="btn-sidebar-min" type="button" title="Свернуть">−</button>
           <button class="btn-sidebar-close" id="btn-sidebar-close" type="button" title="Закрыть">✕</button>
