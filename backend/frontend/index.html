@@ -267,6 +267,7 @@ header { transition: transform 0.25s ease; }
 })();
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.2/Sortable.min.js"></script>
 </head>
 <body>
 
@@ -1184,70 +1185,34 @@ function renderTasks() {
       </td>
     </tr>
   `).join('');
+  initTaskDragAndDrop();
 }
 
-let dragSrcTaskId = null;
-let dragSrcRow = null;
-let dragPlaceholder = null;
+let sortableTaskInstance = null;
 
 function initTaskDragAndDrop() {
   const tbody = document.getElementById('tasks-tbody');
-
-  tbody.querySelectorAll('tr[data-task-id]').forEach(row => {
-    const handle = row.querySelector('.td-task-drag');
-    if (!handle) return;
-
-    handle.addEventListener('pointerdown', e => {
-      e.preventDefault();
-      dragSrcTaskId = parseInt(row.dataset.taskId);
-      dragSrcRow = row;
-      row.classList.add('task-dragging');
-
-      function onMouseMove(e) {
-        const rows = [...tbody.querySelectorAll('tr[data-task-id]:not(.task-dragging)')];
-        let target = null;
-        for (const r of rows) {
-          const rect = r.getBoundingClientRect();
-          if (e.clientY < rect.top + rect.height / 2) { target = r; break; }
-        }
-        tbody.querySelectorAll('tr').forEach(r => r.classList.remove('task-drag-over'));
-        if (target) target.classList.add('task-drag-over');
-      }
-
-      async function onMouseUp(e) {
-        document.removeEventListener('pointermove', onMouseMove);
-        document.removeEventListener('pointerup', onMouseUp);
-        row.classList.remove('task-dragging');
-        const overRow = tbody.querySelector('tr.task-drag-over');
-        tbody.querySelectorAll('tr').forEach(r => r.classList.remove('task-drag-over'));
-
-        if (!overRow || !dragSrcTaskId) { dragSrcTaskId = null; dragSrcRow = null; return; }
-        const toId = parseInt(overRow.dataset.taskId);
-        if (dragSrcTaskId === toId) { dragSrcTaskId = null; dragSrcRow = null; return; }
-
-        const allRows = [...tbody.querySelectorAll('tr[data-task-id]')];
-        const order = allRows.map(r => parseInt(r.dataset.taskId));
-        const fromIdx = order.indexOf(dragSrcTaskId);
-        const toIdx = order.indexOf(toId);
-        order.splice(fromIdx, 1);
-        order.splice(toIdx, 0, dragSrcTaskId);
-        dragSrcTaskId = null;
-        dragSrcRow = null;
-
-        await fetch(`${API}/tasks/reorder`, {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ order })
-        });
-        await reloadTasks();
-      }
-
-      document.addEventListener('pointermove', onMouseMove);
-      document.addEventListener('pointerup', onMouseUp);
-    });
+  if (sortableTaskInstance) {
+    sortableTaskInstance.destroy();
+    sortableTaskInstance = null;
+  }
+  sortableTaskInstance = new Sortable(tbody, {
+    handle: '.td-task-drag',
+    animation: 150,
+    ghostClass: 'task-dragging',
+    chosenClass: 'task-drag-over',
+    onEnd: async (evt) => {
+      const allRows = [...tbody.querySelectorAll('tr[data-task-id]')];
+      const order = allRows.map(r => parseInt(r.dataset.taskId));
+      await fetch(`${API}/tasks/reorder`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ order })
+      });
+      await reloadTasks();
+    }
   });
 }
-
 function startEditTask(taskId) {
   const t = currentTasks.find(x => x.id === taskId);
   if (!t) return;
