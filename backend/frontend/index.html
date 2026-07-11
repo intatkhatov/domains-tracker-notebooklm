@@ -675,6 +675,26 @@ FilterRegistry.register({
     </div>`
 });
 
+// Фильтр: Опубликовано на тайском
+FilterRegistry.register({
+  id: 'published_thai',
+  getDefaultState: () => 'any',
+  apply: (s, state) => {
+    if (state === 'yes') return !!s.published_thai;
+    if (state === 'no') return !s.published_thai;
+    return true;
+  },
+  render: (state, reg) => `
+    <div class="filter-section">
+      <div class="filter-section-label">🇹🇭 Опубликовано на тайском</div>
+      <div class="filter-chip-group">
+        <button class="filter-chip ${state==='any'?'active':''}" data-filter="published_thai" data-value="any">любое<span class="chip-count">${reg ? reg.countFor('published_thai','any') : ''}</span></button>
+        <button class="filter-chip ${state==='yes'?'active':''}" data-filter="published_thai" data-value="yes">да<span class="chip-count">${reg ? reg.countFor('published_thai','yes') : ''}</span></button>
+        <button class="filter-chip ${state==='no'?'active':''}" data-filter="published_thai" data-value="no">нет<span class="chip-count">${reg ? reg.countFor('published_thai','no') : ''}</span></button>
+      </div>
+    </div>`
+});
+
 // Фильтр: Аудиопересказ
 FilterRegistry.register({
   id: 'notebook',
@@ -920,6 +940,7 @@ function renderSource(s) {
           <label class="flag-line ${s.spotify?'on':''}" title="Добавлено в Spotify for Creators"><span class="flag-icon">🌍</span><input type="checkbox" class="toggle-checkbox spotify-cb js-toggle" data-field="spotify" data-id="${s.id}" ${s.spotify?'checked':''}></label>
           <label class="flag-line ${s.mave?'on':''}" title="Добавлено в Mave"><span class="flag-icon">🪆</span><input type="checkbox" class="toggle-checkbox mave-cb js-toggle" data-field="mave" data-id="${s.id}" ${s.mave?'checked':''}></label>
           <label class="flag-line ${s.listened?'on':''}" title="Прослушано"><span class="flag-icon">🎧</span><input type="checkbox" class="toggle-checkbox listened-cb js-toggle" data-field="listened" data-id="${s.id}" ${s.listened?'checked':''}></label>
+          <label class="flag-line ${s.published_thai?'on':''}" title="Опубликовано на тайском"><span class="flag-icon">🇹🇭</span><input type="checkbox" class="toggle-checkbox js-toggle" data-field="published_thai" data-id="${s.id}" ${s.published_thai?'checked':''}></label>
         </div>
         <div class="source-body">
           <div class="source-short">${escHtml(s.short_name)}</div>

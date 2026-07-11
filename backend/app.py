@@ -222,6 +222,15 @@ def toggle_mave(source_id):
     return jsonify({'ok': True})
 
 
+@app.route('/api/sources/<int:source_id>/published_thai', methods=['PATCH'])
+def toggle_published_thai(source_id):
+    data = request.get_json()
+    db = get_db()
+    db.execute('UPDATE sources SET published_thai=? WHERE id=?', (1 if data.get('published_thai') else 0, source_id))
+    db.commit()
+    return jsonify({'ok': True})
+
+
 @app.route('/api/sources/<int:source_id>/relisten', methods=['PATCH'])
 def toggle_relisten(source_id):
     data = request.get_json()

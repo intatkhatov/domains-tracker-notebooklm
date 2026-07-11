@@ -41,7 +41,7 @@ def init_db():
     ''')
 
     # Миграции
-    for col, default in [('relisten', 0), ('rating', 'NULL'), ('comment', 'NULL'), ('listened', 0), ('spotify', 0), ('mave', 0)]:
+    for col, default in [('relisten', 0), ('rating', 'NULL'), ('comment', 'NULL'), ('listened', 0), ('spotify', 0), ('mave', 0), ('published_thai', 0)]:
         try:
             c.execute(f'ALTER TABLE sources ADD COLUMN {col} {"INTEGER DEFAULT " + str(default) if default != "NULL" else "TEXT"}')
             conn.commit()
