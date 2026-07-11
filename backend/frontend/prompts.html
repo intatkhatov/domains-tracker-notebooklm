@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ссылки — Domains Tracker</title>
+<title>Промты — Domains Tracker</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.2/Sortable.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f0; color: #1a1a1a; font-size: 14px; }
@@ -16,7 +17,7 @@
   .btn-add { margin-left: auto; padding: 7px 14px; background: #2e7d32; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 12.5px; font-weight: 600; }
   .btn-add:hover { background: #256728; }
 
-  .container { max-width: 800px; margin: 0 auto; padding: 24px 16px 60px; }
+  .container { max-width: 900px; margin: 0 auto; padding: 24px 16px 60px; }
 
   .table-wrap { background: #fff; border: 1px solid #e8e8e8; border-radius: 10px; overflow: hidden; }
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -27,36 +28,45 @@
   tbody tr:hover { background: #fafaf8; }
   tbody td { padding: 9px 12px; vertical-align: middle; }
 
+  .td-drag { width: 28px; cursor: grab; color: #ccc; font-size: 16px; user-select: none; }
+  .td-drag:active { cursor: grabbing; }
   .td-num { width: 48px; color: #888; font-size: 12px; }
   .td-name { min-width: 160px; font-weight: 500; }
-  .td-url { min-width: 200px; }
+  .td-prompt { min-width: 300px; }
   .td-actions { width: 70px; white-space: nowrap; position: sticky; right: 0; background: #fff; box-shadow: -2px 0 4px rgba(0,0,0,0.06); }
   thead .td-actions { background: #1a1a1a; }
   tbody tr:hover .td-actions { background: #fafaf8; }
 
-  .url-cell { font-family: 'SF Mono', Menlo, monospace; font-size: 12px; color: #1a73e8; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 400px; display: block; }
-  .url-cell:hover { text-decoration: underline; }
+  .prompt-cell {
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 12px;
+    color: #555;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 500px;
+    display: block;
+  }
+  .prompt-cell:hover { color: #1a1a1a; }
 
   .btn-edit, .btn-delete { padding: 4px 9px; border-radius: 5px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-size: 11.5px; color: #555; }
   .btn-edit:hover { background: #f0f0f0; }
   .btn-delete:hover { background: #ffebee; color: #c62828; border-color: #ffcdd2; }
 
   .empty-state { text-align: center; color: #aaa; padding: 60px; font-size: 13px; }
-  .td-drag { width: 28px; cursor: grab; color: #ccc; font-size: 16px; user-select: none; }
-  .td-drag:active { cursor: grabbing; }
-  tr.dragging { opacity: 0.4; }
-  tr.drag-over { border-top: 2px solid #1a1a1a; }
 
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 200; align-items: center; justify-content: center; }
   .modal-overlay.open { display: flex; }
-  .modal { background: #fff; border-radius: 10px; padding: 24px; width: 100%; max-width: 480px; box-shadow: 0 8px 40px rgba(0,0,0,0.18); }
+  .modal { background: #fff; border-radius: 10px; padding: 24px; width: 100%; max-width: 560px; box-shadow: 0 8px 40px rgba(0,0,0,0.18); }
   .modal-title { font-size: 15px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
   .modal-close { background: none; border: none; font-size: 20px; color: #aaa; cursor: pointer; }
   .modal-close:hover { color: #1a1a1a; }
   .form-row { margin-bottom: 14px; }
   .form-row label { display: block; font-size: 12px; font-weight: 600; color: #555; margin-bottom: 5px; }
-  .form-row input { width: 100%; padding: 8px 11px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; font-family: inherit; }
-  .form-row input:focus { outline: none; border-color: #1a1a1a; }
+  .form-row input, .form-row textarea { width: 100%; padding: 8px 11px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; font-family: inherit; }
+  .form-row input:focus, .form-row textarea:focus { outline: none; border-color: #1a1a1a; }
+  .form-row textarea { resize: vertical; min-height: 120px; }
   .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
   .btn-cancel { padding: 8px 18px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 13px; color: #555; }
   .btn-cancel:hover { background: #f5f5f5; }
@@ -80,42 +90,42 @@
 <header>
   <div class="header-inner">
     <a href="/" class="back-link">← Назад</a>
-    <h1>Ссылки</h1>
+    <h1>Промты</h1>
     <button class="btn-add" id="btn-add">+ Добавить</button>
   </div>
 </header>
 
 <div class="container">
   <div class="table-wrap">
-    <table id="links-table">
+    <table id="prompts-table">
       <thead>
         <tr>
           <th class="td-drag"></th>
           <th class="td-num">№</th>
           <th class="td-name">Название</th>
-          <th class="td-url">URL</th>
+          <th class="td-prompt">Промт</th>
           <th class="td-actions">Действия</th>
         </tr>
       </thead>
-      <tbody id="links-tbody"></tbody>
+      <tbody id="prompts-tbody"></tbody>
     </table>
-    <div class="empty-state" id="empty-state">Нет ссылок. Нажми «+ Добавить».</div>
+    <div class="empty-state" id="empty-state">Нет промтов. Нажми «+ Добавить».</div>
   </div>
 </div>
 
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
     <div class="modal-title">
-      <span id="modal-title">Добавить ссылку</span>
+      <span id="modal-title">Добавить промт</span>
       <button class="modal-close" id="btn-modal-close">✕</button>
     </div>
     <div class="form-row">
       <label>Название</label>
-      <input type="text" id="f-name" placeholder="Например: Google">
+      <input type="text" id="f-name" placeholder="Название промта">
     </div>
     <div class="form-row">
-      <label>URL</label>
-      <input type="url" id="f-url" placeholder="https://...">
+      <label>Промт</label>
+      <textarea id="f-prompt" placeholder="Текст промта…"></textarea>
     </div>
     <div class="modal-actions">
       <button class="btn-cancel" id="btn-cancel">Отмена</button>
@@ -126,7 +136,7 @@
 
 <div class="confirm-overlay" id="confirm-overlay">
   <div class="confirm-box">
-    <p>Удалить эту ссылку? Действие необратимо.</p>
+    <p>Удалить этот промт? Действие необратимо.</p>
     <div class="confirm-actions">
       <button class="btn-cancel" id="btn-confirm-cancel">Отмена</button>
       <button class="btn-confirm-delete" id="btn-confirm-delete">Удалить</button>
@@ -137,7 +147,7 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const API = 'http://localhost:5051/api/links';
+const API = 'http://localhost:5051/api/prompts';
 let rows = [];
 let editId = null;
 let deleteId = null;
@@ -158,21 +168,21 @@ async function loadRows() {
     const res = await fetch(API);
     rows = await res.json();
     renderTable();
-  initDragAndDrop();
+    initDragAndDrop();
   } catch(e) { showToast('Ошибка загрузки'); }
 }
 
 function renderTable() {
-  const tbody = document.getElementById('links-tbody');
+  const tbody = document.getElementById('prompts-tbody');
   const empty = document.getElementById('empty-state');
   if (rows.length === 0) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
   empty.style.display = 'none';
   tbody.innerHTML = rows.map((r, i) => `
-    <tr draggable="true" data-id="${r.id}">
+    <tr data-id="${r.id}">
       <td class="td-drag">⠿</td>
       <td class="td-num">${i + 1}</td>
       <td class="td-name">${escHtml(r.name)}</td>
-      <td class="td-url"><a class="url-cell" href="${escHtml(r.url)}" target="_blank" title="${escHtml(r.url)}">${escHtml(r.url)}</a></td>
+      <td class="td-prompt"><span class="prompt-cell" data-prompt="${escHtml(r.prompt)}" title="Нажми чтобы скопировать">${escHtml(r.prompt)}</span></td>
       <td class="td-actions">
         <button class="btn-edit" data-id="${r.id}">✏️</button>
         <button class="btn-delete" data-id="${r.id}">🗑</button>
@@ -181,7 +191,13 @@ function renderTable() {
   `).join('');
 }
 
-document.getElementById('links-tbody').addEventListener('click', e => {
+document.getElementById('prompts-tbody').addEventListener('click', e => {
+  const promptCell = e.target.closest('.prompt-cell');
+  if (promptCell) {
+    const text = promptCell.dataset.prompt || '';
+    navigator.clipboard.writeText(text).then(() => showToast('Промт скопирован!'));
+    return;
+  }
   const editBtn = e.target.closest('.btn-edit');
   if (editBtn) { openEdit(parseInt(editBtn.dataset.id)); return; }
   const delBtn = e.target.closest('.btn-delete');
@@ -190,12 +206,12 @@ document.getElementById('links-tbody').addEventListener('click', e => {
 
 function openModal() { document.getElementById('modal-overlay').classList.add('open'); }
 function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); editId = null; }
-function clearForm() { document.getElementById('f-name').value = ''; document.getElementById('f-url').value = ''; }
+function clearForm() { document.getElementById('f-name').value = ''; document.getElementById('f-prompt').value = ''; }
 
 document.getElementById('btn-add').addEventListener('click', () => {
   clearForm();
   editId = null;
-  document.getElementById('modal-title').textContent = 'Добавить ссылку';
+  document.getElementById('modal-title').textContent = 'Добавить промт';
   openModal();
 });
 
@@ -203,9 +219,9 @@ function openEdit(id) {
   const r = rows.find(x => x.id === id);
   if (!r) return;
   editId = id;
-  document.getElementById('modal-title').textContent = 'Редактировать ссылку';
+  document.getElementById('modal-title').textContent = 'Редактировать промт';
   document.getElementById('f-name').value = r.name || '';
-  document.getElementById('f-url').value = r.url || '';
+  document.getElementById('f-prompt').value = r.prompt || '';
   openModal();
 }
 
@@ -215,16 +231,16 @@ document.getElementById('btn-modal-close').addEventListener('click', closeModal)
 document.getElementById('btn-save').addEventListener('click', async () => {
   const payload = {
     name: document.getElementById('f-name').value.trim(),
-    url: document.getElementById('f-url').value.trim()
+    prompt: document.getElementById('f-prompt').value.trim()
   };
-  if (!payload.name || !payload.url) { showToast('Заполни название и URL'); return; }
+  if (!payload.name || !payload.prompt) { showToast('Заполни название и промт'); return; }
   try {
     if (editId) {
       await fetch(`${API}/${editId}`, { method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload) });
-      showToast('Ссылка обновлена');
+      showToast('Промт обновлён');
     } else {
       await fetch(API, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload) });
-      showToast('Ссылка добавлена');
+      showToast('Промт добавлен');
     }
     closeModal();
     loadRows();
@@ -237,54 +253,32 @@ document.getElementById('btn-confirm-delete').addEventListener('click', async ()
   if (!deleteId) return;
   try {
     await fetch(`${API}/${deleteId}`, { method: 'DELETE' });
-    showToast('Ссылка удалена');
+    showToast('Промт удалён');
     document.getElementById('confirm-overlay').classList.remove('open');
     deleteId = null;
     loadRows();
   } catch(e) { showToast('Ошибка удаления'); }
 });
 
-// DRAG AND DROP
-let dragSrcId = null;
+let sortableInstance = null;
 
 function initDragAndDrop() {
-  const tbody = document.getElementById('links-tbody');
-  tbody.querySelectorAll('tr[draggable]').forEach(row => {
-    row.addEventListener('dragstart', e => {
-      dragSrcId = parseInt(row.dataset.id);
-      row.classList.add('dragging');
-      e.dataTransfer.effectAllowed = 'move';
-    });
-    row.addEventListener('dragend', () => {
-      row.classList.remove('dragging');
-      tbody.querySelectorAll('tr').forEach(r => r.classList.remove('drag-over'));
-    });
-    row.addEventListener('dragover', e => {
-      e.preventDefault();
-      e.dataTransfer.dropEffect = 'move';
-      tbody.querySelectorAll('tr').forEach(r => r.classList.remove('drag-over'));
-      row.classList.add('drag-over');
-    });
-    row.addEventListener('drop', async e => {
-      e.preventDefault();
-      row.classList.remove('drag-over');
-      if (dragSrcId === parseInt(row.dataset.id)) return;
-
-      // Новый порядок
+  const tbody = document.getElementById('prompts-tbody');
+  if (sortableInstance) { sortableInstance.destroy(); sortableInstance = null; }
+  sortableInstance = new Sortable(tbody, {
+    handle: '.td-drag',
+    animation: 150,
+    ghostClass: 'dragging',
+    onEnd: async () => {
       const allRows = [...tbody.querySelectorAll('tr[data-id]')];
       const order = allRows.map(r => parseInt(r.dataset.id));
-      const fromIdx = order.indexOf(dragSrcId);
-      const toIdx = order.indexOf(parseInt(row.dataset.id));
-      order.splice(fromIdx, 1);
-      order.splice(toIdx, 0, dragSrcId);
-
-      await fetch('http://localhost:5051/api/links/reorder', {
+      await fetch(`${API}/reorder`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ order })
       });
       loadRows();
-    });
+    }
   });
 }
 

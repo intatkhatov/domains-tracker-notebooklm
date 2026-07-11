@@ -4,6 +4,7 @@ from database import get_db, init_db
 from farm_db import init_farm_db
 from farm_routes import farm_bp
 from links_routes import links_bp, init_links_db
+from prompts_routes import prompts_bp, init_prompts_db
 from tasks_routes import tasks_bp
 from similarity import check_duplicates
 from import_module import import_bp
@@ -14,11 +15,13 @@ CORS(app)
 app.register_blueprint(import_bp)
 app.register_blueprint(farm_bp)
 app.register_blueprint(links_bp)
+app.register_blueprint(prompts_bp)
 app.register_blueprint(tasks_bp)
 
 init_db()
 init_farm_db()
 init_links_db()
+init_prompts_db()
 
 
 @app.route('/')
@@ -44,6 +47,11 @@ def convert_page():
 @app.route('/links.html')
 def links_page():
     return send_from_directory('/app/frontend', 'links.html')
+
+
+@app.route('/prompts.html')
+def prompts_page():
+    return send_from_directory('/app/frontend', 'prompts.html')
 
 
 @app.route('/api/domains', methods=['GET'])
