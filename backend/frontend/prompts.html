@@ -182,7 +182,7 @@ function renderTable() {
       <td class="td-drag">⠿</td>
       <td class="td-num">${i + 1}</td>
       <td class="td-name">${escHtml(r.name)}</td>
-      <td class="td-prompt"><span class="prompt-cell" data-prompt="${escHtml(r.prompt)}" title="Нажми чтобы скопировать">${escHtml(r.prompt)}</span></td>
+      <td class="td-prompt"><span class="prompt-cell" data-id="${r.id}" title="Нажми чтобы скопировать">${escHtml(r.prompt)}</span></td>
       <td class="td-actions">
         <button class="btn-edit" data-id="${r.id}">✏️</button>
         <button class="btn-delete" data-id="${r.id}">🗑</button>
@@ -194,7 +194,9 @@ function renderTable() {
 document.getElementById('prompts-tbody').addEventListener('click', e => {
   const promptCell = e.target.closest('.prompt-cell');
   if (promptCell) {
-    const text = promptCell.dataset.prompt || '';
+    const id = parseInt(promptCell.dataset.id);
+    const r = rows.find(x => x.id === id);
+    const text = r ? r.prompt : '';
     navigator.clipboard.writeText(text).then(() => showToast('Промт скопирован!'));
     return;
   }

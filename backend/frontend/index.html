@@ -61,7 +61,7 @@
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; }
   header { background: var(--bg-header); color: var(--text-header); padding: 10px 20px; position: fixed; top: 0; left: 0; right: 0; z-index: 100; }
   .header-top { display: flex; align-items: center; gap: 12px; max-width: 720px; margin: 0 auto; width: 100%; }
-  .search-wrap { position: relative; flex: 1; max-width: 510px; }
+  .search-wrap { position: relative; flex: 1; max-width: 550px; }
   #search { width: 100%; padding: 7px 28px 7px 11px; border: 1px solid var(--border-header); border-radius: 6px; font-size: 13px; background: var(--bg-input); color: var(--text-input); }
   #search::placeholder { color: #888; }
   .search-mode-btn { position: absolute; left: 6px; top: 50%; transform: translateY(-50%); padding: 3px 8px; background: #3a3a3a; border: none; border-radius: 4px; color: #ccc; font-size: 11px; cursor: pointer; white-space: nowrap; z-index: 1; display: flex; align-items: center; gap: 4px; }
@@ -71,7 +71,7 @@
   .search-mode-option { padding: 8px 12px; font-size: 12px; color: #ccc; cursor: pointer; }
   .search-mode-option:hover { background: #2a2a2a; color: #fff; }
   .search-mode-option.active { color: #fff; background: #2a2a2a; }
-  #search { padding-left: 93px; }
+  #search { padding-left: 100px; }
   #search:focus { outline: none; border-color: #666; }
   .search-clear { display: none; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; border: none; border-radius: 50%; background: #444; color: #ccc; font-size: 12px; cursor: pointer; align-items: center; justify-content: center; }
   .search-clear.visible { display: flex; }
@@ -297,6 +297,7 @@ header { transition: transform 0.25s ease; }
       <div class="search-mode-dropdown" id="search-mode-dropdown">
         <div class="search-mode-option active" data-mode="sources">Источники</div>
         <div class="search-mode-option" data-mode="tasks">Задачи</div>
+        <div class="search-mode-option" data-mode="comments">Комментарии</div>
       </div>
       <input type="text" id="search" placeholder="Поиск по источникам…">
       <button class="search-clear" id="search-clear" type="button">✕</button>
@@ -910,6 +911,8 @@ function renderSources() {
         const tasks = allTasksCache[String(s.id)] || [];
         return tasks.some(t => t.toLowerCase().includes(q));
       });
+    } else if (searchMode === 'comments') {
+      sources = sources.filter(s => s.comment && s.comment.toLowerCase().includes(q));
     } else {
       sources = sources.filter(s => s.short_name.toLowerCase().includes(q) || s.citation.toLowerCase().includes(q));
     }
@@ -1079,9 +1082,15 @@ const searchModeDropdown = document.getElementById('search-mode-dropdown');
 function applySearchMode(mode) {
   searchMode = mode;
   localStorage.setItem('dt_search_mode', mode);
-  const label = mode === 'tasks' ? 'Задачи ▾' : 'Источники ▾';
+  const labels = {sources: 'Источники ▾', tasks: 'Задачи ▾', comments: 'Комментарии ▾'};
+  const label = labels[mode] || 'Источники ▾';
   searchModeBtn.textContent = label;
-  document.getElementById('search').placeholder = mode === 'tasks' ? 'Поиск по задачам…' : 'Поиск по источникам…';
+  requestAnimationFrame(() => {
+    const btnWidth = searchModeBtn.offsetWidth;
+    document.getElementById('search').style.paddingLeft = (btnWidth + 8 + 6) + 'px';
+  });
+  const placeholders = {sources: 'Поиск по источникам…', tasks: 'Поиск по задачам…', comments: 'Поиск по комментариям…'};
+  document.getElementById('search').placeholder = placeholders[mode] || 'Поиск…';
   document.querySelectorAll('.search-mode-option').forEach(o => {
     o.classList.toggle('active', o.dataset.mode === mode);
   });
