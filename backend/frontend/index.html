@@ -61,9 +61,17 @@
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; }
   header { background: var(--bg-header); color: var(--text-header); padding: 10px 20px; position: fixed; top: 0; left: 0; right: 0; z-index: 100; }
   .header-top { display: flex; align-items: center; gap: 12px; max-width: 720px; margin: 0 auto; width: 100%; }
-  .search-wrap { position: relative; flex: 1; max-width: 440px; }
+  .search-wrap { position: relative; flex: 1; max-width: 510px; }
   #search { width: 100%; padding: 7px 28px 7px 11px; border: 1px solid var(--border-header); border-radius: 6px; font-size: 13px; background: var(--bg-input); color: var(--text-input); }
   #search::placeholder { color: #888; }
+  .search-mode-btn { position: absolute; left: 6px; top: 50%; transform: translateY(-50%); padding: 3px 8px; background: #3a3a3a; border: none; border-radius: 4px; color: #ccc; font-size: 11px; cursor: pointer; white-space: nowrap; z-index: 1; display: flex; align-items: center; gap: 4px; }
+  .search-mode-btn:hover { background: #444; color: #fff; }
+  .search-mode-dropdown { display: none; position: absolute; left: 6px; top: calc(100% + 4px); background: #1a1a1a; border: 1px solid #3a3a3a; border-radius: 6px; overflow: hidden; z-index: 200; min-width: 110px; }
+  .search-mode-dropdown.open { display: block; }
+  .search-mode-option { padding: 8px 12px; font-size: 12px; color: #ccc; cursor: pointer; }
+  .search-mode-option:hover { background: #2a2a2a; color: #fff; }
+  .search-mode-option.active { color: #fff; background: #2a2a2a; }
+  #search { padding-left: 93px; }
   #search:focus { outline: none; border-color: #666; }
   .search-clear { display: none; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; border: none; border-radius: 50%; background: #444; color: #ccc; font-size: 12px; cursor: pointer; align-items: center; justify-content: center; }
   .search-clear.visible { display: flex; }
@@ -285,6 +293,11 @@ header { transition: transform 0.25s ease; }
       </div>
     </div>
     <div class="search-wrap">
+      <button class="search-mode-btn" id="search-mode-btn">Источники ▾</button>
+      <div class="search-mode-dropdown" id="search-mode-dropdown">
+        <div class="search-mode-option active" data-mode="sources">Источники</div>
+        <div class="search-mode-option" data-mode="tasks">Задачи</div>
+      </div>
       <input type="text" id="search" placeholder="Поиск по источникам…">
       <button class="search-clear" id="search-clear" type="button">✕</button>
     </div>
@@ -373,6 +386,8 @@ const PROMPT_TEXT = 'Подготовь аудиопересказ в форма
 let allSources = [];
 let sourcesById = {};
 let currentSearch = '';
+let searchMode = localStorage.getItem('dt_search_mode') || 'sources';
+let allTasksCache = {};
 let justAddedId = null;
 
 // SIDEBAR
@@ -889,7 +904,16 @@ function renderSources() {
   const empty = document.getElementById('empty');
   const q = currentSearch.toLowerCase();
   let sources = allSources;
-  if (q) sources = sources.filter(s => s.short_name.toLowerCase().includes(q) || s.citation.toLowerCase().includes(q));
+  if (q) {
+    if (searchMode === 'tasks') {
+      sources = sources.filter(s => {
+        const tasks = allTasksCache[String(s.id)] || [];
+        return tasks.some(t => t.toLowerCase().includes(q));
+      });
+    } else {
+      sources = sources.filter(s => s.short_name.toLowerCase().includes(q) || s.citation.toLowerCase().includes(q));
+    }
+  }
   sources = FilterRegistry.applyAll(sources);
   const countEl = document.getElementById('filter-count');
   if (countEl) countEl.textContent = sources.length + ' из ' + allSources.length;
@@ -1048,6 +1072,39 @@ function showToast(msg) {
 
 const searchInput=document.getElementById('search');
 const searchClear=document.getElementById('search-clear');
+// РЕЖИМ ПОИСКА
+const searchModeBtn = document.getElementById('search-mode-btn');
+const searchModeDropdown = document.getElementById('search-mode-dropdown');
+
+function applySearchMode(mode) {
+  searchMode = mode;
+  localStorage.setItem('dt_search_mode', mode);
+  const label = mode === 'tasks' ? 'Задачи ▾' : 'Источники ▾';
+  searchModeBtn.textContent = label;
+  document.getElementById('search').placeholder = mode === 'tasks' ? 'Поиск по задачам…' : 'Поиск по источникам…';
+  document.querySelectorAll('.search-mode-option').forEach(o => {
+    o.classList.toggle('active', o.dataset.mode === mode);
+  });
+  renderSources();
+}
+
+searchModeBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  searchModeDropdown.classList.toggle('open');
+});
+
+document.querySelectorAll('.search-mode-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    applySearchMode(opt.dataset.mode);
+    searchModeDropdown.classList.remove('open');
+  });
+});
+
+document.addEventListener('click', () => searchModeDropdown.classList.remove('open'));
+
+// Восстанавливаем режим при загрузке
+applySearchMode(searchMode);
+
 searchInput.addEventListener('input',e=>{currentSearch=e.target.value;localStorage.setItem('dt_search',currentSearch);searchClear.classList.toggle('visible',currentSearch.length>0);renderSources();});
 searchClear.addEventListener('click',()=>{searchInput.value='';currentSearch='';localStorage.removeItem('dt_search');searchClear.classList.remove('visible');renderSources();searchInput.focus();});
 
@@ -1150,6 +1207,13 @@ initTheme();
 let currentTaskSourceId = null;
 let currentTasks = [];
 let taskCounts = {};
+
+async function loadAllTasks() {
+  try {
+    const res = await fetch(`${API}/sources/tasks/all`);
+    allTasksCache = await res.json();
+  } catch(e) {}
+}
 
 async function loadTaskCounts() {
   try {
@@ -1347,7 +1411,7 @@ if (savedSearch) {
   if (si) si.value = savedSearch;
   if (sc) sc.classList.add('visible');
 }
-load().then(() => { restoreScroll(); loadTaskCounts(); });
+load().then(() => { restoreScroll(); loadTaskCounts(); loadAllTasks(); });
 </script>
 </body>
 </html>

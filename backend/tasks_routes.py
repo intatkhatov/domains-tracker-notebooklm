@@ -79,6 +79,20 @@ def delete_task(task_id):
     return jsonify({'status': 'ok'})
 
 
+@tasks_bp.route('/api/sources/tasks/all', methods=['GET'])
+def get_all_tasks():
+    conn = get_db()
+    rows = conn.execute('SELECT source_id, text FROM tasks ORDER BY position, id').fetchall()
+    conn.close()
+    result = {}
+    for r in rows:
+        sid = str(r['source_id'])
+        if sid not in result:
+            result[sid] = []
+        result[sid].append(r['text'])
+    return jsonify(result)
+
+
 @tasks_bp.route('/api/sources/tasks/counts', methods=['GET'])
 def get_task_counts():
     conn = get_db()
