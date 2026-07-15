@@ -1348,6 +1348,7 @@ document.getElementById('tasks-tbody').addEventListener('click', async e => {
     const tid = parseInt(delBtn.dataset.taskId);
     await fetch(`${API}/tasks/${tid}`, {method:'DELETE'});
     await loadTaskCounts();
+    await loadAllTasks();
     await reloadTasks();
     return;
   }
@@ -1393,6 +1394,7 @@ document.getElementById('btn-task-add').addEventListener('click', () => {
       await fetch(`${API}/sources/${currentTaskSourceId}/tasks`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text})});
       taskCounts[currentTaskSourceId] = (taskCounts[currentTaskSourceId] || 0) + 1;
       await loadTaskCounts();
+      await loadAllTasks();
       await reloadTasks();
     }
     if (e.key === 'Escape') { newRow.remove(); }
