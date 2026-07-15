@@ -1384,6 +1384,7 @@ document.getElementById('btn-task-add').addEventListener('click', () => {
     await fetch(`${API}/sources/${currentTaskSourceId}/tasks`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text})});
     taskCounts[currentTaskSourceId] = (taskCounts[currentTaskSourceId] || 0) + 1;
     await loadTaskCounts();
+    await loadAllTasks();
     await reloadTasks();
   });
 
