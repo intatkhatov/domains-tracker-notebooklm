@@ -54,6 +54,11 @@ def prompts_page():
     return send_from_directory('/app/frontend', 'prompts.html')
 
 
+@app.route('/dedup.html')
+def dedup_page():
+    return send_from_directory('/app/frontend', 'dedup.html')
+
+
 @app.route('/api/domains', methods=['GET'])
 def get_domains():
     conn = get_db()
@@ -74,6 +79,34 @@ def get_domains():
         })
     conn.close()
     return jsonify(result)
+
+
+@app.route('/api/sources/deduplicate', methods=['GET'])
+def deduplicate():
+    conn = get_db()
+    rows = conn.execute('SELECT id, short_name, citation FROM sources').fetchall()
+    conn.close()
+    sources = [dict(r) for r in rows]
+    results = []
+    seen = set()
+    for i, src in enumerate(sources):
+        for j, other in enumerate(sources):
+            if i >= j:
+                continue
+            pair_key = (min(src['id'], other['id']), max(src['id'], other['id']))
+            if pair_key in seen:
+                continue
+            seen.add(pair_key)
+            from similarity import similarity_score
+            score = similarity_score(src['citation'], other['citation'])
+            if score >= 0.45:
+                results.append({
+                    'score': round(score * 100),
+                    'source_a': src,
+                    'source_b': other
+                })
+    results.sort(key=lambda r: r['score'], reverse=True)
+    return jsonify(results)
 
 
 @app.route('/api/sources/check-duplicate', methods=['POST'])

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дедупликация — Domains Tracker</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f0; color: #1a1a1a; font-size: 14px; }
+
+  header { background: #1a1a1a; color: #fff; padding: 12px 20px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; }
+  .header-inner { max-width: 800px; margin: 0 auto; width: 100%; display: flex; align-items: center; gap: 14px; }
+  header h1 { font-size: 14px; font-weight: 600; }
+  .back-link { color: #bbb; text-decoration: none; font-size: 12.5px; padding: 6px 12px; border: 1px solid #3a3a3a; border-radius: 6px; }
+  .back-link:hover { color: #fff; border-color: #555; }
+  .btn-check { margin-left: auto; padding: 7px 14px; background: #1565c0; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 12.5px; font-weight: 600; }
+  .btn-check:hover { background: #0d47a1; }
+  .btn-check:disabled { background: #888; cursor: not-allowed; }
+
+  .container { max-width: 800px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  .empty-state { text-align: center; color: #aaa; padding: 60px; font-size: 13px; background: #fff; border: 1px solid #e8e8e8; border-radius: 10px; }
+
+  .stats-bar { background: #fff; border: 1px solid #e8e8e8; border-radius: 8px; padding: 14px 18px; margin-bottom: 16px; display: none; font-size: 13px; color: #555; }
+  .stats-bar.visible { display: block; }
+  .stats-bar b { color: #1a1a1a; }
+
+  .pair-card { background: #fff; border: 1px solid #ffe082; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+  .pair-header { background: #fff8e1; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; }
+  .pair-score { display: inline-block; background: #ff9800; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+  .pair-body { padding: 12px 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pair-source { background: #f9f9f9; border: 1px solid #eee; border-radius: 6px; padding: 10px 12px; }
+  .pair-source-name { font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+  .pair-source-citation { font-size: 11.5px; color: #777; line-height: 1.4; margin-bottom: 8px; }
+  .btn-delete-source { padding: 5px 12px; background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: 600; }
+  .btn-delete-source:hover { background: #ffcdd2; }
+
+  .confirm-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 300; align-items: center; justify-content: center; }
+  .confirm-overlay.open { display: flex; }
+  .confirm-box { background: #fff; border-radius: 10px; padding: 24px; width: 100%; max-width: 420px; box-shadow: 0 8px 40px rgba(0,0,0,0.18); }
+  .confirm-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .confirm-text { font-size: 13px; color: #555; margin-bottom: 20px; line-height: 1.5; }
+  .confirm-actions { display: flex; gap: 10px; justify-content: flex-end; }
+  .btn-cancel { padding: 8px 18px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 13px; color: #555; }
+  .btn-cancel:hover { background: #f5f5f5; }
+  .btn-confirm-delete { padding: 8px 18px; background: #c62828; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; }
+  .btn-confirm-delete:hover { background: #b71c1c; }
+
+  .toast { position: fixed; bottom: 24px; right: 24px; background: #1a1a1a; color: #fff; padding: 10px 18px; border-radius: 6px; font-size: 13px; opacity: 0; transition: opacity 0.2s; z-index: 400; pointer-events: none; }
+  .toast.show { opacity: 1; }
+
+  .loading { text-align: center; color: #888; padding: 40px; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="back-link">← Назад</a>
+    <h1>Дедупликация</h1>
+    <button class="btn-check" id="btn-check">Проверить</button>
+  </div>
+</header>
+
+<div class="container">
+  <div class="stats-bar" id="stats-bar"></div>
+  <div id="results-list">
+    <div class="empty-state">Нажми «Проверить» чтобы найти похожие источники в базе.</div>
+  </div>
+</div>
+
+<div class="confirm-overlay" id="confirm-overlay">
+  <div class="confirm-box">
+    <div class="confirm-title">Удалить источник?</div>
+    <div class="confirm-text" id="confirm-text"></div>
+    <div class="confirm-actions">
+      <button class="btn-cancel" id="btn-confirm-cancel">Отмена</button>
+      <button class="btn-confirm-delete" id="btn-confirm-delete">Удалить</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = 'http://localhost:5051/api';
+let pairs = [];
+let deleteSourceId = null;
+let deletePairIdx = null;
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function escHtml(str) {
+  return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function renderResults() {
+  const list = document.getElementById('results-list');
+  const stats = document.getElementById('stats-bar');
+
+  if (pairs.length === 0) {
+    list.innerHTML = '<div class="empty-state">Дублей не найдено. База источников чистая. ✅</div>';
+    stats.classList.remove('visible');
+    return;
+  }
+
+  stats.innerHTML = `Найдено похожих пар: <b>${pairs.length}</b>`;
+  stats.classList.add('visible');
+
+  list.innerHTML = pairs.map((p, i) => `
+    <div class="pair-card" id="pair-${i}">
+      <div class="pair-header">
+        <span>Похожие источники</span>
+        <span class="pair-score">${p.score}% совпадение</span>
+      </div>
+      <div class="pair-body">
+        <div class="pair-source">
+          <div class="pair-source-name">${escHtml(p.source_a.short_name)}</div>
+          <div class="pair-source-citation">${escHtml(p.source_a.citation)}</div>
+          <button class="btn-delete-source" data-id="${p.source_a.id}" data-pair="${i}" data-name="${escHtml(p.source_a.short_name)}">Удалить</button>
+        </div>
+        <div class="pair-source">
+          <div class="pair-source-name">${escHtml(p.source_b.short_name)}</div>
+          <div class="pair-source-citation">${escHtml(p.source_b.citation)}</div>
+          <button class="btn-delete-source" data-id="${p.source_b.id}" data-pair="${i}" data-name="${escHtml(p.source_b.short_name)}">Удалить</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+document.getElementById('btn-check').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-check');
+  btn.disabled = true;
+  btn.textContent = 'Проверяю…';
+  document.getElementById('results-list').innerHTML = '<div class="loading">Анализирую базу источников…</div>';
+  document.getElementById('stats-bar').classList.remove('visible');
+
+  try {
+    const res = await fetch(`${API}/sources/deduplicate`);
+    pairs = await res.json();
+    renderResults();
+  } catch(e) {
+    document.getElementById('results-list').innerHTML = '<div class="empty-state">Ошибка соединения с сервером.</div>';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Проверить';
+  }
+});
+
+document.getElementById('results-list').addEventListener('click', e => {
+  const btn = e.target.closest('.btn-delete-source');
+  if (!btn) return;
+  deleteSourceId = parseInt(btn.dataset.id);
+  deletePairIdx = parseInt(btn.dataset.pair);
+  const name = btn.dataset.name;
+  document.getElementById('confirm-text').innerHTML = `Удалить источник:<br><b>${name}</b><br><br>Это действие необратимо.`;
+  document.getElementById('confirm-overlay').classList.add('open');
+});
+
+document.getElementById('btn-confirm-cancel').addEventListener('click', () => {
+  document.getElementById('confirm-overlay').classList.remove('open');
+  deleteSourceId = null;
+  deletePairIdx = null;
+});
+
+document.getElementById('btn-confirm-delete').addEventListener('click', async () => {
+  if (!deleteSourceId) return;
+  try {
+    await fetch(`${API}/sources/${deleteSourceId}`, { method: 'DELETE' });
+    showToast('Источник удалён');
+    document.getElementById('confirm-overlay').classList.remove('open');
+    // Убираем пару из списка
+    const pairEl = document.getElementById(`pair-${deletePairIdx}`);
+    if (pairEl) pairEl.remove();
+    pairs.splice(deletePairIdx, 1);
+    // Перерендериваем с новыми индексами
+    renderResults();
+    deleteSourceId = null;
+    deletePairIdx = null;
+  } catch(e) {
+    showToast('Ошибка удаления');
+  }
+});
+</script>
+</body>
+</html>
